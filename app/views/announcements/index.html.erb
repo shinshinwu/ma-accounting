@@ -1,0 +1,54 @@
+<% content_for :site_title do %>Announcements<% end %>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="white-box text-center">
+      <h2>All Announcements</h2>
+      <%= link_to "Add Announcement", new_announcement_path, class: 'btn btn-warning' %>
+      <% if @announcements.present? %>
+        <div class="table-responsive text-left">
+        <table id="myTable" class="table table-striped">
+          <thead>
+            <tr>
+              <th>Cohort</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @announcements.each do |a| %>
+              <tr>
+                <td><%= a.course_cohort_id %></td>
+                <td><%= a.start_date  %></td>
+                <td><%= a.end_date %></td>
+                <td><%= a.title %></td>
+                <td><%= a.description %></td>
+                <td>
+                  <%= link_to "Edit", edit_announcement_path(a), class: 'btn btn-success' %>
+                </td>
+                <td>
+                  <%= link_to "Delete", announcement_path(a), method: :delete, class: 'btn btn-danger', confirm: "Are you sure?" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <% else %>
+        <h4>No announcements yet!</h4>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% content_for :javascripts do %>
+<script>
+$(document).ready(function(){
+  $('#myTable').DataTable();
+});
+</script>
+<% end %>

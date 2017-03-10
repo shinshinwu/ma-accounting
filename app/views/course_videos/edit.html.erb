@@ -1,0 +1,11 @@
+<% content_for :site_title do %>Edit Video: <%= @video.title %><% end %>
+
+<% content_for :breadcrumbs do %>
+  <ol class="breadcrumb">
+    <li><%= link_to 'All Modules', course_modules_path %></li>
+    <li><%= link_to "Edit Module #{@video.course_module.sort_order}", edit_course_module_path(@video.course_module) %></li>
+    <li class="active"><%= "Edit Video #{@video.sort_order}" %></li>
+  </ol>
+<% end %>
+
+<%= render partial: 'form', locals: {content: @video.course_content, video: @video, path: course_video_path(@video), method: :put} %>

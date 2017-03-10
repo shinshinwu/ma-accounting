@@ -1,0 +1,55 @@
+<div class="white-box">
+  <div class="row m-b-20">
+    <div class="col-md-10 col-md-offset-1 col-xs-12 text-center">
+      <% if announcement.persisted? %>
+        <h1 class="m-b-20">Edit Announcement</h1>
+      <% else %>
+        <h1 class="m-b-20">Add Announcement</h1>
+      <% end %>
+
+      <%= form_for announcement, url: path, method: method, html: {class: "form-horizontal", style: "height:100%;"} do |f| %>
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Cohort</label>
+          <div class="col-sm-9">
+            <%= f.select :course_cohort_id, CourseCohort.active.collect { |c| [ c.id, c.id ] }, {}, {:class => "form-control", :required => true} %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Start Date</label>
+          <div class="col-sm-9">
+            <%= f.date_field :start_date, class: "form-control", required: true %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-3 control-label">End Date (optional)</label>
+          <div class="col-sm-9">
+            <%= f.date_field :end_date, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group m-t-20">
+          <label class="col-sm-3 control-label">Title</label>
+          <div class="col-sm-9">
+            <%= f.text_field :title, class: "form-control", required: true %>
+          </div>
+        </div>
+
+        <div class="form-group m-t-20">
+          <label class="col-sm-3 control-label">Description</label>
+          <div class="col-sm-9">
+            <%= f.text_area :description, class: "form-control", required: true, rows: "3" %>
+          </div>
+        </div>
+
+        <div class="text-right">
+          <%= f.submit "Submit", class: "btn btn-success m-r-10" %>
+          <%= link_to "Cancel", announcements_path, class:"btn btn-inverse waves-effect waves-light" %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

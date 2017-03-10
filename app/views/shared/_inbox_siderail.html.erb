@@ -1,0 +1,17 @@
+<div class="col-lg-2 col-md-3  col-sm-12 col-xs-12 inbox-panel">
+  <div>
+    <%= link_to "Compose", new_conversation_path, class: "btn btn-custom btn-block waves-effect waves-light" %>
+    <div class="list-group mail-list m-t-20">
+      <%= link_to polymorphic_path([:inbox, current_member.path_class]), class: inbox_class do %>
+        Inbox
+        <% if current_member.unread_conversations.length > 0 %>
+        <span class="label label-rouded label-success pull-right unread-count"><%= current_member.unread_conversations.length %></span>
+        <% end %>
+      <% end %>
+
+      <%= link_to polymorphic_path([:sentbox, current_member.path_class]), class: sentbox_class do %>
+        Sent Mail
+      <% end %>
+    </div>
+  </div>
+</div>

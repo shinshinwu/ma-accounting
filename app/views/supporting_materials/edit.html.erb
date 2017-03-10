@@ -1,0 +1,11 @@
+<% content_for :site_title do %>Edit Supporting Material<% end %>
+
+<% content_for :breadcrumbs do %>
+  <ol class="breadcrumb">
+    <li><%= link_to 'All Modules', course_modules_path %></li>
+    <li><%= link_to "Module #{@material.course_module.sort_order}", course_module_path(@material.course_module) %></li>
+    <li class="active"><%= "Edit Supporting Materials" %></li>
+  </ol>
+<% end %>
+
+<%= render partial: 'form', locals: {material: @material, course_module: @material.course_module, path: supporting_material_path(@material), method: :put} %>

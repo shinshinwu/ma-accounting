@@ -1,0 +1,66 @@
+<% content_for :site_title do %>
+  Module <%= @module.sort_order %> Assessment Certificate
+<% end %>
+
+<% content_for :breadcrumbs do %>
+  <ol class="breadcrumb">
+    <li><%= link_to 'All Courses', units_path %></li>
+    <li><%= link_to "Unit #{@module.unit.sort_order}", units_path %></li>
+    <li><%= link_to "Module #{@module.sort_order}", course_module_path(@module) %></li>
+    <li class="active">Assessment Certificate</li>
+  </ol>
+<% end %>
+
+<div class="white-box">
+  <div class="row">
+    <div class="col-sm-12">
+      <p class="m-b-30">Congratulations! You have answered <span class="text-success"><%= @attempt.correctly_answered.size %>/<%= pluralize(@quizz.questions.size, 'question') %></span> correctly and passed this quizz.</p>
+
+      <div class="table-responsive m-b-20">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Correct?</th>
+              <th>Question</th>
+              <th>Correct Answer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @quizz.questions.each do |question| %>
+              <tr>
+                <td>
+                  <% if @attempt.correctly_answered.include?(question.id) %>
+                    <i class="fa fa-check text-success"></i>
+                  <% else %>
+                    <i class="fa fa-close text-danger"></i>
+                  <% end %>
+                </td>
+                <td>
+                  <%= "#{question.sort_order}. #{question.description.capitalize}" %>
+                </td>
+                <td>
+                  <%= question.answers.correct.map(&:description).to_sentence.capitalize %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="white-box">
+  <div class="row">
+    <div class="col-md-10 col-sm-12">
+      <p>You earned your completion certificate. You can view and download your certificate of completion below for your own record.</p>
+
+      <%= link_to "Download Certificate", quizz_certificate_pdf_preview_course_module_path(@module, preview: @certificate_info, format: 'pdf'), class: "btn btn-info waves-effect m-b-20", target: "_blank" %>
+      <br />
+
+      <div class="embed-responsive embed-responsive-4by3">
+        <iframe class="certificate-preview" src="<%= quizz_certificate_pdf_preview_course_module_path(@module, preview: @certificate_info, format: 'pdf') %>"> </iframe>
+      </div>
+    </div>
+  </div>
+</div>

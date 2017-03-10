@@ -1,0 +1,45 @@
+<% content_for :site_title do %>All Course Modules<% end %>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="white-box">
+      <h2 class="text-center">All Modules</h2>
+      <div class="table-responsive">
+        <table id="myTable" class="table table-striped">
+          <thead>
+            <tr>
+              <th>Unit</th>
+              <th>Module</th>
+              <th>Name</th>
+              <th>Duration</th>
+              <th># of Videos</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @modules.each do |course_module| %>
+              <tr>
+                <td><strong><%= link_to course_module.unit.sort_order, units_path(anchor: "unit#{course_module.unit_id}") %></td>
+                <td><strong><%= link_to course_module.sort_order, course_module_path(course_module) %></strong></td>
+                <td><u><%= link_to course_module.name, course_module_path(course_module) %></u></td>
+                <td><%= course_module.duration_days %> Days</td>
+                <td><%= course_module.course_content.course_videos.size %></td>
+                <td>
+                  <%= link_to "Edit", edit_course_module_path(course_module), class: 'btn btn-success' %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :javascripts do %>
+<script>
+$(document).ready(function(){
+  $('#myTable').DataTable();
+});
+</script>
+<% end %>

@@ -1,0 +1,173 @@
+<% content_for :site_title do %>Edit Module <%= @module.sort_order %>: <%= @module.name %><% end %>
+
+<% content_for :breadcrumbs do %>
+  <ol class="breadcrumb">
+    <li><%= link_to 'All Modules', course_modules_path %></li>
+    <li><%= link_to "Module #{@module.sort_order}", course_module_path(@module) %></li>
+    <li class="active"><%= "Edit Module #{@module.sort_order}" %></li>
+  </ol>
+<% end %>
+
+
+<div class="white-box">
+  <div class="row m-b-20">
+    <div class="col-md-12 text-center">
+      <h1>Edit Module <%= @module.sort_order %>:  <%= @module.name.titleize %></h1>
+
+      <%= form_for @module, url: course_module_path(@module), method: :put, html: {class: "form-horizontal", style: "height:100%;"} do |f| %>
+
+      <div class="form-group m-t-20">
+        <label class="col-sm-3 control-label">Module Name</label>
+        <div class="col-sm-9">
+          <%= f.text_field :name, class: "form-control", required: true %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Unit</label>
+        <div class="col-sm-9">
+          <%= f.select :unit_id, Unit.all.collect { |u| [ u.name, u.id ] }, {}, {:class => "form-control", :required => true} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Module Order</label>
+        <div class="col-sm-9">
+          <%= f.number_field :sort_order, {:class => "form-control", :required => true, min: 1, max: (CourseModule.all.size + 10)} %>
+        </div>
+      </div>
+
+      <div class="text-right">
+        <%= f.submit "Save Changes", class: "btn btn-success m-r-10" %>
+      </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-inverse" id="videos">
+  <div class="panel-heading panel-title m-b-20">
+    <i class="fa fa-film"></i>
+      Course Videos
+  </div>
+  <div class="panel-wrapper collapse in" aria-expanded="true">
+    <div class="panel-body p-t-0">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2>All Course Videos</h2>
+          <%= link_to "Add New Video", new_course_video_path(content_id: @module.course_content.id), class: 'btn btn-warning' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <hr />
+          <div class="table-responsive">
+            <table id="myTable" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Order</th>
+                  <th>Video Title</th>
+                  <th>URL</th>
+                  <th>Duration</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @videos.each do |video| %>
+                  <tr>
+                    <td><%= video.sort_order %></td>
+                    <td><%= video.title  %></td>
+                    <td><u><%= link_to video.url, video.url, target: "_blank" %></u></td>
+                    <td><%= video.duration %></td>
+                    <td>
+                      <%= link_to "Edit", edit_course_video_path(video), class: 'btn btn-success' %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-inverse" id="materials">
+  <div class="panel-heading panel-title m-b-20">
+    <i class="fa fa-book"></i>
+      Supporting Materials
+  </div>
+  <div class="panel-wrapper collapse in" aria-expanded="true">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2>All Supporting Materials</h2>
+            <%= link_to "Add New Support Material", new_supporting_material_path(course_module_id: @module.id), class: 'btn btn-warning' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <hr />
+          <% if @materials.present? %>
+          <div class="table-responsive">
+            <table id="myTable" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Description</th>
+                  <th>Image</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @materials.each do |material| %>
+                  <tr>
+                    <td><%= material.title %></td>
+                    <td><%= material.description  %></td>
+                    <td>
+                      <% if material.image.present? %>
+                        <%= link_to "View Image", material.image.img.url(:large), class: "image-popup-no-margins" %>
+                      <% else %>
+                        N/A
+                      <% end %>
+                    </td>
+                    <td>
+                      <%= link_to "Edit", edit_supporting_material_path(material), class: 'btn btn-success' %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <% else %>
+            <p>No supporting materials yet!</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-inverse" id="assignments">
+  <div class="panel-heading panel-title m-b-20">
+    <i class="fa fa-list-alt"></i>
+      Quizzes
+  </div>
+  <div class="panel-wrapper collapse in" aria-expanded="true">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2>All Assignments</h2>
+            <%= link_to "Add New Quizz", '/', class: 'btn btn-warning' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <p>Display quizz here</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

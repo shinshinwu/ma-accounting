@@ -1,0 +1,34 @@
+<div class="col-md-4 col-xs-12">
+  <div class="white-box">
+    <div class="user-bg">
+      <%= image_tag("user.jpg", class:"img-responsive") %>
+    </div>
+    <div class="user-btm-box">
+      <!-- .row -->
+      <div class="row text-center m-t-10">
+        <div class="col-md-12"><strong>Name</strong>
+          <p><%= member.name %></p>
+          <% if member.is_a?(Admin) %>
+            <p class="label label-warning %>">Admin</p>
+          <% end %>
+        </div>
+      </div>
+      <!-- /.row -->
+      <hr>
+      <!-- .row -->
+      <div class="row text-center m-t-10">
+        <div class="col-md-12"><strong>Email</strong>
+          <p><%= member.email %></p>
+        </div>
+      </div>
+      <!-- /.row -->
+      <hr>
+      <!-- .row -->
+      <div class="row text-center m-t-10">
+        <div class="col-md-12"><strong>Active Since</strong>
+          <p><%= member.created_at.in_time_zone.to_date %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

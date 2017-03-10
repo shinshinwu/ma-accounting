@@ -1,0 +1,194 @@
+<% content_for :site_title do %>
+  Module <%= @module.sort_order %>: <%= @module.name %>
+  <% if current_admin.present? %>
+    <%= link_to "Edit Module", edit_course_module_path(@module), class: 'btn btn-warning' %>
+  <% end %>
+<% end %>
+
+<% content_for :breadcrumbs do %>
+  <ol class="breadcrumb">
+    <li><%= link_to 'All Courses', units_path %></li>
+    <li><%= link_to "Unit #{@module.unit.sort_order}", units_path %></li>
+    <li class="active"><%= "Module #{@module.sort_order}" %></li>
+  </ol>
+<% end %>
+
+<div class="col-md-8 col-xs-12">
+  <div class="white-box">
+    <div class="row m-b-30">
+      <div class="col-sm-12 text-center">
+        <h3 class="m-t-20 m-b-20">
+          <%= @video.title %>
+          <small class="text-muted ar-name"><%= @video.duration %></small>
+        </h3>
+        <div class="embed-responsive embed-responsive-4by3">
+          <iframe src=<%= @video.url %> width='630' height='470' frameborder='0' allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4 col-xs-12 resource-box">
+  <div class="white-box">
+    <h3 class="box-title">VIDEOS IN THIS MODULE</h3>
+    <hr class="m-t-0">
+    <ul class="list-icons">
+      <% @vids.each do |vid| %>
+      <li class="m-b-20">
+        <div class="row">
+          <div class="col-xs-2 vid-bullet">
+            <%- if vid == @video -%>
+            <i class="fa fa-caret-right text-info"></i>
+            <%- end -%>
+            <%= sprintf '%02d', vid.sort_order %>.
+          </div>
+          <div class="col-xs-10 vid-title">
+            <% link_class = "now-playing" if vid == @video %>
+            <%= link_to vid.title, controller: 'course_modules', action: 'show', id: @module.id, video: vid.id %>
+            <br  />
+            <i class="fa fa-clock-o"></i> <%= vid.duration %>
+          </div>
+        </div>
+      </li>
+      <div class="clearfix"></div>
+      <% end %>
+    </ul>
+  </div>
+  <div class="white-box">
+    <h3 class="box-title">CLASS RESOURCES</h3>
+    <hr class="m-t-0">
+    <ul class="list-icons">
+      <% if @supporting_docs.present? || @supporting_images.present? %>
+      <li>
+        <i class="fa fa-list-alt"></i>  <a href="#supporting-materials">Supporting Materials</a>
+      </li>
+      <% end %>
+      <% if @quizzes.present? %>
+      <li>
+        <i class="fa fa-edit"></i>  <a href="#assignments">Take Assessments</a>
+      </li>
+      <% end %>
+      <li>
+        <i class="fa fa-commenting"></i>  <a href="#comments">View Comments</a>
+      </li>
+      <% unless current_admin.present? %>
+        <li>
+          <i class="fa fa-envelope"></i>  <a href="#messages">Ask Teacher Questions</a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <% if @quizz.present? %>
+    <div class="white-box">
+      <h3 class="box-title">ASSESSMENTS</h3>
+      <hr class="m-t-0">
+      <% if @quizz.passed_by_user?(current_user) %>
+        <p>
+          Congratulations on passing the assessment! You can view your certificate through the link below.
+        </p>
+        <%= link_to "View Certificate", quizz_certificate_course_module_path(@module), class: "btn btn-custom m-t-10" %>
+      <% else %>
+        <p>
+          Take the assessment below to complete the course and earn your certificate!
+        </p>
+        <%= link_to "Take Assessment", quizz_course_module_path(@module), class: "btn btn-custom m-t-10" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class="clearfix"></div>
+
+<% if @supporting_docs.present? || @supporting_images.present? %>
+  <div class="panel panel-inverse" id="supporting-materials">
+    <div class="panel-heading panel-title">
+      <i class="fa fa-list-alt"></i>
+        Supporting Materials
+    </div>
+    <div class="panel-wrapper collapse in" aria-expanded="true">
+      <div class="panel-body">
+        <div class="col-sm-12">
+          <% if @supporting_docs.present? %>
+            <h2><small>Related Documents:</small></h2>
+            <ul class="m-b-40">
+              <% @supporting_docs.each do |m| %>
+                <li><%= m.title %>: <%= link_to m.document.doc_file_name, m.document.doc.url, target: "_blank" %></li>
+              <% end %>
+            </ul>
+          <% end %><!-- end documents -->
+
+          <% if @supporting_images.present? %>
+            <h2><small>Related Images (click on image to open in new window):</small></h2>
+            <% @supporting_images.each_slice(6) do |row| %>
+              <div class="row m-t-20">
+                <% row.each do |material| %>
+                  <div class="col-sm-2">
+                    <small><%= material.title.downcase.titleize %></small>
+                    <%= link_to image_url(material.image.img.url(:original), alt: material.image.img_file_name), target: "_blank" do %>
+                      <%= image_tag(material.image.img.url(:medium), class: "img-responsive m-t-10") %>
+                    <% end %>
+                  </div>
+                <% end %> <!-- end images -->
+              </div>
+            <% end %> <!-- end row -->
+          <% end %> <!-- end img present? -->
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %> <!-- end supporting_material -->
+
+<!-- possibly another call out to taking assessment -->
+
+<div class="panel panel-inverse" id="comments">
+  <div class="panel-heading panel-title m-b-20">
+    <i class="fa fa-envelope"></i>
+    Comments
+  </div>
+  <div class="panel-wrapper collapse in" aria-expanded="true">
+    <div class="panel-body">
+      <div class="col-md-12">
+        <div id="disqus_thread"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if current_user.present? %>
+  <div class="panel panel-inverse" id="messages">
+    <div class="panel-heading panel-title m-b-20">
+      <i class="fa fa-envelope"></i>
+        Ask Your Teacher
+    </div>
+    <div class="panel-wrapper collapse in" aria-expanded="true">
+      <div class="panel-body">
+        <div class="col-md-10 col-md-offset-1">
+          <%= render :partial => "messages/new", :locals => {conversation: @conversation, course_module: @module, placeholder: "Have questions? Clarify with your teacher here"} %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= content_for :javascripts do %>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://tattootutor.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<% end %>

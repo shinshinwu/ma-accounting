@@ -1,0 +1,18 @@
+<div class="chat-box">
+  <ul class="chat-list slimscroll" style="overflow: scroll;">
+    <% messages.each_with_index do |msg, index| %>
+      <% msg_position = msg.sender == current_user ? '' : 'odd' %>
+      <li class=<%= msg_position %>>
+        <div class="chat-image">
+          <%= image_tag("pawandeep.jpg", alt: "user", class: "img-circle") %>
+        </div>
+        <div class="chat-body">
+          <div class="chat-text">
+            <h4><%= msg.sender.name %></h4>
+            <p><%= msg.body %></p>
+            <b><%= msg.created_at.in_time_zone.to_s(:full) %></b> </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

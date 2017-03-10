@@ -1,0 +1,35 @@
+<div class="white-box retry-alert">
+  <div class="row">
+    <div class="col-sm-12">
+      <p class="text-danger m-b-30">Sorry, you need to answer <b><%= pluralize(quizz.passing_score, 'question') %></b> correctly to pass this quizz. Your answered <b><%= pluralize(attempt.correctly_answered.size, 'question') %></b> correctly.</p>
+      <div class="table-responsive m-b-20">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Correct?</th>
+              <th>Question</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% quizz.questions.each do |question| %>
+              <tr>
+                <td>
+                  <% if attempt.correctly_answered.include?(question.id) %>
+                    <i class="fa fa-check text-success"></i>
+                  <% else %>
+                    <i class="fa fa-close text-danger"></i>
+                  <% end %>
+                </td>
+                <td>
+                  <%= "#{question.sort_order}. #{question.description}" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <button class="btn btn-info waves-effect retry-quizz">Retry Quizz</button>
+    </div>
+  </div>
+</div>

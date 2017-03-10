@@ -1,0 +1,73 @@
+<!-- row -->
+<div class="row">
+  <!-- Left sidebar -->
+  <div class="col-md-12">
+    <div class="white-box">
+      <!-- row -->
+      <div class="row">
+
+        <%= render partial: 'shared/inbox_siderail', locals: {inbox_class: inbox_class, sentbox_class: sentbox_class} %>
+
+        <div class="col-lg-10 col-md-9 col-sm-12 col-xs-12 mail_listing">
+          <div class="inbox-center">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th colspan="5">
+                    <% unless hide_filter %>
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle waves-effect waves-light m-r-5" data-toggle="dropdown" aria-expanded="false"> Filter <b class="caret"></b> </button>
+                        <ul class="dropdown-menu" role="menu">
+                          <li>
+                            <%= link_to "All", polymorphic_path([:inbox, current_member.path_class]) %>
+                          </li>
+                          <li>
+                            <%= link_to "Read", polymorphic_path([:inbox, current_member.path_class], read: true) %>
+                          </li>
+                          <li>
+                            <%= link_to "Unread", polymorphic_path([:inbox, current_member.path_class], read: false) %>
+                          </li>
+                        </ul>
+                      </div>
+                    <% end %>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if conversations.empty? %>
+                  <tr><td>No messages yet!</td></tr>
+                <% else %>
+                  <% conversations.each do |convo| %>
+                    <% unread_status = convo.has_unread_msg?(current_member) ? 'unread' : '' %>
+                    <tr class=<%= unread_status %>>
+                      <td colspan="5">
+                        <% if convo.sender == current_member %>
+                          <%= "me, #{convo.recipient.first_name}" %>
+                        <% else %>
+                          <%= convo.sender.name %>
+                        <% end %>
+                        <% if convo.messages.size > 1 %>
+                          <span>(<%= convo.messages.size %>)</span>
+                        <% end %>
+                      </td>
+                      <td class="max-texts"><%= link_to convo.subject, conversation_path(slug: convo.slug) %></td>
+                      </td>
+                      <td class="text-right"><%= convo.last_message_time %></td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 text-center m-t-20">
+              <p><%= paginate conversations %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.row -->
+    </div>
+  </div>
+</div>
+<!-- /.row -->

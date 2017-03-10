@@ -1,0 +1,70 @@
+<div class="navbar-default sidebar" role="navigation">
+  <div class="sidebar-nav navbar-collapse slimscrollsidebar">
+    <ul class="nav" id="side-menu">
+      <li class="nav-small-cap m-t-10">--- Main Menu</li>
+
+      <%- if current_member.present? -%>
+        <li>
+          <%= link_to polymorphic_path([:profile, current_member.path_class]), class: "waves-effect" do %>
+          <i class="zmdi zmdi-account-box zmdi-hc-fw fa-fw"></i>
+          <span class="hide-menu">My Profile</span>
+          <%end%>
+        </li>
+        <% if current_admin.present? %>
+        <li>
+          <%= link_to students_admin_path, class: "waves-effect" do %>
+          <i class="zmdi zmdi-accounts-alt zmdi-hc-fw fa-fw"></i>
+          <span class="hide-menu">Students</span>
+          <%end%>
+        </li>
+        <% end %>
+        <li>
+          <%= link_to units_path, class: "waves-effect" do %>
+          <i class="zmdi zmdi-format-list-bulleted zmdi-hc-fw fa-fw"></i>Courses
+          <% end %>
+          <% if content_for?(:side_nav_course) -%>
+            <%= yield :side_nav_course %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to polymorphic_path([:inbox, current_member.path_class]) do %>
+            <i class="zmdi zmdi-email zmdi-hc-fw fa-fw"></i>
+              Inbox
+              <% if current_member.unread_conversations.length > 0 %>
+                <span class="label label-rouded label-success pull-right unread-count"><%= current_member.unread_conversations.length %></span>
+              <% end %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to polymorphic_path([:destroy, current_member.path_class, :session]), method: :delete do %>
+            <i class="zmdi zmdi-power zmdi-hc-fw fa-fw"></i>Logout
+          <% end %>
+        </li>
+
+        <li class="nav-small-cap">--- Resources</li>
+        <li>
+          <a href="#">
+            <i class="zmdi zmdi-comments zmdi-hc-fw fa-fw"></i>Forum
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="zmdi zmdi-collection-text zmdi-hc-fw fa-fw"></i>FAQ
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="zmdi zmdi-format-list-bulleted zmdi-hc-fw fa-fw"></i>Directory
+          </a>
+        </li>
+
+      <% else %>
+        <li>
+          <%= link_to new_user_session_path, class: "waves-effect waves-light" do %>
+            <i class="zmdi zmdi-account zmdi-hc-fw fa-fw"></i>Log In
+          <% end %>
+        </li>
+      <%- end -%>
+    </ul>
+  </div>
+</div>

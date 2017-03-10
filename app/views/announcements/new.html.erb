@@ -1,0 +1,10 @@
+<% content_for :site_title do %>Add Announcement<% end %>
+
+<% content_for :breadcrumbs do %>
+  <ol class="breadcrumb">
+    <li><%= link_to 'All Announcements', announcements_path %></li>
+    <li class="active">Add Announcement</li>
+  </ol>
+<% end %>
+
+<%= render partial: 'form', locals: {announcement: @announcement, path: announcements_path, method: :post} %>

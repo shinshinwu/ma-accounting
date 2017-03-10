@@ -1,0 +1,18 @@
+<!-- row -->
+<div class="row">
+  <!-- Left sidebar -->
+  <div class="col-md-12">
+    <div class="white-box">
+      <div class="row">
+        <%= render partial: 'shared/inbox_siderail', locals: {inbox_class: "list-group-item active", sentbox_class: "list-group-item"} %>
+
+        <div class="col-lg-10 col-md-9 col-sm-8 col-xs-12 mail_listing">
+          <div class="p-20">
+            <%= render :partial => "messages/new", :locals => {conversation: @conversation, course_module: @conversation.course_module, placeholder: "Add your message here"} %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.row -->

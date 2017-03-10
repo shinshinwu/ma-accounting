@@ -1,0 +1,65 @@
+<div class="quizz-questions question-<%= question.sort_order %> inactive">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Question <%= question.sort_order %> out of <%= questions.size %></small>
+        </div>
+        <div class="panel-wrapper">
+          <div class="panel-body">
+            <%= question.description.capitalize %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Your Response <%= question.has_multiple_answers? ? "(Check all that applies)" : '' %>
+        </div>
+        <div class="panel-wrapper">
+          <div class="panel-body">
+            <% if question.has_multiple_answers? %>
+              <% question.answers.each do |answer| %>
+                <div class="checkbox checkbox-inverse">
+                  <%= check_box_tag "question[#{question.id}]", answer.id, false %>
+                  <label><%= answer.description.capitalize %></label>
+                </div>
+              <% end %>
+            <% else %>
+              <% question.answers.each do |answer| %>
+                <div class="radio">
+                  <%= radio_button_tag "question[#{question.id}]", answer.id, false %>
+                  <label><%= answer.description.capitalize %></label>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div class="panel-footer">
+            <% unless question.first_question? %>
+              <button class="btn btn-default waves-effect m-r-10 prev-question" data-order=<%= question.sort_order %>>
+                <i class="fa fa-chevron-left"></i>
+                <span>Previous Question</span>
+              </button>
+            <% end %>
+            <% if question.last_question? %>
+              <%= button_tag(type: 'submit', class: "btn btn-success waves-effect") do %>
+                <i class="fa fa-thumbs-up"></i>
+                <span>Submit Answer</span>
+              <% end %>
+            <% else %>
+              <button class="btn btn-info waves-effect next-question" data-order=<%= question.sort_order %>>
+                <span>Next Question</span>
+                <i class="fa fa-chevron-right"></i>
+              </button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

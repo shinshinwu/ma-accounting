@@ -1,0 +1,72 @@
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.btn-success.btn-outline:hover, .btn-success.btn-outline:focus, .btn-success.btn-outline.focus, .btn-danger.btn-outline:hover, .btn-danger.btn-outline:focus, .btn-danger.btn-outline.focus, .btn-warning.btn-outline:hover, .btn-warning.btn-outline:focus, .btn-warning.btn-outline.focus {
+    color: #00c292;
+    background-color: transparent;
+    cursor: default;
+}
+
+.link-text {
+    font-weight: 800;
+    text-decoration: underline;
+}
+
+.course-list.message-center {
+    border-top: 1px solid rgba(120, 130, 140, 0.13);
+    border-left: 1px solid rgba(120, 130, 140, 0.13);
+    border-right: 1px solid rgba(120, 130, 140, 0.13);
+}
+
+.course-list.message-center .single-course ul {
+    margin-left: 10px;
+}
+
+.course-list.message-center .single-course ul li {
+    display: inline;
+}
+
+.btn.no-hover:hover, .btn.no-hover:focus {
+    color: #03a9f3;
+    background-color: transparent;
+}
+
+.dt-buttons .dt-button, .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate a.paginate_button.current:hover {
+    background-color: #4F5467;
+    border-color: #4F5467;
+}
+
+.flexbox {
+    display: flex;
+}
+
+.flexbox.quizz .quizz-sidebar {
+    margin-bottom: 15px;
+}
+
+.flexbox.quizz .quizz-sidebar .panel {
+    height: 100%;
+}
+
+.quizz .quizz-questions.active {
+    display: block;
+}
+
+.quizz .quizz-questions.inactive {
+    display: none;
+}
+
+.resource-box ul.list-icons li {
+    line-height: 25px;
+}
+
+
+/*.resource-box ul.list-icons li .vid-title {
+    margin-left: -15px;
+}*/
+
+.resource-box ul.list-icons li .vid-bullet {
+    text-align: right;
+}

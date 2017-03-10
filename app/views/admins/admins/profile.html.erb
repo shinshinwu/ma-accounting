@@ -1,0 +1,28 @@
+<div class="row">
+  <%= render partial: 'shared/side_profile', locals: {member: current_admin} %>
+  <div class="col-md-8 col-xs-12">
+    <div class="white-box">
+      <!-- .tabs -->
+      <ul class="nav nav-tabs tabs customtab">
+        <li class="active tab">
+          <a href="#edit" data-toggle="tab"> <span class="visible-xs"><i class="fa fa-home"></i></span> <span class="hidden-xs">Edit Profile</span> </a>
+        </li>
+      </ul>
+        <!-- /.tabs -->
+      <div class="tab-content">
+        <div class="tab-pane active" id="edit">
+          <%= render partial: 'shared/profile_edit', locals: {member: current_admin, path: admin_path} %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<% content_for :javascripts do %>
+<script>
+$(document).ready(function(){
+  $('#myTable').DataTable();
+});
+</script>
+<% end %>

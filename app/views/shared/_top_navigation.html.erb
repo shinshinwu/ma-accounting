@@ -1,0 +1,107 @@
+<nav class="navbar navbar-default navbar-static-top m-b-0">
+  <div class="navbar-header">
+    <!-- Toggle icon for mobile view -->
+    <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
+    <!-- Logo -->
+    <div class="top-left-part">
+      <a class="logo" href="index.html">
+        <!-- Logo icon image, you can use font-icon also -->
+        <b><%= image_tag("eliteadmin-logo.png", alt: "home") %></b>
+        <!-- Logo text image you can use text also -->
+        <span class="hidden-xs"><%= image_tag("eliteadmin-text.png", alt: "home") %></span>
+      </a>
+    </div>
+    <!-- /Logo -->
+    <ul class="nav navbar-top-links navbar-right pull-right">
+      <% if current_member.present? %>
+        <!-- This is the message dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#">
+            <i class="icon-envelope"></i>
+            <% if current_member.unread_conversations.length > 0 %>
+              <div class="notify"><span class="heartbit"></span><span class="point"></span></div>
+            <% end %>
+          </a>
+          <!-- .dropdown-messages -->
+          <ul class="dropdown-menu mailbox scale-up">
+            <li>
+              <div class="drop-title">You have <%= current_member.unread_conversations.length %> new messages</div>
+            </li>
+            <% if current_member.unread_conversations.length > 0 %>
+              <li>
+                <div class="message-center">
+                  <% current_member.unread_conversations.each do |convo| %>
+                    <%= link_to conversation_path(slug: convo.slug) do %>
+                      <div class="user-img">
+                        <%= image_tag("pawandeep.jpg", alt: "user", class: "img-circle") %><span class="profile-status online pull-right"></span>
+                      </div>
+                      <div class="mail-contnet">
+                        <h5><%= convo.last_unread_msg_by(current_member).sender.name %></h5>
+                        <span class="mail-desc"><%= convo.last_unread_msg_by(current_member).body %></span> <span class="time"><%= convo.last_unread_msg_by(current_member).message_time %></span>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+              </li>
+            <% end %>
+            <li>
+              <%= link_to inbox_user_path do %>
+                <strong>See all notifications</strong> <i class="fa fa-angle-right"></i>
+              <% end %>
+            </li>
+          </ul>
+          <!-- /.dropdown-messages -->
+        </li>
+        <!-- /.Task dropdown -->
+        <!-- .user profile dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#">
+            <%= image_tag("varun.jpg", alt: "user-img", class: "img-circle", width: "36") %>
+            <b class="hidden-xs"><%= current_member.first_name %></b>
+          </a>
+          <ul class="dropdown-menu dropdown-user scale-up">
+            <li>
+              <%= link_to polymorphic_path([:profile, current_member.path_class]) do %>
+                <i class="ti-user"></i> My Profile
+              <% end %>
+            </li>
+            <li>
+              <%= link_to polymorphic_path([:inbox, current_member.path_class]) do %>
+                <i class="ti-email"></i> Inbox
+              <% end %>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+              <%= link_to units_path do %>
+                <i class="ti-view-list-alt"></i> All Modules
+              <% end %>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+              <%= link_to polymorphic_path([:destroy, current_member.path_class, :session]), method: :delete do %>
+                <i class="fa fa-power-off"></i> Logout
+              <% end %>
+            </li>
+          </ul>
+          <!-- /.user dropdown-user -->
+        </li>
+        <!-- /.user dropdown -->
+        <!-- /.dropdown -->
+      <% else %>
+        <li>
+          <%= link_to root_path, class: "waves-effect waves-light" do %>
+            <i class="zmdi zmdi-home"></i>  Home
+          <% end %>
+        </li>
+        <li>
+          <%= link_to new_user_session_path, class: "waves-effect waves-light" do %>
+            <i class="zmdi zmdi-account"></i>  Log In
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <!-- /.navbar-header -->
+  <!-- /.navbar-top-links -->
+  <!-- /.navbar-static-side -->
+</nav>

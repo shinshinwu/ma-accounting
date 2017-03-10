@@ -1,0 +1,73 @@
+<!-- row -->
+<div class="row">
+  <!-- Left sidebar -->
+  <div class="col-md-12">
+    <div class="white-box">
+      <div class="row">
+        <%= render partial: 'shared/inbox_siderail', locals: {inbox_class: "list-group-item active", sentbox_class: "list-group-item"} %>
+
+        <div class="col-lg-10 col-md-9 col-sm-8 col-xs-12 mail_listing">
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <% @messages.each_with_index do |msg, index| %>
+              <div class="panel panel-inverse">
+                <div class="panel-heading panel-title" role="tab" id=<%= "heading#{index}" %>>
+                  <a role="button" data-toggle="collapse" href=<%= "#collapse#{index}" %> aria-expanded="true" aria-controls=<%= "collapse#{index}" %>>
+                    <%= msg.sender.name %>
+                    <span class="pull-right font-light small" style="text-transform:none;"><%= msg.created_at.in_time_zone.to_s(:hour_min) %> (<%= time_ago_in_words(msg.created_at.in_time_zone) %> ago)</span>
+                  </a>
+                </div>
+                <div id=<%= "collapse#{index}" %> class="panel-collapse collapse in" role="tabpanel" aria-labelledby=<%= "heading#{index}" %>>
+                  <div class="panel-body">
+                    <%= msg.body %>
+                    <% if current_admin.present? && msg.sender != current_admin %>
+                      <hr />
+                      - send by <%= link_to msg.sender.name, profile_user_path(user_id: msg.sender.id) %>
+                      <% if @conversation.course_module_id.present? %>
+                        <span> regarding <%= link_to "Module #{@conversation.course_module.sort_order}", course_module_path(@conversation.course_module_id) %></span>
+                      <% end %>
+                    <% end %>
+
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+
+          <hr>
+          <div class="p-20">
+            <%= render :partial => "messages/new", :locals => {conversation: @conversation, course_module: @conversation.course_module, placeholder: "Add your reply here"} %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.row -->
+
+<% content_for :javascripts do %>
+<script>
+$(document).ready(function(){
+  // mark all messages in this convo read
+  $.ajax({
+    url: "<%= mark_read_path(slug: @conversation.slug) %>",
+    type: 'PUT',
+    success: function(data) {
+    }
+  });
+
+  <% if @has_unread %>
+    // update inbox label unread count
+    if ($(".unread-count").length) {
+      count = parseInt($(".unread-count").first().text());
+      if (count == 1) {
+        $(".unread-count").hide();
+        $(".notify").hide();
+      } else {
+        count--
+        $(".unread-count").text(count);
+      };
+    };
+  <% end %>
+});
+</script>
+<% end %>

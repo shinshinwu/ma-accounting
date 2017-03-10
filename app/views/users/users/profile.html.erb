@@ -1,0 +1,20 @@
+<div class="row">
+  <%= render partial: 'shared/side_profile', locals: {member: @user} %>
+  <div class="col-md-8 col-xs-12">
+    <div class="white-box">
+      <!-- .tabs -->
+      <ul class="nav nav-tabs tabs customtab">
+        <li class="active tab">
+          <a href="#profile" data-toggle="tab"> <span class="visible-xs"><i class="fa fa-home"></i></span> <span class="hidden-xs">Profile</span> </a>
+        </li>
+      </ul>
+        <!-- /.tabs -->
+      <div class="tab-content">
+        <!-- .tabs 1 -->
+        <div class="tab-pane active" id="profile">
+          <%= render partial: 'shared/profile_edit', locals: {member: @user, path: user_path} %>
+        </div>
+        <!-- /.tabs1 -->
+    </div>
+  </div>
+</div>

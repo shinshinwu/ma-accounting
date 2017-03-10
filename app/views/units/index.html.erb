@@ -1,0 +1,65 @@
+<% content_for :site_title do %>Course Outline<% end %>
+
+<div class="col-sm-12">
+  <% if current_user.present? %>
+    <div class="white-box">
+      <div class="row">
+        <div class="col-sm-12">
+          <h1>
+            <i class="icon-trophy text-success"></i>
+            <span class="box-title">You completed <%= @completed %> out of <%= @total %> modules</span>
+          </h1>
+          <div class="progress m-b-0">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:<%= number_to_percentage((@completed / @total.to_f)*100, precision: 0) %>;"> <span class="sr-only"><%= number_to_percentage((@completed / @total.to_f)*100, precision: 0) %> Complete</span> </div>
+          </div>
+          <span class="text-success"><%= number_to_percentage((@completed / @total.to_f)*100, precision: 0) %></span>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <% @units.each do |unit| %>
+    <div class="white-box">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 class="box-title">Unit <%= unit.sort_order %>: <%= unit.name %></h3>
+          <div class="message-center course-list">
+            <ul class="feeds">
+              <% unit.course_modules.sorted.each do |mod| %>
+                <%= link_to course_module_path(mod) do %>
+                  <div class="single-course">
+                    <li>
+                      <% if current_admin.present? || (mod < current_user.current_module) %>
+                        <div class="bg-success"><i class="fa fa-check text-white"></i></div>
+                      <% elsif mod == current_user.current_module %>
+                        <div class="bg-warning"><i class="fa fa-hourglass-half text-white"></i></div>
+                      <% else %>
+                        <div class="bg-inverse"><i class="fa fa-lock text-white"></i></div>
+                      <% end %>
+                      Module <%= mod.sort_order %>. <%= mod.name %>
+                      <ul>
+                        <li>
+                          <i class="fa fa-clock-o"></i> <%= mod.length %>
+                        </li>
+                        <% if mod.quizz.present? %>
+                          <li>
+                            <i class="fa fa-edit"></i> 1 Assessment
+                          </li>
+                        <% end %>
+                        <% if current_user && current_user.current_module > mod %>
+                          <li class="text-success">
+                            <i class="fa fa-calendar-check-o"></i> Completed on <%= mod.completion_date_for_user(current_user) %>
+                          </li>
+                        <% end %>
+                      </ul>
+                    </li>
+                  </div>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

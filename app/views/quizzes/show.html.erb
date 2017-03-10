@@ -1,0 +1,110 @@
+<% content_for :site_title do %>
+  Module <%= @module.sort_order %> Assessment: <%= @quizz.title %>
+  <% if current_admin.present? %>
+    <%= link_to "Edit Assessment", edit_course_module_path(@module), class: 'btn btn-warning' %>
+  <% end %>
+<% end %>
+
+<% content_for :breadcrumbs do %>
+  <ol class="breadcrumb">
+    <li><%= link_to 'All Courses', units_path %></li>
+    <li><%= link_to "Unit #{@module.unit.sort_order}", units_path %></li>
+    <li><%= link_to "Module #{@module.sort_order}", course_module_path(@module) %></li>
+    <li class="active">Assessment</li>
+  </ol>
+<% end %>
+
+<% if params[:retry] %>
+  <%= render partial: 'retry', locals: {quizz: @quizz, attempt: @attempt} %>
+<% end %>
+
+<div class="row flexbox quizz">
+  <div class="col-md-8 col-xs-12">
+    <%= form_tag quizz_submit_course_module_path, method: :post do %>
+      <% @questions.each do |question| %>
+        <%= render partial: 'question', locals: {question: question, questions: @questions} %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="col-md-4 col-xs-12 quizz-sidebar hidden-xs">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        QUESTIONS
+      </div>
+      <div class="panel-wrapper">
+        <div class="panel-body">
+          <ul class="list-icons">
+            <% @questions.each do |q| %>
+            <li class="question-order-<%= q.sort_order %>">
+              <span class="pull-left">
+                <i></i>
+                <%= link_to "Question #{q.sort_order}", controller: 'quizzes', action: 'show', id: @module.id, question_id: q.id %>
+              </span>
+            </li>
+            <div class="clearfix"></div>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div> <!-- end quizz-sidebar -->
+</div>
+
+<%= content_for :javascripts do %>
+<script>
+$( document ).ready(function() {
+  var totalCount   = parseInt(<%= @questions.size %>)
+
+  var questionMarkup = function (sortOrder) {
+    // for question display
+    var activeQuestion = '.quizz-questions.question-' + sortOrder;
+    $(activeQuestion).removeClass('inactive');
+    $(activeQuestion).addClass('active');
+    $(".quizz-questions").not(activeQuestion).addClass('inactive');
+
+    // for question nav sidebar
+    var currentOrder = parseInt(sortOrder)
+
+    for (i = 0; i <= totalCount; i++) {
+      var pastQuestion = '.quizz-sidebar .question-order-' + i;
+      $(pastQuestion + ' i').removeClass();
+
+      if (i < currentOrder) {
+        $(pastQuestion + ' i').addClass('fa fa-circle');
+      }
+      else if (i > currentOrder) {
+        $(pastQuestion + ' i').addClass('fa fa-circle-o');
+      } else {
+        $(pastQuestion + ' i').addClass('fa fa-circle text-info');
+      }
+    }
+  };
+
+  // hide quizz first if it's a retry
+  if ($('.retry-alert').length) {
+    $('.quizz').hide();
+  };
+
+  $('.retry-quizz').click(function(e) {
+    e.preventDefault();
+    $('.retry-alert').hide();
+    $('.quizz').show();
+  });
+
+  questionMarkup(<%= @question.id %>, <%= @question.sort_order %>);
+
+  $('.next-question').click(function(e) {
+    e.preventDefault();
+    var nextOrder = parseInt($(this).data('order')) + 1;
+    questionMarkup(nextOrder)
+  });
+
+  $('.prev-question').click(function(e) {
+    e.preventDefault();
+    var nextOrder = parseInt($(this).data('order')) - 1;
+    questionMarkup(nextOrder)
+  });
+});
+</script>
+<% end %>

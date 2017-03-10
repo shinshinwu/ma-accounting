@@ -1,0 +1,53 @@
+<% content_for :site_title do %>
+  All Students
+<% end %>
+
+<% content_for :head_scripts do %>
+  <script type="text/javascript" language="javascript" src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
+  <script type="text/javascript" language="javascript" src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script>
+  <script type="text/javascript" language="javascript" src="//cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
+  <script type="text/javascript" language="javascript" src="//cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+  <script type="text/javascript" language="javascript" src="//cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js"></script>
+<% end %>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="white-box">
+      <h2 class=" text-center m-b-0">All Students</h2>
+      <div class="table-responsive">
+        <table id="myTable" class="table table-striped"
+        data-source="<%= show_active_students_admin_path(format: 'json') %>">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Status</th>
+              <th>Created On</th>
+              <th>Active Since</th>
+              <th>Current Progress</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :javascripts do %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#myTable').DataTable( {
+        "processing": true,
+        "serverSide": true,
+        "pagingType": "simple_numbers",
+        "sAjaxSource": $('#myTable').data('source'),
+        dom: 'Bfrtip',
+        buttons: [
+          'csv', 'pdf', 'print'
+        ]
+      });
+    });
+  </script>
+<%end%>
