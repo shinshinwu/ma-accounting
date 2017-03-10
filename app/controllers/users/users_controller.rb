@@ -52,4 +52,7 @@ class Users::UsersController < ApplicationController
     redirect_to :back
   end
 
+  def charge
+  end
+
 end

@@ -52,6 +52,9 @@ gem 'activerecord_any_of', '~> 1.4'
 # writing to PDFs
 gem 'prawn', '0.12.0'
 
+# for payment processing
+gem 'stripe', '2.0.1'
+
 group :development, :test do
   # using binging.pry for inline debuggine
   gem 'pry-byebug'

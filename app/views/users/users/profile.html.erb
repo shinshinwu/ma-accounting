@@ -1,3 +1,4 @@
+
 <div class="row">
   <%= render partial: 'shared/side_profile', locals: {member: @user} %>
   <div class="col-md-8 col-xs-12">
@@ -15,6 +16,37 @@
           <%= render partial: 'shared/profile_edit', locals: {member: @user, path: user_path} %>
         </div>
         <!-- /.tabs1 -->
+
+        <button id="customButton" data-zip-code="true">Purchase</button>
     </div>
   </div>
 </div>
+
+
+<%= content_for :javascripts %>
+<script>
+var handler = StripeCheckout.configure({
+  key: 'pk_test_qyN4kf17ajbDTsL9JjL2u4dE',
+  image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+  locale: 'auto',
+  token: function(token) {
+    // You can access the token ID with `token.id`.
+    // Get the token ID to your server-side code for use.
+  }
+});
+
+document.getElementById('customButton').addEventListener('click', function(e) {
+  // Open Checkout with further options:
+  handler.open({
+    name: 'trainable',
+    description: '2 widgets',
+    amount: 2000
+  });
+  e.preventDefault();
+});
+
+// Close Checkout on page navigation:
+window.addEventListener('popstate', function() {
+  handler.close();
+});
+</script>
