@@ -61,4 +61,6 @@ Rails.application.routes.draw do
 
   resources :messages, only: [:create]
 
+  post "/make_payment" => "users/users#charge"
+
 end

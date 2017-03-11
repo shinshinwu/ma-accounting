@@ -24,4 +24,5 @@
 //= require jquery.dataTables.min.js
 //= require dataTables.buttons.js
 //= require custom-select.min.js
+//= require jquery.formatter.js
 //= require site_wide.js

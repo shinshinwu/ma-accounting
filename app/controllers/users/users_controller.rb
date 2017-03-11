@@ -20,6 +20,8 @@ class Users::UsersController < ApplicationController
       flash[:alert] = 'Sorry, user not found!'
       redirect_to :back and return
     end
+
+    @charge_amount = 5
   end
 
   def update

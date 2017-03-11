@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
 
   scope :active, -> { where(is_active: true) }
 
-  before_save   :prettify_name
+  before_save     :prettify_name
+  before_create   :generate_access_token
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -65,5 +66,12 @@ class User < ActiveRecord::Base
   def prettify_name
     self.first_name = first_name.split(' ').each(&:titleize).join(' ') if first_name
     self.last_name = last_name.split(' ').each(&:titleize).join(' ') if last_name
+  end
+
+  def generate_access_token
+    self.access_token = loop do
+      random_token = SecureRandom.hex(8).upcase
+      break random_token unless User.where(access_token: random_token).exists?
+    end
   end
 end

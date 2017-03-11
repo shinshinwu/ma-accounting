@@ -8,6 +8,9 @@
         <li class="active tab">
           <a href="#profile" data-toggle="tab"> <span class="visible-xs"><i class="fa fa-home"></i></span> <span class="hidden-xs">Profile</span> </a>
         </li>
+        <li>
+          <a href="#payment" data-toggle="tab"> <span class="visible-xs"><i class="fa fa-home"></i></span> <span class="hidden-xs">Payment</span> </a>
+        </li>
       </ul>
         <!-- /.tabs -->
       <div class="tab-content">
@@ -17,36 +20,115 @@
         </div>
         <!-- /.tabs1 -->
 
-        <button id="customButton" data-zip-code="true">Purchase</button>
+        <div class="tab-pane" id="payment">
+          <div class="row m-b-20">
+            <div class="col-md-12">
+              <div class="payment-errors"></div>
+
+              <h3>You are making a payment in the amount of <%= number_to_currency(@charge_amount, precision: 0) %></h3>
+
+              <%= form_tag make_payment_path, method: :post, class: "form-horizontal payment-form", style: "height:100%;" do |f| %>
+
+                <div class="form-group m-t-20">
+                  <label class="col-sm-3 control-label">Card Number</label>
+                  <div class="col-sm-9">
+                    <%= text_field_tag '[payment]card_number', nil, placeholder: 'Card Number', class: "form-control", "data-stripe" => "number", "data-mask" => "0000 0000 0000 0000" %>
+                  </div>
+                </div>
+
+                <div class="form-group m-t-20">
+                  <label class="col-sm-3 control-label">CVV</label>
+                  <div class="col-sm-9">
+                    <%= text_field_tag '[payment]cvv', nil, placeholder: 'CVV', class: "form-control", "data-stripe" => "cvv" %>
+                  </div>
+                </div>
+
+                <div class="form-group m-t-20">
+                  <label class="col-sm-3 control-label">Expiration Date</label>
+                  <div class="col-sm-2">
+                    <%= text_field_tag '[payment]exp_month', nil, placeholder: 'MM', class: "form-control", "data-stripe" => "exp-month", size: 2 %>
+                  </div>
+                  <div class="col-sm-2">
+                    <%= text_field_tag '[payment]exp_year', nil, placeholder: 'YY', class: "form-control", "data-stripe" => "exp-year", size: 2 %>
+                  </div>
+                  <div class="col-sm-5">
+                  </div>
+                </div>
+
+                <div class="form-group m-t-20">
+                  <label class="col-sm-3 control-label">First Name</label>
+                  <div class="col-sm-9">
+                    <%= text_field_tag '[user]first_name', nil, class: "form-control" %>
+                  </div>
+                </div>
+
+                <div class="form-group m-t-20">
+                  <label class="col-sm-3 control-label">Last Name</label>
+                  <div class="col-sm-9">
+                    <%= text_field_tag '[user]last_name', nil, class: "form-control" %>
+                  </div>
+                </div>
+
+                <div class="form-group m-t-20">
+                  <label class="col-sm-3 control-label">Email</label>
+                  <div class="col-sm-9">
+                    <%= email_field_tag '[user]email', nil, class: "form-control" %>
+                  </div>
+                </div>
+
+                <div class="form-group m-t-20">
+                  <label class="col-sm-3 control-label">Zipcode</label>
+                  <div class="col-sm-9">
+                    <%= number_field_tag '[user]zip', nil, class: "form-control", size: 4 %>
+                  </div>
+                </div>
+
+                <div class="text-right">
+                  <%= submit_tag "Submit", class: "btn btn-success m-r-10" %>
+                </div>
+
+              <% end %>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-
-<%= content_for :javascripts %>
+<%= content_for :javascripts do %>
 <script>
-var handler = StripeCheckout.configure({
-  key: 'pk_test_qyN4kf17ajbDTsL9JjL2u4dE',
-  image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
-  locale: 'auto',
-  token: function(token) {
-    // You can access the token ID with `token.id`.
-    // Get the token ID to your server-side code for use.
-  }
-});
+function stripeResponseHandler(status, response) {
 
-document.getElementById('customButton').addEventListener('click', function(e) {
-  // Open Checkout with further options:
-  handler.open({
-    name: 'trainable',
-    description: '2 widgets',
-    amount: 2000
+    if (response.error) {
+        $(".payment-errors").text(response.error.message);
+    }
+    else {
+        var form$ = $("#stripe-form");
+        var token = response['id'];
+        form$.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+        form$.get(0).submit();
+    }
+}
+
+$(document).ready(function() {
+  // format the credit card number
+  $("#_paymentcard_number").formatter({ "pattern": "{{9999}} {{9999}} {{9999}} {{9999}}" });
+
+  $("#stripe-form").submit(function(event) {
+    $('.submit').attr("disabled", "disabled");
+
+    Stripe.createToken({
+        number: $('.credit-number').val(),
+        cvc: $('.credit-security').val(),
+        exp_month: $('.card-expiry-month').val(),
+        exp_year: $('.card-expiry-year').val()
+    }, stripeResponseHandler);
+
+    // prevent the form from submitting with the default action
+    return false;
   });
-  e.preventDefault();
-});
-
-// Close Checkout on page navigation:
-window.addEventListener('popstate', function() {
-  handler.close();
 });
 </script>
+<% end %>
