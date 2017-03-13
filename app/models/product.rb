@@ -4,8 +4,8 @@ class Product < ActiveRecord::Base
 
   def process_sale!(user:, promotion:nil)
     if promotion.present?
-      discount = promotion.amount_discount(self)
-      total = (amount - discount).to_f(2)
+      discount = promotion.discount_amount(self)
+      total = (price - discount).to_f.round(2)
 
       generate_invoice!(user: user, amount: total, discount: discount, promotion: promotion)
     else
@@ -14,6 +14,11 @@ class Product < ActiveRecord::Base
     end
 
     # TODO: send receipt email to user
+  end
+
+  def promotional_price(promotion)
+    discount = promotion.discount_amount(self)
+    (price - discount).to_f.round(2)
   end
 
   def generate_invoice!(user:, amount:, discount: 0, promotion: nil)

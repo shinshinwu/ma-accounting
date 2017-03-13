@@ -21,12 +21,15 @@ class Users::UsersController < ApplicationController
       redirect_to :back and return
     end
 
+    # ============ Payment Related Stuff ==================
     @product = Product.first
     @pk_key = if Rails.env.production?
       ENV["PROD_PUBLISHABLE_KEY"]
     else
       ENV["TEST_PUBLISHABLE_KEY"]
     end
+    # @promotion = FixedPromotion.first
+    @promotion = RollingPromotion.first
   end
 
   def update

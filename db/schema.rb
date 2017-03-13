@@ -174,7 +174,7 @@ ActiveRecord::Schema.define(version: 20170313035959) do
   create_table "products", force: :cascade do |t|
     t.string   "code",        limit: 255, null: false
     t.string   "description", limit: 255, null: false
-    t.integer  "amount",      limit: 4,   null: false
+    t.integer  "price",       limit: 4,   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

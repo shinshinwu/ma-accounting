@@ -25,10 +25,15 @@
             <div class="col-md-12">
               <div class="payment-errors text-danger bold"></div>
 
-              <h4>You are making a payment for <%= @product.code %> in the amount of <%= number_to_currency(@product.amount, precision: 0) %></h4>
+              <h4>You are making a payment for <%= @product.code %> in the amount of <%= number_to_currency(@product.price, precision: 0) %></h4>
+
+              <h4>Current promotion: <%= @promotion.label %></h4>
+
+              <h4>Your price today: <%= number_to_currency(@product.promotional_price(@promotion), precision: 0) %></h4>
 
               <%= form_tag make_payment_path, method: :post, class: "form-horizontal payment-form", style: "height:100%;" do |f| %>
                 <%= hidden_field_tag :product_code, @product.code %>
+                <%= hidden_field_tag :promo_id, @promotion.id %>
 
                 <div class="form-group m-t-20">
                   <label class="col-sm-3 control-label">Card Number</label>
