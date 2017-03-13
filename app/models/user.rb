@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_one   :course_progress, inverse_of: :user, dependent: :destroy
   has_many  :course_completions, through: :course_progress
   has_many  :quizz_attempts, inverse_of: :user, dependent: :destroy
+  has_many  :invoices, inverse_of: :user
   delegate  :current_module, to: :course_progress
 
 

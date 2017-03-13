@@ -30,24 +30,13 @@
             <% if current_member.unread_conversations.length > 0 %>
               <li>
                 <div class="message-center">
-                  <% current_member.unread_conversations.each do |convo| %>
-                    <%= link_to conversation_path(slug: convo.slug) do %>
-                      <div class="user-img">
-                        <%= image_tag("pawandeep.jpg", alt: "user", class: "img-circle") %><span class="profile-status online pull-right"></span>
-                      </div>
-                      <div class="mail-contnet">
-                        <h5><%= convo.last_unread_msg_by(current_member).sender.name %></h5>
-                        <span class="mail-desc"><%= convo.last_unread_msg_by(current_member).body %></span> <span class="time"><%= convo.last_unread_msg_by(current_member).message_time %></span>
-                      </div>
-                    <% end %>
-                  <% end %>
                 </div>
               </li>
             <% end %>
             <li>
-              <%= link_to inbox_user_path do %>
+              <a href="#">
                 <strong>See all notifications</strong> <i class="fa fa-angle-right"></i>
-              <% end %>
+              </a>
             </li>
           </ul>
           <!-- /.dropdown-messages -->
@@ -63,11 +52,6 @@
             <li>
               <%= link_to polymorphic_path([:profile, current_member.path_class]) do %>
                 <i class="ti-user"></i> My Profile
-              <% end %>
-            </li>
-            <li>
-              <%= link_to polymorphic_path([:inbox, current_member.path_class]) do %>
-                <i class="ti-email"></i> Inbox
               <% end %>
             </li>
             <li role="separator" class="divider"></li>

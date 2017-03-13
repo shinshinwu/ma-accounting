@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170310235443) do
+ActiveRecord::Schema.define(version: 20170313035959) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "",                           null: false
@@ -138,16 +138,23 @@ ActiveRecord::Schema.define(version: 20170310235443) do
   add_index "document_files", ["documentable_type", "documentable_id"], name: "index_document_files_on_documentable_type_and_id", using: :btree
 
   create_table "invoices", force: :cascade do |t|
-    t.integer  "user_id",        limit: 4
-    t.string   "code",           limit: 255,                null: false
-    t.date     "billing_date",                              null: false
-    t.decimal  "total_amount",               precision: 10
-    t.string   "transaction_id", limit: 255
+    t.string   "status",          limit: 255,                null: false
+    t.integer  "user_id",         limit: 4
+    t.integer  "product_id",      limit: 4
+    t.integer  "promotion_id",    limit: 4
+    t.string   "code",            limit: 255,                null: false
+    t.date     "billing_date",                               null: false
+    t.decimal  "total_amount",                precision: 10
+    t.decimal  "discount_amount",             precision: 10
+    t.string   "transaction_id",  limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "invoices", ["code"], name: "index_invoices_on_code", using: :btree
+  add_index "invoices", ["product_id"], name: "index_invoices_on_product_id", using: :btree
+  add_index "invoices", ["promotion_id"], name: "index_invoices_on_promotion_id", using: :btree
+  add_index "invoices", ["status"], name: "index_invoices_on_status", using: :btree
   add_index "invoices", ["user_id"], name: "index_invoices_on_user_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
@@ -163,6 +170,32 @@ ActiveRecord::Schema.define(version: 20170310235443) do
   add_index "messages", ["conversation_id", "sender_id", "sender_type"], name: "index_messages_on_sender_id_and_type", using: :btree
   add_index "messages", ["created_at"], name: "index_messages_on_created_at", using: :btree
   add_index "messages", ["read"], name: "index_messages_on_read", using: :btree
+
+  create_table "products", force: :cascade do |t|
+    t.string   "code",        limit: 255, null: false
+    t.string   "description", limit: 255, null: false
+    t.integer  "amount",      limit: 4,   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "products", ["code"], name: "index_products_on_code", using: :btree
+
+  create_table "promotions", force: :cascade do |t|
+    t.integer  "product_id",          limit: 4
+    t.string   "promotion_type",      limit: 255, null: false
+    t.string   "frequency",           limit: 255, null: false
+    t.integer  "amount_discount",     limit: 4,   null: false
+    t.integer  "percentage_discount", limit: 4
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "promotions", ["frequency"], name: "index_promotions_on_frequency", using: :btree
+  add_index "promotions", ["product_id"], name: "index_promotions_on_product_id", using: :btree
+  add_index "promotions", ["promotion_type"], name: "index_promotions_on_promotion_type", using: :btree
 
   create_table "quizz_answers", force: :cascade do |t|
     t.integer  "quizz_question_id", limit: 4,   null: false
@@ -238,7 +271,11 @@ ActiveRecord::Schema.define(version: 20170310235443) do
     t.boolean  "temprorary_password",                default: false,                        null: false
     t.string   "first_name",             limit: 255
     t.string   "last_name",              limit: 255
+    t.boolean  "is_active",                          default: true,                         null: false
+    t.datetime "activated_at"
+    t.datetime "deactivated_at"
     t.string   "zipcode",                limit: 10
+    t.string   "stripe_customer_id",     limit: 255
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -247,12 +284,13 @@ ActiveRecord::Schema.define(version: 20170310235443) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
-    t.string   "time_zone",              limit: 255, default: "Eastern Time (US & Canada)", null: false
+    t.string   "time_zone",              limit: 255, default: "Pacific Time (US & Canada)", null: false
     t.datetime "created_at",                                                                null: false
     t.datetime "updated_at",                                                                null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["is_active"], name: "index_users_on_is_active", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

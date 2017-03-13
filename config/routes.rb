@@ -26,16 +26,12 @@ Rails.application.routes.draw do
   resource :user, only: [], :controller => "users/users" do
     get  "profile"
     put  "update"
-    get  "inbox"
-    get  "sentbox"
     put  "toggle_activation"
   end
 
   resource :admin, only: [], :controller => "admins/admins" do
     get  "profile"
     put  "update"
-    get  "inbox"
-    get  "sentbox"
     get  "students"
     get  "show_students", :as => 'show_active_students'
   end
@@ -54,12 +50,6 @@ Rails.application.routes.draw do
 
   resources :course_videos, only: [:create, :update, :edit, :new]
   resources :supporting_materials, only: [:create, :update, :edit, :new]
-
-  resources :conversations, only: [:show, :new], param: :slug
-
-  put "/mark_read" => "conversations#mark_read", constraints: { :format => :json }
-
-  resources :messages, only: [:create]
 
   post "/make_payment" => "users/users#charge"
 

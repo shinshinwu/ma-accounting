@@ -27,15 +27,6 @@
           <% end %>
         </li>
         <li>
-          <%= link_to polymorphic_path([:inbox, current_member.path_class]) do %>
-            <i class="zmdi zmdi-email zmdi-hc-fw fa-fw"></i>
-              Inbox
-              <% if current_member.unread_conversations.length > 0 %>
-                <span class="label label-rouded label-success pull-right unread-count"><%= current_member.unread_conversations.length %></span>
-              <% end %>
-          <% end %>
-        </li>
-        <li>
           <%= link_to polymorphic_path([:destroy, current_member.path_class, :session]), method: :delete do %>
             <i class="zmdi zmdi-power zmdi-hc-fw fa-fw"></i>Logout
           <% end %>
@@ -50,11 +41,6 @@
         <li>
           <a href="#">
             <i class="zmdi zmdi-collection-text zmdi-hc-fw fa-fw"></i>FAQ
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="zmdi zmdi-format-list-bulleted zmdi-hc-fw fa-fw"></i>Directory
           </a>
         </li>
 
