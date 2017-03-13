@@ -53,7 +53,7 @@
   <%= yield :stylesheets %>
 
   <%= javascript_include_tag("home") %>
-  <script src="https://checkout.stripe.com/checkout.js"></script>
+
   <%= yield :head_scripts %>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -64,59 +64,7 @@
 </head>
 
 <body class="fix-sidebar">
-  <!-- Preloader -->
-  <div class="preloader">
-    <svg class="circular" viewBox="25 25 50 50">
-      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
-    </svg>
-  </div>
-
-  <% flash.each do |key, value| %>
-    <div class="flash myadmin-alert myadmin-alert-icon myadmin-alert-click alert-<%= key %> myadmin-alert-top alerttop">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= value %>
-    </div>
-  <% end %>
-
-  <div id="wrapper">
-    <%= render :partial => "shared/top_navigation" %>
-    <%= render :partial => "shared/side_navigation" %>
-    <!-- Page Content -->
-    <div id="page-wrapper">
-      <div class="container-fluid">
-        <div class="row bg-title">
-          <!-- .page title -->
-          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <h4 class="page-title">
-              <% if content_for?(:site_title) -%>
-                <%= yield :site_title %>
-              <% else -%>
-                Modern Assets
-              <% end -%>
-            </h4>
-          </div>
-          <!-- /.page title -->
-          <!-- breadcrumbs -->
-          <% if content_for?(:breadcrumbs) -%>
-            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-              <%= yield :breadcrumbs %>
-            </div>
-          <% end -%>
-        </div>
-        <!-- .row -->
-        <div class="row">
-          <div class="col-md-12">
-            <%= content_for?(:content) ? yield(:content) : yield %>
-          </div>
-        </div>
-        <!-- /.row -->
-      </div>
-      <!-- /.container-fluid -->
-      <%= render :partial => "shared/footer" %>
-    </div>
-    <!-- /#page-wrapper -->
-  </div>
-  <!-- /#wrapper -->
+  <%= content_for?(:content) ? yield(:content) : yield %>
   <%= yield :javascripts %>
 
 </body>

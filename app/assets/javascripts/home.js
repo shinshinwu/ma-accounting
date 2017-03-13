@@ -12,17 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap.min.js
 //= require slimscroll.js
-//= require metisMenu.js
-//= require sidebar-nav.min.js
-//= require jquery.magnific-popup.js
-//= require jquery.magnific-popup-init.js
-//= require waves.js
-//= require jquery.nestable.js
-//= require elite_admin_custom.js
-//= require jquery.dataTables.min.js
-//= require dataTables.buttons.js
-//= require custom-select.min.js
-//= require jquery.formatter.js
-//= require site_wide.js
+//= require materialize
+//= require home/homePageScripts

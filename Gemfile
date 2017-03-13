@@ -61,6 +61,13 @@ gem 'delayed_job_active_record', '~> 4.1'
 # error logging 3rd party
 gem "sentry-raven", '~> 2.4'
 
+# for styling in home page
+gem 'materialize-sass', '~> 0.98.0'
+
+# for google icons in the home page
+# link to documentation: https://github.com/Angelmmiguel/material_icons
+gem 'material_icons', '~> 2.2', '>= 2.2.1'
+
 group :development, :test do
   # using binging.pry for inline debuggine
   gem 'pry-byebug'
