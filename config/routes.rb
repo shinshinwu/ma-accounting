@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
-  root 'users/users#index'
+  root 'home#index'
 
   devise_for :admins,
     :skip => [:confirmations, :registrations],

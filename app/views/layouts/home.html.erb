@@ -1,0 +1,124 @@
+<!--
+:site_title
+
+  The title of the page. This will be followed by a static SEO string.
+
+:meta_tags
+
+  Additional meta tags that the view wishes to render out. Most likely
+  for the benefit of some scraper that hunts for specific content.
+
+:stylesheets
+
+  Additional stylesheets.
+
+:head_scripts
+
+  Additional JavaScripts that are of critical enough importance that
+  we want to make the page load wait for them to show up.
+
+:content
+
+  Main page content. Individual view templates should assume they are
+  operating within the grid and apply relevant alpha/omega classes to
+  any sub-containers they define.
+
+:javascripts
+
+  Normal JavaScripts which are of less-critical importance and can
+  live at the bottom of the body tag.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <%= yield :meta_tags %>
+  <!-- Favicon icon -->
+  <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
+  <title>
+    <% if content_for?(:site_title) -%>
+      <%= yield :site_title %> | Modern Assets
+    <% else -%>
+      Modern Assets
+    <% end -%>
+  </title>
+
+  <%= stylesheet_link_tag("home", :media => "all") %>
+  <%= yield :stylesheets %>
+
+  <%= javascript_include_tag("home") %>
+  <script src="https://checkout.stripe.com/checkout.js"></script>
+  <%= yield :head_scripts %>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+<body class="fix-sidebar">
+  <!-- Preloader -->
+  <div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+    </svg>
+  </div>
+
+  <% flash.each do |key, value| %>
+    <div class="flash myadmin-alert myadmin-alert-icon myadmin-alert-click alert-<%= key %> myadmin-alert-top alerttop">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= value %>
+    </div>
+  <% end %>
+
+  <div id="wrapper">
+    <%= render :partial => "shared/top_navigation" %>
+    <%= render :partial => "shared/side_navigation" %>
+    <!-- Page Content -->
+    <div id="page-wrapper">
+      <div class="container-fluid">
+        <div class="row bg-title">
+          <!-- .page title -->
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <h4 class="page-title">
+              <% if content_for?(:site_title) -%>
+                <%= yield :site_title %>
+              <% else -%>
+                Modern Assets
+              <% end -%>
+            </h4>
+          </div>
+          <!-- /.page title -->
+          <!-- breadcrumbs -->
+          <% if content_for?(:breadcrumbs) -%>
+            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+              <%= yield :breadcrumbs %>
+            </div>
+          <% end -%>
+        </div>
+        <!-- .row -->
+        <div class="row">
+          <div class="col-md-12">
+            <%= content_for?(:content) ? yield(:content) : yield %>
+          </div>
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+      <%= render :partial => "shared/footer" %>
+    </div>
+    <!-- /#page-wrapper -->
+  </div>
+  <!-- /#wrapper -->
+  <%= yield :javascripts %>
+
+</body>
+
+</html>
