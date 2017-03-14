@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(version: 20170313035959) do
   add_index "invoices", ["product_id"], name: "index_invoices_on_product_id", using: :btree
   add_index "invoices", ["promotion_id"], name: "index_invoices_on_promotion_id", using: :btree
   add_index "invoices", ["status"], name: "index_invoices_on_status", using: :btree
+  add_index "invoices", ["user_id", "product_id"], name: "index_invoices_on_user_id_and_product_id", unique: true, using: :btree
   add_index "invoices", ["user_id"], name: "index_invoices_on_user_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
@@ -182,7 +183,7 @@ ActiveRecord::Schema.define(version: 20170313035959) do
   add_index "products", ["code"], name: "index_products_on_code", using: :btree
 
   create_table "promotions", force: :cascade do |t|
-    t.integer  "product_id",          limit: 4
+    t.integer  "product_id",          limit: 4,   null: false
     t.string   "promotion_type",      limit: 255, null: false
     t.string   "frequency",           limit: 255, null: false
     t.integer  "amount_discount",     limit: 4,   null: false

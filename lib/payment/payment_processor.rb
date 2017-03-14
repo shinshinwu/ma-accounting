@@ -6,7 +6,7 @@ module Payment
   end
 
   class PaymentProcessor
-    def self.sale(amount:, user:, descriptor:'', metadata:{})
+    def self.sale!(amount:, user:, descriptor:'', metadata:{})
       # convert amount to cents as that's what stripe accepts
       amount = amount*100
 
@@ -19,7 +19,7 @@ module Payment
       )
     end
 
-    def self.save_customer(user, stripe_token)
+    def self.save_customer!(user, stripe_token)
       customer = Stripe::Customer.create(
         email:  user.email,
         source: stripe_token

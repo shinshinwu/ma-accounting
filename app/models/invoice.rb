@@ -17,16 +17,18 @@ class Invoice < ActiveRecord::Base
   def charge!
     return false if charged?
     return false if user.nil? || product.nil? || total_amount.nil?
+    # a user should only purchase a specific product once, this could change later
+    return false if Invoice.by_product(product).by_user(user).exists?
 
     begin
-      result = Payment::PaymentProcessor.sale(
+      result = Payment::PaymentProcessor.sale!(
         amount:     total_amount,
         user:       user,
         descriptor: "MODERNASSETS*MKT",
         metadata: {
           user_id:      user.id,
           product_id:   product.id,
-          promotion_id: promotion.id,
+          promotion_id: promotion.try!(:id),
         }
       )
 

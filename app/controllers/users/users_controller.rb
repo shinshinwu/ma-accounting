@@ -64,7 +64,7 @@ class Users::UsersController < ApplicationController
 
   def charge
     product = Product.find_by_code(params[:product_code])
-    promo   = Promotion.find_by_id(params[:promo_id]) if params[:promo_id].present?
+    promo   = Promotion.find_by_id(params[:promo_id])
 
     user = if User.find_by_email(params[:user][:email]).nil?
       temp_pw = Devise.friendly_token
@@ -86,7 +86,7 @@ class Users::UsersController < ApplicationController
     # new user? add customer and then process sale
     if user.stripe_customer_id.nil?
       begin
-        Payment::PaymentProcessor.save_customer(user, params[:stripeToken])
+        Payment::PaymentProcessor.save_customer!(user, params[:stripeToken])
       rescue Stripe::CardError => e
         err = e.json_body[:error][:message]
         msg = "Sorry, something went wrong while processing your payment, please try again."
@@ -102,9 +102,10 @@ class Users::UsersController < ApplicationController
       flash[:error] = e.message
     rescue => e
       flash[:error] = "Sorry, something went wrong while processing your payment, please try again."
+    else
+      flash[:success] = "Thanks for your payment, you will be receiving a receipt shortly!"
     end
 
-    flash[:success] = "Thanks for your payment, you will be receiving a receipt shortly!"
     redirect_to :back
   end
 

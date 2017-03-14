@@ -7,5 +7,7 @@ class AddProductToInvoice < ActiveRecord::Migration
     add_column :invoices, :status, :string, after: :id, null: false
     add_index :invoices, :status
     add_column :invoices, :discount_amount, :decimal, after: :total_amount
+    add_index :invoices, [:user_id, :product_id], unique: true
   end
+
 end

@@ -10,7 +10,7 @@ class Product < ActiveRecord::Base
       generate_invoice!(user: user, amount: total, discount: discount, promotion: promotion)
     else
       # should probably raise error that can surface up
-      generate_invoice!(user: user, amount: amount)
+      generate_invoice!(user: user, amount: price)
     end
 
     # TODO: send receipt email to user
