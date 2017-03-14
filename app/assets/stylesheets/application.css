@@ -16,7 +16,6 @@
   = require bootstrap.min.css
   = require metisMenu.css
   = require sidebar-nav.min.css
-  = require nestable.css
   = require magnific-popup.css
   = require jquery.dataTables.min.css
   = require buttons.dataTables.css

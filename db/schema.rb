@@ -271,9 +271,6 @@ ActiveRecord::Schema.define(version: 20170313035959) do
     t.boolean  "temprorary_password",                default: false,                        null: false
     t.string   "first_name",             limit: 255
     t.string   "last_name",              limit: 255
-    t.boolean  "is_active",                          default: true,                         null: false
-    t.datetime "activated_at"
-    t.datetime "deactivated_at"
     t.string   "zipcode",                limit: 10
     t.string   "stripe_customer_id",     limit: 255
     t.string   "reset_password_token",   limit: 255
@@ -290,7 +287,6 @@ ActiveRecord::Schema.define(version: 20170313035959) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["is_active"], name: "index_users_on_is_active", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

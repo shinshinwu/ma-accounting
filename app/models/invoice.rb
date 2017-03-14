@@ -20,8 +20,14 @@ class Invoice < ActiveRecord::Base
 
     begin
       result = Payment::PaymentProcessor.sale(
-        amount: total_amount,
-        user:   user
+        amount:     total_amount,
+        user:       user,
+        descriptor: "MODERNASSETS*MKT",
+        metadata: {
+          user_id:      user.id,
+          product_id:   product.id,
+          promotion_id: promotion.id,
+        }
       )
 
       if result.id

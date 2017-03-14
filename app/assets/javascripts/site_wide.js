@@ -3,8 +3,6 @@ $(document).ready(function(){
     $('.flash').fadeOut();
   }, 8000);
 
-  $('#nestable-menu').nestable();
-
   /* Dismissalbe alert */
 
   $(".myadmin-alert-click").click(function(event){

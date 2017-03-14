@@ -19,7 +19,6 @@
 //= require jquery.magnific-popup.js
 //= require jquery.magnific-popup-init.js
 //= require waves.js
-//= require jquery.nestable.js
 //= require elite_admin_custom.js
 //= require jquery.dataTables.min.js
 //= require dataTables.buttons.js

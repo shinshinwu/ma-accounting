@@ -6,14 +6,16 @@ module Payment
   end
 
   class PaymentProcessor
-    def self.sale(amount:, user:, descriptor:'')
+    def self.sale(amount:, user:, descriptor:'', metadata:{})
       # convert amount to cents as that's what stripe accepts
       amount = amount*100
 
       Stripe::Charge.create(
-        amount:   amount,
-        currency: "usd",
-        customer: user.stripe_customer_id
+        amount:               amount,
+        currency:             "usd",
+        customer:             user.stripe_customer_id,
+        statement_descriptor: descriptor,
+        metadata:             metadata
       )
     end
 
