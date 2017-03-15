@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include ApplicationHelper
   before_filter :set_time_zone
+  before_action :set_raven_context
 
   def set_time_zone
       Time.zone = current_member.time_zone if current_member
@@ -25,6 +26,12 @@ class ApplicationController < ActionController::Base
     else
       authenticate_user!
     end
+  end
+
+  # for error logging to send to sentry all available params to help debug
+  def set_raven_context
+    Raven.user_context(id: session[:current_user_id]) # or anything else in session
+    Raven.extra_context(params: params.to_unsafe_h, url: request.url)
   end
 
 end

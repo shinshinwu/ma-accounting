@@ -25,5 +25,7 @@ module MAAccounting
     config.time_zone = 'Pacific Time (US & Canada)'
     config.eager_load_paths += Dir["#{config.root}/lib/**/"]
     config.active_job.queue_adapter = :delayed_job
+    config.filter_parameters << :password
+    config.filter_parameters << :password_confirmation
   end
 end
