@@ -24,5 +24,6 @@ module MAAccounting
     config.active_record.raise_in_transactional_callbacks = true
     config.time_zone = 'Pacific Time (US & Canada)'
     config.eager_load_paths += Dir["#{config.root}/lib/**/"]
+    config.active_job.queue_adapter = :delayed_job
   end
 end

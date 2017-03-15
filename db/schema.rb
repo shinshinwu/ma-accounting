@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314235923) do
+ActiveRecord::Schema.define(version: 20170315011145) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "",                           null: false
@@ -144,8 +144,25 @@ ActiveRecord::Schema.define(version: 20170314235923) do
   add_index "cpas", ["city", "state"], name: "index_cpas_on_city_and_state", using: :btree
   add_index "cpas", ["first_name", "last_name"], name: "index_cpas_on_first_name_and_last_name", using: :btree
   add_index "cpas", ["joined_year"], name: "index_cpas_on_joined_year", using: :btree
+  add_index "cpas", ["phone"], name: "index_cpas_on_phone", using: :btree
   add_index "cpas", ["source"], name: "index_cpas_on_source", using: :btree
   add_index "cpas", ["zipcode"], name: "index_cpas_on_zipcode", using: :btree
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   limit: 4,     default: 0, null: false
+    t.integer  "attempts",   limit: 4,     default: 0, null: false
+    t.text     "handler",    limit: 65535,             null: false
+    t.text     "last_error", limit: 65535
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by",  limit: 255
+    t.string   "queue",      limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "document_files", force: :cascade do |t|
     t.string   "documentable_type", limit: 255, null: false
@@ -197,10 +214,10 @@ ActiveRecord::Schema.define(version: 20170314235923) do
   end
 
   add_index "members", ["city", "state"], name: "index_members_on_city_and_state", using: :btree
-  add_index "members", ["designation"], name: "index_members_on_designation", using: :btree
   add_index "members", ["email"], name: "index_members_on_email", using: :btree
   add_index "members", ["first_name", "last_name"], name: "index_members_on_first_name_and_last_name", using: :btree
   add_index "members", ["joined_year"], name: "index_members_on_joined_year", using: :btree
+  add_index "members", ["phone"], name: "index_members_on_phone", using: :btree
   add_index "members", ["source"], name: "index_members_on_source", using: :btree
   add_index "members", ["zipcode"], name: "index_members_on_zipcode", using: :btree
 
@@ -335,5 +352,42 @@ ActiveRecord::Schema.define(version: 20170314235923) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "zip_code_details", id: false, force: :cascade do |t|
+    t.string  "zip_code",             limit: 255
+    t.string  "zip_code_type",        limit: 255
+    t.string  "primary_city",         limit: 255
+    t.string  "primary_city_slug",    limit: 255,                                  null: false
+    t.text    "acceptable_cities",    limit: 4294967295
+    t.text    "unacceptable_cities",  limit: 4294967295
+    t.string  "state",                limit: 255
+    t.string  "state_full_name",      limit: 40
+    t.string  "county",               limit: 255
+    t.string  "timezone",             limit: 255
+    t.string  "area_codes",           limit: 255
+    t.decimal "lat",                                     precision: 15, scale: 10
+    t.decimal "lng",                                     precision: 15, scale: 10
+    t.string  "world_region",         limit: 255
+    t.string  "country",              limit: 255
+    t.integer "decommissioned",       limit: 4
+    t.integer "estimated_population", limit: 4
+    t.string  "notes",                limit: 255
+  end
+
+  add_index "zip_code_details", ["primary_city_slug"], name: "index_zip_code_details_on_primary_city_slug", using: :btree
+  add_index "zip_code_details", ["state"], name: "index_zip_code_details_on_state", using: :btree
+  add_index "zip_code_details", ["zip_code"], name: "index_zip_code_details_on_zip_code", unique: true, using: :btree
+
+  create_table "zip_codes", force: :cascade do |t|
+    t.string  "zip_code",          limit: 255,                         null: false
+    t.string  "usps_type",         limit: 10
+    t.integer "population",        limit: 4
+    t.integer "avg_income",        limit: 4
+    t.integer "avg_age",           limit: 4
+    t.decimal "percent_with_kids",             precision: 3, scale: 2
+    t.integer "avg_home_value",    limit: 4
+  end
+
+  add_index "zip_codes", ["zip_code"], name: "index_zip_codes_on_zip_code", unique: true, using: :btree
 
 end

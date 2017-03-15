@@ -55,6 +55,9 @@ gem 'prawn', '0.12.0'
 # for payment processing
 gem 'stripe', '2.0.1'
 
+# for job processing such as emails
+gem 'delayed_job_active_record'
+
 group :development, :test do
   # using binging.pry for inline debuggine
   gem 'pry-byebug'
