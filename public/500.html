@@ -1,66 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>We're sorry, but something went wrong (500)</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png"> -->
+  <title>Modern Assets | Best Marketing Courses for Accountants</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <style>
-  body {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
+    .error-box {
+      height: 100%;
+      position: fixed;
+      background: url(../images/error-bg.jpg) no-repeat center center #fff !important;
+      width: 100%;
+    }
 
-  div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
+    .error-box .footer {
+      width: 100%;
+      left: 0px;
+      right: 0px;
+    }
 
-  div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+    .error-body {
+      padding-top: 5%;
+    }
 
-  h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
+    .error-body h1 {
+      font-size: 210px;
+      font-weight: 900;
+      line-height: 210px;
+    }
 
-  div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+    body {
+      background: #fff;
+    }
+
+    .m-t-30 {
+      margin-top: 30px !important;
+    }
+
+    .m-b-30 {
+      margin-bottom: 30px !important;
+    }
+
+    .m-b-40 {
+      margin-bottom: 40px !important;
+    }
   </style>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
 
 <body>
-  <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <div>
-      <h1>We're sorry, but something went wrong.</h1>
+  <section id="wrapper" class="error-page">
+    <div class="error-box">
+      <div class="error-body text-center">
+        <h1>500</h1>
+        <h3 class="text-uppercase">Internal Server Error.</h3>
+        <p class="text-muted m-t-30 m-b-30">Sorry about that, you can go <a onclick="history.back(); return false;" href="#">back</a> and try again.</p>
+        <a href="/" class="btn btn-info btn-rounded waves-effect waves-light m-b-40">Back to home</a> </div>
+      <footer class="footer text-center">2017 © Modern Assets.</footer>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
-  </div>
+  </section>
+
 </body>
+
 </html>
