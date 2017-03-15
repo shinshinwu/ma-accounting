@@ -1,10 +1,14 @@
 class Users::UsersController < ApplicationController
-  before_filter :authenticate_access!, except: [:index, :update]
+  before_filter :authenticate_access!, except: [:index, :update, :cert]
   before_filter :authenticate_user!, :only => [:update]
   before_filter :authenticate_admin!, :only => [:toggle_activation]
   skip_before_filter :verify_authenticity_token, only: [:toggle_activation]
 
   include InboxHelper
+
+  def cert
+    render layout: false
+  end
 
   def index
   end

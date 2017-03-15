@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'users/users#index'
 
+  get '.well-known/acme-challenge/icrd2rtcF6REzWhNOITTqz6Vcvcybj6Rnb0YJBsL_E4' => 'users/users#cert'
+
   devise_for :admins,
     :skip => [:confirmations, :registrations],
     :controllers => {
