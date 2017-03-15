@@ -65,4 +65,7 @@ Rails.application.configure do
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
   }
+
+  # this needs to be set to false to raise error to our error logging plugin Sentry
+  config.action_dispatch.show_exceptions = false
 end

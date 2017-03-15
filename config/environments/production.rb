@@ -85,4 +85,7 @@ Rails.application.configure do
     :storage => :s3,
     :bucket => 'my-tattoo-tutor'
   }
+
+  # this needs to be set to false to raise error to our error logging plugin Sentry
+  config.action_dispatch.show_exceptions = false
 end

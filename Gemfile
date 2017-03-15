@@ -50,13 +50,16 @@ gem 'kaminari', '~> 0.17'
 gem 'activerecord_any_of', '~> 1.4'
 
 # writing to PDFs
-gem 'prawn', '0.12.0'
+gem 'prawn', '~> 2.2'
 
 # for payment processing
-gem 'stripe', '2.0.1'
+gem 'stripe', '~> 2.0.1'
 
 # for job processing such as emails
-gem 'delayed_job_active_record'
+gem 'delayed_job_active_record', '~> 4.1'
+
+# error logging 3rd party
+gem "sentry-raven", '~> 2.4'
 
 group :development, :test do
   # using binging.pry for inline debuggine
