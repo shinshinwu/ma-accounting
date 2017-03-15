@@ -52,7 +52,8 @@ Rails.application.configure do
 
   # from devise setup guide
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  config.action_mailer.delivery_method = :sparkpost
+  config.action_mailer.delivery_method = :letter_opener
+# config.action_mailer.delivery_method = :sparkpost
 
   Paperclip.options[:command_path] = "/usr/local/bin/"
   config.paperclip_defaults = {

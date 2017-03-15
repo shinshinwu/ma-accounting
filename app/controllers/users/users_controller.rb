@@ -96,14 +96,20 @@ class Users::UsersController < ApplicationController
       end
     end
 
-    begin
-      product.process_sale!(user: user, promotion: promo)
-    rescue Payment::PaymentErrors => e
-      flash[:error] = e.message
-    rescue => e
-      flash[:error] = "Sorry, something went wrong while processing your payment, please try again."
+    # make sure don't double charge
+    if user.invoices.by_product(product).exists?
+      flash[:error] = "You can already purchased this course. Thanks for your support!"
     else
-      flash[:success] = "Thanks for your payment, you will be receiving a receipt shortly!"
+      # process sale
+      begin
+        product.process_sale!(user: user, promotion: promo)
+      rescue Payment::PaymentErrors => e
+        flash[:error] = e.message
+      rescue => e
+        flash[:error] = "Sorry, something went wrong while processing your payment, please try again."
+      else
+        flash[:success] = "Thanks for your payment, you will be receiving a receipt shortly!"
+      end
     end
 
     redirect_to :back

@@ -79,6 +79,7 @@ Rails.application.configure do
 
   # use sparkpost as email service
   config.action_mailer.delivery_method = :sparkpost
+  config.action_mailer.default_url_options = { :host => 'www.mymodernassets.com' }
 
   config.paperclip_defaults = {
     :storage => :s3,

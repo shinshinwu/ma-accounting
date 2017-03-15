@@ -66,6 +66,8 @@ group :development, :test do
   gem 'awesome_print'
   # Disable asset logging
   gem 'quiet_assets'
+  #Preview action mailer emails inline
+  gem 'letter_opener',                          '~> 1.4.1'
 end
 
 group :development do

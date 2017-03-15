@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313035959) do
+ActiveRecord::Schema.define(version: 20170314235923) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "",                           null: false
@@ -125,6 +125,28 @@ ActiveRecord::Schema.define(version: 20170313035959) do
   add_index "course_videos", ["course_content_id", "sort_order"], name: "index_course_videos_on_course_content_id_and_sort_order", unique: true, using: :btree
   add_index "course_videos", ["title"], name: "index_course_videos_on_title", using: :btree
 
+  create_table "cpas", force: :cascade do |t|
+    t.string   "first_name",  limit: 255, null: false
+    t.string   "last_name",   limit: 255, null: false
+    t.string   "company",     limit: 255
+    t.integer  "joined_year", limit: 4
+    t.string   "phone",       limit: 255
+    t.string   "street",      limit: 255
+    t.string   "city",        limit: 255
+    t.string   "zipcode",     limit: 255
+    t.string   "state",       limit: 255
+    t.string   "site",        limit: 255
+    t.string   "source",      limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "cpas", ["city", "state"], name: "index_cpas_on_city_and_state", using: :btree
+  add_index "cpas", ["first_name", "last_name"], name: "index_cpas_on_first_name_and_last_name", using: :btree
+  add_index "cpas", ["joined_year"], name: "index_cpas_on_joined_year", using: :btree
+  add_index "cpas", ["source"], name: "index_cpas_on_source", using: :btree
+  add_index "cpas", ["zipcode"], name: "index_cpas_on_zipcode", using: :btree
+
   create_table "document_files", force: :cascade do |t|
     t.string   "documentable_type", limit: 255, null: false
     t.integer  "documentable_id",   limit: 4,   null: false
@@ -157,6 +179,30 @@ ActiveRecord::Schema.define(version: 20170313035959) do
   add_index "invoices", ["status"], name: "index_invoices_on_status", using: :btree
   add_index "invoices", ["user_id", "product_id"], name: "index_invoices_on_user_id_and_product_id", unique: true, using: :btree
   add_index "invoices", ["user_id"], name: "index_invoices_on_user_id", using: :btree
+
+  create_table "members", force: :cascade do |t|
+    t.string   "first_name",  limit: 255, null: false
+    t.string   "last_name",   limit: 255, null: false
+    t.string   "designation", limit: 255
+    t.string   "company",     limit: 255
+    t.integer  "joined_year", limit: 4
+    t.string   "email",       limit: 255
+    t.string   "phone",       limit: 255
+    t.string   "city",        limit: 255
+    t.string   "zipcode",     limit: 255
+    t.string   "state",       limit: 255
+    t.string   "source",      limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "members", ["city", "state"], name: "index_members_on_city_and_state", using: :btree
+  add_index "members", ["designation"], name: "index_members_on_designation", using: :btree
+  add_index "members", ["email"], name: "index_members_on_email", using: :btree
+  add_index "members", ["first_name", "last_name"], name: "index_members_on_first_name_and_last_name", using: :btree
+  add_index "members", ["joined_year"], name: "index_members_on_joined_year", using: :btree
+  add_index "members", ["source"], name: "index_members_on_source", using: :btree
+  add_index "members", ["zipcode"], name: "index_members_on_zipcode", using: :btree
 
   create_table "messages", force: :cascade do |t|
     t.integer  "conversation_id", limit: 4

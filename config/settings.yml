@@ -4,3 +4,4 @@
 #TODO this needs to be changed after confirming domain with sparkpost and tweeked before production deployment
 donotreply_email: "sandbox@sparkpostbox.com"
 bcc_email: "transactional@mymodernassets.com"
+support_email: "hello@mymodernassets.com"

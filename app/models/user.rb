@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many  :course_completions, through: :course_progress
   has_many  :quizz_attempts, inverse_of: :user, dependent: :destroy
   has_many  :invoices, inverse_of: :user
+  belongs_to :zip_code, class_name: 'ZipCode', foreign_key: 'zipcode', primary_key: 'zip_code'
+
   delegate  :current_module, to: :course_progress
 
 
