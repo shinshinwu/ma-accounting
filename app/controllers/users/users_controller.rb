@@ -33,8 +33,6 @@ class Users::UsersController < ApplicationController
   end
 
   def update
-    raise ArgumentError, 'this is a test error'
-
     current_user.update(
     params.require(:user).permit(:first_name, :last_name, :time_zone))
 
@@ -65,7 +63,6 @@ class Users::UsersController < ApplicationController
   end
 
   def charge
-    raise ArgumentError, 'this is a test error'
     product = Product.find_by_code(params[:product_code])
     promo   = Promotion.find_by_id(params[:promo_id])
 
