@@ -28,7 +28,7 @@ class Invoice < ActiveRecord::Base
         metadata: {
           user_id:      user.id,
           product_id:   product.id,
-          promotion_id: promotion.try!(:id),
+          promotion_id: promotion.try!(:id)
         }
       )
 
