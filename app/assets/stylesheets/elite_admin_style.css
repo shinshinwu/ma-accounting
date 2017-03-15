@@ -4898,7 +4898,6 @@ ul#themecolors li:first-child {
     /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to right, #4f5467 0%, #4f5467 23%, #fb9678 23%, #fb9678 99%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#4f5467', endColorstr='#fb9678', GradientType=1);
     /* IE6-9 */
 }
 
@@ -4911,7 +4910,6 @@ ul#themecolors li:first-child {
     /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to right, #4f5467 0%, #4f5467 23%, #00c292 23%, #00c292 99%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#4f5467', endColorstr='#00c292', GradientType=1);
     /* IE6-9 */
 }
 
@@ -4924,7 +4922,6 @@ ul#themecolors li:first-child {
     /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to right, #4f5467 0%, #4f5467 23%, #a0aec4 23%, #a0aec4 99%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#4f5467', endColorstr='#a0aec4', GradientType=1);
     /* IE6-9 */
 }
 
@@ -4937,7 +4934,6 @@ ul#themecolors li:first-child {
     /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to right, #4f5467 0%, #4f5467 23%, #03a9f3 23%, #03a9f3 99%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#4f5467', endColorstr='@info', GradientType=1);
     /* IE6-9 */
 }
 
@@ -4950,7 +4946,6 @@ ul#themecolors li:first-child {
     /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to right, #4f5467 0%, #4f5467 23%, #9675ce 23%, #9675ce 99%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#4f5467', endColorstr='@purple', GradientType=1);
     /* IE6-9 */
 }
 
@@ -4963,7 +4958,6 @@ ul#themecolors li:first-child {
     /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to right, #4f5467 0%, #4f5467 23%, #01c0c8 23%, #01c0c8 99%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#4f5467', endColorstr='@megna', GradientType=1);
     /* IE6-9 */
 }
 
@@ -6130,35 +6124,30 @@ ul.list-icons li i {
 }
 
 .fa-rotate-90 {
-    filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=1);
     -webkit-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     transform: rotate(90deg);
 }
 
 .fa-rotate-180 {
-    filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=2);
     -webkit-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     transform: rotate(180deg);
 }
 
 .fa-rotate-270 {
-    filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=3);
     -webkit-transform: rotate(270deg);
     -ms-transform: rotate(270deg);
     transform: rotate(270deg);
 }
 
 .fa-flip-horizontal {
-    filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);
     -webkit-transform: scale(-1, 1);
     -ms-transform: scale(-1, 1);
     transform: scale(-1, 1);
 }
 
 .fa-flip-vertical {
-    filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1);
     -webkit-transform: scale(1, -1);
     -ms-transform: scale(1, -1);
     transform: scale(1, -1);
@@ -10855,35 +10844,30 @@ ul.list-icons li i {
 }
 
 .wi-rotate-90 {
-    filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=1);
     -webkit-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     transform: rotate(90deg);
 }
 
 .wi-rotate-180 {
-    filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=2);
     -webkit-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     transform: rotate(180deg);
 }
 
 .wi-rotate-270 {
-    filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=3);
     -webkit-transform: rotate(270deg);
     -ms-transform: rotate(270deg);
     transform: rotate(270deg);
 }
 
 .wi-flip-horizontal {
-    filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);
     -webkit-transform: scale(-1, 1);
     -ms-transform: scale(-1, 1);
     transform: scale(-1, 1);
 }
 
 .wi-flip-vertical {
-    filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1);
     -webkit-transform: scale(1, -1);
     -ms-transform: scale(1, -1);
     transform: scale(1, -1);

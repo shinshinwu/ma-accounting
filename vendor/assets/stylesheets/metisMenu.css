@@ -7,7 +7,7 @@
     content: "\e079";
 }
 
-.active > a > .glyphicon.arrow:before {
+.active>a>.glyphicon.arrow:before {
     content: "\e114";
 }
 
@@ -17,12 +17,11 @@
  * http://fortawesome.github.io/Font-Awesome/
 */
 
-
 .fa.arrow:before {
     content: "\f104";
 }
 
-.active > a > .fa.arrow:before {
+.active>a>.fa.arrow:before {
     content: "\f107";
 }
 
@@ -34,8 +33,7 @@
     content: "\f067";
 }
 
-.active > a > .fa.plus-times {
-    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+.active>a>.fa.plus-times {
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
@@ -51,6 +49,6 @@
     content: "\f067";
 }
 
-.active > a > .fa.plus-minus:before {
+.active>a>.fa.plus-minus:before {
     content: "\f068";
 }
