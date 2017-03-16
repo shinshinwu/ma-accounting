@@ -1,12 +1,1123 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>[SUBJECT]</title>
-  <style type="text/css">
-  </style>
+  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.5">
+  <title>Tax-Coordinated Portfolio</title>
 
-  <%= yield %>
+  <style type="text/css">
+    /* ////// RESET STYLES ////// */
+
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600');
+    body,
+    #bodyTable,
+    #bodyCell {
+      height: 100% !important;
+      margin: 0;
+      padding: 0;
+      width: 100% !important;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    img,
+    a img {
+      border: 0;
+      outline: none;
+      text-decoration: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0;
+      padding: 0;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    sup {
+      font-size: 0.7em;
+      line-height: 1em;
+    }
+    /* Force Hotmail/Outlook.com to display line heights normally. */
+
+    table,
+    td {
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+    }
+    /* Remove spacing between tables in Outlook 2007 and up. */
+
+    #outlook a {
+      padding: 0;
+    }
+    /* Force Outlook 2007 and up to provide a "view in browser" message. */
+
+    img {
+      -ms-interpolation-mode: bicubic;
+    }
+    /* Force IE to smoothly render resized images. */
+
+    body,
+    table,
+    td,
+    p,
+    a,
+    li,
+    blockquote {
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+    }
+    /* Prevent Windows- and Webkit-based mobile platforms from changing declared text sizes. */
+    /* ////// FRAMEWORK STYLES ////// */
+
+    .flexibleContainerCell {
+      padding-top: 45px;
+      padding-right: 45px;
+      padding-left: 45px;
+    }
+
+    .top-flexibleContainerCell {
+      padding-top: 0;
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+
+    .sides-flexibleContainerCell {
+      padding-top: 20;
+      padding-right: 0px;
+      padding-left: 0px;
+    }
+
+    .flexibleImage {
+      height: auto;
+    }
+
+    .full-width-img-float-left {
+      float: left;
+    }
+
+    .bottomShim {
+      padding-bottom: 30px;
+    }
+
+    .imageContent,
+    .imageContentLast {
+      padding-bottom: 20px;
+    }
+
+    .nestedContainerCell {
+      padding-top: 20px;
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+
+    .nestedContainerCellNoTopPadding {
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+
+    .width-100pct {
+      width: 100%;
+      max-width: 640px
+    }
+    /* ////// GENERAL STYLES ////// */
+
+    body,
+    #bodyTable,
+    .light-gray {
+      background-color: #f5f5f5;
+    }
+
+    #bodyCell {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    #emailBody {
+      background-color: #FFFFFF;
+      border: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #47b475;
+      font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+      font-size: 22px;
+      line-height: 125%;
+      text-align: Left;
+      font-weight: 100;
+      font-style: normal;
+    }
+
+    h1 {
+      font-size: 26px;
+    }
+
+    a {
+      color: #47b475;
+      font-weight: 100;
+    }
+
+    a:link,
+    a:visited,
+    a:active {
+      text-decoration: none;
+    }
+
+    a:hover,
+    .textContent a:hover,
+    .textContentLast a:hover {
+      text-decoration: underline;
+      color: #47b475;
+    }
+
+    .textContent,
+    .textContentLast {
+      color: #686868;
+      font-weight: 100;
+      font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 150%;
+      text-align: Left;
+      font-style: normal;
+    }
+
+    .textContent a,
+    .textContentLast a {
+      color: #47b475;
+      font-weight: 100;
+    }
+
+    .nestedContainer {
+      border: none;
+    }
+
+    .footnote {
+      font-size: 10px;
+      line-height: 0;
+      vertical-align: 4px
+    }
+
+    .footer-header {
+      text-align: center;
+      font-weight: 300;
+      font-size: 11px;
+      color: #c8c8c8;
+      letter-spacing: 1px;
+      font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+      padding-bottom: 10px;
+    }
+
+    .footer-header-dark {
+      text-align: center;
+      font-weight: 300;
+      font-size: 11px;
+      color: #686868;
+      letter-spacing: 1px;
+      font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+      padding-bottom: 10px;
+    }
+
+    .text-arial {
+      font-family: Arial;
+    }
+    /*BUTTONS*/
+
+    .base-button {
+      border-collapse: separate;
+      border-radius: 4px;
+      font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+      line-height: 100%;
+      text-align: center;
+      font-weight: normal;
+      text-decoration: none;
+      font-style: normal;
+    }
+
+    .fbButton {
+      background-color: #47b475;
+    }
+
+    .twitterButton {
+      background-color: #47b475;
+    }
+
+    .buttonContainer {
+      width: 100%;
+    }
+
+    .buttonContent {
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 18px;
+      padding: 15px;
+    }
+
+    .buttonContentNPS {
+      color: #47b475;
+      font-size: 14px;
+      padding: 10px;
+    }
+
+    .buttonContent a,
+    .buttonContentNPS a {
+      color: #FFFFFF;
+      display: block;
+      text-decoration: none;
+      font-weight: 100;
+    }
+    /*PADDING*/
+
+    .no-bottom-padding {
+      padding-bottom: 0 !important;
+    }
+
+    .two-top {
+      padding-top: 2px;
+    }
+
+    .five-top {
+      padding-top: 5px;
+    }
+
+    .ten-top {
+      padding-top: 10px;
+    }
+
+    .twenty-top {
+      padding-top: 20px;
+    }
+
+    .thirty-top {
+      padding-top: 30px;
+    }
+
+    .forty-top {
+      padding-top: 40px;
+    }
+
+    .forty-five-top {
+      padding-top: 45px;
+    }
+
+    .five-bottom {
+      padding-bottom: 5px;
+    }
+
+    .ten-bottom {
+      padding-bottom: 10px;
+    }
+
+    .twenty-bottom {
+      padding-bottom: 20px;
+    }
+
+    .thirty-bottom {
+      padding-bottom: 30px;
+    }
+
+    .forty-bottom {
+      padding-bottom: 40px;
+    }
+
+    .forty-five-bottom {
+      padding-bottom: 45px;
+    }
+
+    .eighty-bottom {
+      padding-bottom: 80px;
+    }
+
+    .sixty-bottom {
+      padding-bottom: 60px;
+    }
+
+    .five-sides {
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+
+    .ten-sides {
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+
+    .forty-sides {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    .forty-five-sides {
+      padding-left: 45px;
+      padding-right: 45px;
+    }
+
+    .seventy-sides {
+      padding-left: 70px;
+      padding-right: 70px;
+    }
+
+    .hundred-sides {
+      padding-left: 100px;
+      padding-right: 100px;
+    }
+
+    .twenty-right {
+      padding-right: 20px;
+    }
+
+    .twenty-left {
+      padding-left: 20px;
+    }
+
+    .forty-five-left {
+      padding-left: 45px;
+    }
+
+    .ten-left {
+      padding-left: 10px;
+    }
+
+    .ten-right {
+      padding-right: 10px;
+    }
+    /*BETTERMENT INSTITUTIONAL*/
+
+    .firm-name {
+      color: #ffffff;
+      font-size: 21px;
+      text-align: left;
+      font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+      text-decoration: none;
+      font-style: normal;
+    }
+
+    .bottom-thick-gray-border {
+      border-bottom: 5px solid #686868;
+    }
+
+    .b-to-b-blue {
+      background-color: #225b8c;
+      color: #ffffff;
+    }
+
+    .dark-gray {
+      background-color: #686868;
+      color: #ffffff;
+    }
+    /*FOOTER*/
+
+    .disclosure {
+      font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 100;
+      line-height: 13px;
+      color: #686868;
+      margin: 6px 0 !important;
+    }
+    /*BACKGROUNDS*/
+
+    .betterment-blue {
+      background-color: #47b475;
+      color: #ffffff;
+    }
+
+    .med-blue {
+      background-color: #1d5a96;
+      color: #ffffff;
+    }
+
+    .bright-blue {
+      background-color: #47b475;
+      color: #ffffff;
+    }
+
+    .secondary {
+      background-color: #ffffff;
+      color: #47b475;
+      border: 1px solid #47b475;
+    }
+
+    .light-blue {
+      background-color: #95dbb2;
+      color: #ffffff;
+    }
+
+    .green {
+      background-color: #7fb800;
+      color: #ffffff;
+    }
+
+    .white-bg {
+      background-color: #ffffff;
+    }
+
+    .img-bg {
+      background-repeat: repeat;
+      background-position: center top;
+      background-size: cover;
+      color: #ffffff;
+    }
+    /*TEXT COLORS*/
+
+    .text-white,
+    a.text-white {
+      color: #ffffff;
+    }
+
+    .text-light-blue {
+      color: #95dbb2;
+      font-weight: 100
+    }
+
+    .text-med-blue {
+      color: #47b475;
+      font-weight: 100
+    }
+
+    .text-dark-blue {
+      color: #47b475;
+      font-weight: 100
+    }
+
+    .text-gray {
+      color: #686868;
+      font-weight: 100
+    }
+
+    a.contact-link {
+      color: #999999;
+      font-weight: 300;
+      text-decoration: none;
+    }
+
+    a.contact-link-blue {
+      color: #95dbb2;
+      font-weight: 300;
+      text-decoration: none;
+    }
+
+    .contact {
+      color: #999999;
+      font-weight: 300;
+      text-decoration: none;
+    }
+
+    a.contact-link:hover {
+      color: #47b475;
+      font-weight: 300;
+      text-decoration: underline;
+    }
+
+    a.contact-link-blue:hover {
+      color: #47b475;
+      font-weight: 300;
+      text-decoration: underline;
+    }
+
+    a.header-link-blue {
+      color: #95dbb2;
+      font-weight: 300;
+      font-size: 11px;
+      text-decoration: none;
+    }
+
+    .newsletter-title {
+      color: #47b475;
+      font-weight: 100;
+      font-size: 22px;
+      text-decoration: none;
+    }
+
+    a.newsletter-title {
+      color: #47b475;
+      font-weight: 100;
+      font-size: 22px;
+      text-decoration: none;
+    }
+
+    .top-header-text {
+      color: #999999;
+      font-weight: 300;
+      font-size: 11px;
+      text-decoration: none;
+      padding: 5px;
+      line-height: 100%;
+    }
+
+    a.header-link-blue:hover {
+      color: #47b475;
+      font-weight: 300;
+      font-size: 11px;
+      text-decoration: underline;
+    }
+    /*TEXT ALIGNMENT*/
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-right {
+      text-align: right;
+    }
+    /*BORDERS*/
+
+    .top-gray-border {
+      border-top: 1px solid #cccccc;
+    }
+
+    .top-light-gray-border {
+      border-top: 10px solid #f5f5f5;
+    }
+
+    .bottom-light-gray-border {
+      border-bottom: 1px solid #f5f5f5;
+    }
+
+    .bottom-gray-border {
+      border-bottom: 1px solid #cccccc;
+    }
+
+    .bottom-light-blue-border {
+      border-bottom: 5px solid #95dbb2;
+    }
+
+    .bottom-bright-blue-border {
+      border-bottom: 5px solid #47b475;
+    }
+
+    .bottom-med-blue-border {
+      border-bottom: 5px solid #1d5a96;
+    }
+
+    .bottom-red-border {
+      border-bottom: 5px solid #ff3d00;
+    }
+
+    .bottom-thick-light-gray-border {
+      border-bottom: 5px solid #dddddd;
+    }
+
+    .outside-gray-border {
+      border: 1px solid #cccccc;
+    }
+
+    .left-light-gray-border {
+      border-left: 1px solid #f5f5f5;
+    }
+
+    .left-gray-border {
+      border-left: 1px solid #cccccc;
+    }
+
+    .full-width-border-table {
+      border: 1px solid #cccccc;
+      width: 100%;
+    }
+
+    .border-table-text-cells {
+      padding: 20px;
+      font-size: 13px;
+    }
+    /*CUSTOM STYLES*/
+
+    .newsletter-header {
+      color: #95dbb2;
+      font-size: 16px;
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .b4b-subhead {
+      color: #95dbb2;
+      font-size: 12px;
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .contact-footer,
+    .mobile-app,
+    .footer-text {
+      letter-spacing: 0.2px;
+      color: #999999;
+      font-size: 12px;
+    }
+
+    .footer-text {
+      padding-bottom: 5px;
+    }
+
+    .small-footer-text {
+      color: #999999;
+      font-size: 11px;
+    }
+
+    .contact-footer span,
+    .contact-footer a {
+      padding: 0 4px;
+    }
+
+    .contact-footer a,
+    .mobile-app a {
+      color: #47b475;
+      text-decoration: none;
+    }
+
+    .contact-footer a:hover,
+    .mobile-app a:hover {
+      color: #47b475;
+      text-decoration: underline;
+    }
+
+    .security-footer {
+      padding: 5px 0;
+    }
+
+    strong {
+      font-weight: 500 !important;
+    }
+    /* OFFER CARD & TABLE */
+
+    .offer-headline {
+      font-weight: 700;
+    }
+
+    .offer-card {
+      border-collapse: separate;
+      border-radius: 15px;
+      border: 1px solid #dddddd;
+      width: 90%;
+      max-width: 420px;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-top: 25px;
+      padding-bottom: 15px;
+    }
+
+    .offer-card a:hover,
+    .offer-card a {
+      text-decoration: none;
+      color: #686868;
+    }
+
+    .offer-table {
+      width: 90%;
+      max-width: 350px;
+    }
+
+    .offer-table th {
+      padding: 5px;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 700;
+      border-bottom: 1px solid #47b475;
+    }
+
+    .offer-table td {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 5px;
+      padding-right: 5px;
+      font-size: 14px;
+    }
+
+    .offer-table .border-bottom {
+      border-bottom: 1px solid #dddddd;
+    }
+    /* ////// TO MAKE RESPONSIVE WITHOUT MOBILE QUERIES ////// */
+
+    .box-20 {
+      display: inline-block;
+      width: 40px;
+      vertical-align: top;
+      padding: 0.3em;
+    }
+
+    .box-60 {
+      display: inline-block;
+      width: 60px;
+      vertical-align: top;
+      padding: 1em;
+    }
+
+    .box-125 {
+      display: inline-block;
+      width: 125px;
+      vertical-align: top;
+      padding: 1em;
+    }
+
+    .box-185 {
+      display: inline-block;
+      width: 185px;
+      vertical-align: top;
+      padding: 1em;
+    }
+
+    .box-200 {
+      display: inline-block;
+      width: 200px;
+      vertical-align: top;
+      padding: 1em;
+    }
+
+    .box-250 {
+      display: inline-block;
+      width: 250px;
+      vertical-align: top;
+      padding: 1em;
+    }
+
+    .box-300 {
+      display: inline-block;
+      width: 300px;
+      vertical-align: top;
+      padding: 1em;
+    }
+
+    .box-250-no-padding {
+      display: inline-block;
+      width: 250px;
+      vertical-align: top;
+    }
+
+    .box-350 {
+      display: inline-block;
+      width: 350px;
+      vertical-align: top;
+      padding: 1em;
+    }
+    /* ////// MOBILE STYLES ////// */
+
+    @media screen and (min-width: 641px) {
+      .width-100pct {
+        width: 640px!important;
+      }
+    }
+
+    @media only screen and (max-width:480px) {
+      /* ////// CLIENT-SPECIFIC STYLES ////// */
+      body {
+        width: 100% !important;
+        min-width: 100% !important;
+      }
+      .text-large-gray {
+        font-size: 24px !important;
+      }
+      /* Force iOS Mail to render the email at full width. */
+      h2[class="text-center"] {
+        font-size: 18px !important;
+      }
+      h1[class="text-center"] {
+        font-size: 23px !important;
+      }
+      h1[class="text-center text-white"] {
+        font-size: 23px !important;
+      }
+      /* ////// FRAMEWORK STYLES ////// */
+      /* CSS selectors are written in attribute
+                selector format to prevent Yahoo Mail
+                from rendering media query styles on
+                desktop. */
+      table[id="emailBody"],
+      table[class="flexibleContainer"] {
+        width: 100% !important;
+      }
+      table[id="emailBody"],
+      table[class="flexibleContainer forty-five-left"] {
+        width: 100% !important;
+        padding-left: 0px !important;
+      }
+      table[class="left-light-gray-border flexibleContainer"] {
+        width: 100% !important;
+        border-left: 1px solid #ffffff !important;
+      }
+      table[class="flexibleContainerExtraPadding"] {
+        width: 85% !important;
+      }
+      /* The following style rule makes any
+                image classed with 'flexibleImage'
+                fluid when the query activates.
+                Make sure you add an inline max-width
+                to those images to prevent them
+                from blowing out. */
+      img[class="flexibleImage"] {
+        height: auto !important;
+        width: 100% !important;
+      }
+      img[class="flexibleImage full-width-img-float-left"] {
+        height: auto !important;
+        width: 100% !important;
+      }
+      /* Make buttons in the email span the
+                full width of their container, allowing
+                for left- or right-handed ease of use. */
+      table[class="base-button bright-blue"] {
+        width: 90% !important;
+      }
+      table[class="base-button green"] {
+        width: 90% !important;
+      }
+      table[class="nestedContainer top-padding buttonCell"] {
+        width: 100% !important;
+      }
+      td[class="buttonContent"] a {
+        padding: 15px !important;
+      }
+      td[class="textContentLast"],
+      td[class="imageContentLast"] {
+        padding-top: 20px !important;
+      }
+      /* ////// GENERAL STYLES ////// */
+      td[id="bodyCell"] {
+        padding-top: 10px !important;
+        padding-right: 10px !important;
+        padding-left: 10px !important;
+      }
+      table[class="nestedContainerCell offer-card"] {
+        width: 90% !important;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+    }
+  </style>
+  <!--
+            Outlook Conditional CSS
+
+            These two style blocks target Outlook 2007 & 2010 specifically, forcing
+            columns into a single vertical stack as on mobile clients. This is
+            primarily done to avoid the 'page break bug' and is optional.
+
+            More information here:
+            http://templates.mailchimp.com/development/css/outlook-conditional-css
+        -->
+  <!--[if mso 12]>
+            <style type="text/css">
+
+td, .newsletter-headline, h1, h2, h3, h4, h5, h6, .textContent, .textContentLast, .headerButtonContent, .buttonContent, .buttonContentNPS, .secondary-call, .footer-header, .footer-header-dark {
+    font-family:  Arial, sans-serif !important;
+}
+
+.box-350 .textContent {
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+            </style>
+        <![endif]-->
+  <!--[if mso 14]>
+            <style type="text/css">
+
+td, .newsletter-headline, h1, h2, h3, h4, h5, h6, .textContent, .textContentLast, .headerButtonContent, .buttonContent, .buttonContentNPS, .secondary-call, .footer-header, .footer-header-dark {
+    font-family:  Arial, sans-serif !important;
+}
+
+.box-350 .textContent {
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+            </style>
+        <![endif]-->
+  <!--[if mso 15]>
+            <style type="text/css">
+
+td, .newsletter-headline, h1, h2, h3, h4, h5, h6, .textContent, .textContentLast, .headerButtonContent, .buttonContent, .buttonContentNPS, .secondary-call, .footer-header, .footer-header-dark {
+    font-family:  Arial, sans-serif !important;
+}
+
+.box-350 .textContent {
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+            </style>
+        <![endif]-->
+
 </head>
+
+<body style="margin: 0;padding: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;background-color: #f5f5f5;height: 100% !important;width: 100% !important;">
+  <style type="text/css">
+    div.preheader {
+      display: none !important;
+    }
+  </style>
+  <div class="preheader" style="font-size: 1px; display: none !important;">Looking to modernize your business? Learn the best practices with us.</div>
+  <center>
+    <!--[if (gte mso 9)|(IE)]>
+                <table width="640" align="center" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td>
+            <![endif]-->
+    <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;margin: 0;padding: 0;background-color: #f5f5f5;height: 100% !important;width: 100% !important;">
+      <!-- This is the start of the email container -->
+      <!-- These first tags are closed in template.html -->
+      <tr>
+        <td align="center" valign="top" id="bodyCell" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;margin: 0;padding: 0;padding-top: 10px;padding-bottom: 10px;height: 100% !important;width: 100% !important;">
+
+          <table border="0" cellpadding="0" cellspacing="0" class="width-100pct" width="100%" id="emailBody" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;width: 100%;max-width: 640px;background-color: #FFFFFF;border: none;">
+            <!-- End first tags -->
+            <!-- ================================================ -->
+
+            <!-- LOGO MODULE ROW // -->
+            <tr class="light-gray  bottom-light-blue-border  " style="background-color: #f5f5f5;border-bottom: 5px solid #95dbb2;">
+              <td align="center" valign="top" class="header-border" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                <!-- CENTERING TABLE // -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                  <tr>
+                    <td align="center" valign="top" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                      <!-- FLEXIBLE CONTAINER // -->
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                        <tr>
+                          <td align="Left" valign="bottom" border="0" cellpadding="0" cellspacing="0" class="twenty-top" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;padding-top: 20px;">
+
+                            <!-- CONTENT TABLE // -->
+                            <table border="0" cellpadding="0" cellspacing="0" align="center" class="width-100pct" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;width: 100%;max-width: 640px;">
+                              <tr>
+                                <td align="center" valign="top" class="text-center twenty-bottom" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;padding-bottom: 20px;text-align: center;">
+
+                                  <a href="https://mymodernassets.com" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #47b475;font-weight: 100;text-decoration: none;">
+                                    <img src="https://s3-us-west-1.amazonaws.com/modern-assets/ma_logo_with_slogan_email.png" alt="MyModernAssets.com" width="250" style="border: 0;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;">
+                                  </a>
+
+                                </td>
+                              </tr>
+                            </table>
+                            <!-- // CONTENT TABLE -->
+
+                          </td>
+                        </tr>
+                      </table>
+                      <!-- // FLEXIBLE CONTAINER -->
+                    </td>
+                  </tr>
+                </table>
+                <!-- // CENTERING TABLE -->
+              </td>
+            </tr>
+            <!-- // LOGO MODULE ROW -->
+
+            <!-- // MODULE ROW -->
+
+            <!-- // MODULE ROW -->
+
+            <%= yield %>
+
+            <!-- MODULE ROW // -->
+            <tr class="light-gray bottom-gray-border" style="background-color: #f5f5f5;border-bottom: 1px solid #cccccc;">
+              <td align="center" valign="top" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                <!-- CENTERING TABLE // -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                  <tr>
+                    <td align="center" valign="top" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                      <!-- FLEXIBLE CONTAINER // -->
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" class="flexibleContainer" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                        <tr>
+                          <td align="center" valign="top" width="100%" class="twenty-top" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;padding-top: 20px;">
+                            <!-- CONTENT TABLE // -->
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="nestedContainer" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;border: none;">
+                              <tr>
+                                <td valign="top" class="textContent text-center contact-footer twenty-bottom" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #999999;font-weight: 100;font-family: 'Montserrat', Helvetica, Arial, sans-serif;font-size: 12px;line-height: 150%;text-align: center;font-style: normal;padding-bottom: 20px;letter-spacing: 0.2px;">
+                                  <span class="questions" style="padding: 0 4px;">QUESTIONS?</span>
+                                  <a href="mailto:hello@mymodernassets.com" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #47b475;font-weight: 100;text-decoration: none;padding: 0 4px;">Email
+                                                  </a> |
+                                  <a href="https://mymodernassets.com#faq" target="blank" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #47b475;font-weight: 100;text-decoration: none;padding: 0 4px;">FAQs
+                                                  </a>
+
+                                </td>
+                              </tr>
+                            </table>
+                            <!-- // CONTENT TABLE -->
+                          </td>
+                        </tr>
+                      </table>
+                      <!-- // FLEXIBLE CONTAINER -->
+                    </td>
+                  </tr>
+                </table>
+                <!-- // CENTERING TABLE -->
+              </td>
+            </tr>
+            <!-- // MODULE ROW -->
+
+
+            <!-- MODULE ROW // -->
+            <tr class="light-gray" style="background-color: #f5f5f5;">
+              <td align="center" valign="top" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                <!-- CENTERING TABLE // -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                  <tr>
+                    <td align="center" valign="top" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                      <!-- FLEXIBLE CONTAINER // -->
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" class="flexibleContainer" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                        <tr>
+                          <td align="center" valign="top" width="100%" class="flexibleContainerCell forty-bottom forty-top" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;padding-top: 40px;padding-right: 45px;padding-left: 45px;padding-bottom: 40px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="nestedContainer" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;border: none;">
+
+                              <tr>
+                                <td align="center" valign="top" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+
+                                  <!-- CONTENT TABLE // -->
+                                  <table align="Left" border="0" cellpadding="0" cellspacing="0" width="100%" class="flexibleContainer" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                                    <tr>
+                                      <td align="left" class="disclosure" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;font-family: 'Montserrat', Helvetica, Arial, sans-serif;font-size: 11px;font-weight: 100;line-height: 13px;color: #686868;margin: 6px 0 !important;">
+
+                                        This email was sent by: Modern Assets
+                                        <br><br>
+
+                                        <a href="http://click.email.betterment.com/unsub_center.aspx?qs=7ef3374c71a7cd431bd2d5dac8f8f7d46853263c50c27ea3559c378b9036b3b8b28eeef9b512240b29224e909220a8ed0fabb3e48fd493e4b5699bb0a1d9d9cb" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #47b475;font-weight: 100;text-decoration: none;">Unsubscribe</a>
+
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <!-- // CONTENT TABLE -->
+
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                      <!-- // FLEXIBLE CONTAINER -->
+                    </td>
+                  </tr>
+                </table>
+                <!-- // CENTERING TABLE -->
+              </td>
+            </tr>
+            <!-- // MODULE ROW -->
+            <!-- ================================================ -->
+            <!-- These tags are opened in the header module and closed here -->
+            </custom>
+          </table>
+        </td>
+      </tr>
+      <!-- End first tags -->
+      <!-- ================================================ -->
+    </table>
+    <!--[if (gte mso 9)|(IE)]>
+                        </td>
+                    </tr>
+                </table>
+            <![endif]-->
+  </center>
+</body>
+
 </html>
