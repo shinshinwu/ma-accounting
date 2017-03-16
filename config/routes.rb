@@ -52,5 +52,6 @@ Rails.application.routes.draw do
   resources :supporting_materials, only: [:create, :update, :edit, :new]
 
   post "/make_payment" => "users/users#charge"
+  post '/unsubscribe' => "users/users#unsubscribe"
 
 end

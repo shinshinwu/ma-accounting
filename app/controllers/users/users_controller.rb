@@ -116,6 +116,13 @@ class Users::UsersController < ApplicationController
   end
 
   def unsubscribe
+    if User.where(email: params[:email]).present? || Member.where(email: params[:email]).present?
+      EmailSetting.create(email: params[:email], subscribed: false, unsubscribed_at: Time.current)
+    end
+
+    # if we have no data on them, just return success
+    flash[:success] = "You have successfully unsubscribed!"
+    redirect_to :back
   end
 
 end

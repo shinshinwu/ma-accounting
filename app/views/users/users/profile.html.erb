@@ -11,6 +11,9 @@
         <li>
           <a href="#payment" data-toggle="tab"> <span class="visible-xs"><i class="fa fa-home"></i></span> <span class="hidden-xs">Payment</span> </a>
         </li>
+        <li>
+          <a href="#email" data-toggle="tab"> <span class="visible-xs"><i class="fa fa-home"></i></span> <span class="hidden-xs">Email Settings</span> </a>
+        </li>
       </ul>
         <!-- /.tabs -->
       <div class="tab-content">
@@ -88,6 +91,30 @@
                   <label class="col-sm-3 control-label">Zipcode</label>
                   <div class="col-sm-9">
                     <%= text_field_tag '[user]zip', nil, class: "form-control", size: 4, "data-strip" => "address_zip" %>
+                  </div>
+                </div>
+
+                <div class="text-right">
+                  <%= submit_tag "Submit", class: "btn btn-success m-r-10" %>
+                </div>
+
+              <% end %>
+            </div>
+          </div>
+
+        </div>
+        <div class="tab-pane" id="email">
+          <div class="row m-b-20">
+            <div class="col-md-12">
+
+              <h4>Enter your email below to unsubscribe from all communications from ModernAssets</h4>
+
+              <%= form_tag unsubscribe_path, method: :post, class: "form-horizontal", style: "height:100%;" do |f| %>
+
+                <div class="form-group m-t-20">
+                  <label class="col-sm-3 control-label">Email</label>
+                  <div class="col-sm-9">
+                    <%= email_field_tag 'email', nil, class: "form-control" %>
                   </div>
                 </div>
 
