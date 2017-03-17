@@ -3,6 +3,13 @@ class Invoice < ActiveRecord::Base
   belongs_to :product, inverse_of: :invoices
   belongs_to :promotion, inverse_of: :invoices
 
+  validates_presence_of :code, :user_id, :product_id, :transaction_id
+  validates :discount_amount, numericality: { greater_than_or_equal_to: 0 }
+  validates :total_amount, numericality: { greater_than: 0 }
+  validates :status, presence: true, inclusion: {
+    in: ['paid', 'void', 'refund', 'pending']
+  }
+
   before_validation :generate_code, :on => :create
   before_create :charge!
 

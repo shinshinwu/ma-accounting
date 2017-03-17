@@ -116,7 +116,7 @@ class Users::UsersController < ApplicationController
   end
 
   def unsubscribe
-    if User.where(email: params[:email]).present? || Member.where(email: params[:email]).present?
+    if User.where(email: params[:email]).exists? || Member.where(email: params[:email]).exists?
       EmailSetting.create(email: params[:email], subscribed: false, unsubscribed_at: Time.current)
     end
 
