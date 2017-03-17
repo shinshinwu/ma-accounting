@@ -3,30 +3,37 @@
         <nav class="white z-depth-1">
             <div class="row">
                 <div class="col s10 offset-s1">
-                <div class="nav-wrapper ">
-                  
-                  <%=image_tag "modern_assets.png", {style:"width:50px;margin:15px 15px 0px 0px;"}%>
+                <!-- <div class="nav-wrapper" style="margin: 0 auto;"> -->
+                  <!-- <p style="display: inline-block;"> -->
+                  <%=image_tag "modern_assets.png", {class: "nav-bar-logo"}%>
                   <a id="logo-container" href="#" class="brand-logo capitalize">
                     <span class="bold-text green-text">Modern</span><span class="minty-text light-text">Assets</span>
                   </a>
-                    <a href="#" data-activates="mobile-demo" class="button-collapse green-background"><i class="material-icons">menu</i></a>
+                  <!-- </p> -->
+                    <a href="#" data-activates="mobile-demo" class="button-collapse green-background right" style="right: -20px;"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
-                        <li><a class="uppercase" href="sass.html">About</a></li>
-                        <li><a class="uppercase" href="badges.html">Program Outline</a></li>
-                        <li><a class="uppercase" href="collapsible.html">Deliverables</a></li>
-                        <li><a class="uppercase" href="mobile.html">FAQs</a></li>
-                        <li><a class="uppercase waves-effect waves-light btn" href="mobile.html">Sign Up</a></li>
+                        <li><a class="capitalize" href="sass.html">About</a></li>
+                        <li><a class="capitalize" href="badges.html">Program Outline</a></li>
+                        <li><a class="capitalize" href="collapsible.html">Deliverables</a></li>
+                        <li><a class="capitalize" href="mobile.html">FAQs</a></li>
+                        <li><a class="capitalize waves-effect waves-light btn" href="mobile.html">Sign Up</a></li>
                     </ul>
                 </div>
                 </div>
             </div>
         </nav>
     </div>
-    <ul class="side-nav" id="mobile-demo">
-        <li><a class="uppercase" href="sass.html">About</a></li>
-        <li><a class="uppercase" href="badges.html">Program Outline</a></li>
-        <li><a class="uppercase" href="collapsible.html">Deliverables</a></li>
-        <li><a class="uppercase" href="mobile.html">FAQs</a></li>
-        <li><a class="uppercase waves-effect waves-light btn" href="mobile.html">Sign Up</a></li>
+    <ul class="side-nav center" id="mobile-demo">
+    <li>
+        <%=image_tag "modern_assets.png", {class: "nav-bar-logo"}%>
+                  <a id="logo-container" href="#" class="brand-logo capitalize ">
+                    <span class="bold-text green-text h6">Modern</span><span class="h6 minty-text light-text">Assets</span>
+                  </a>
+    </li>
+        <li><a class="capitalize" href="sass.html">About</a></li>
+        <li><a class="capitalize" href="badges.html">Program Outline</a></li>
+        <li><a class="capitalize" href="collapsible.html">Deliverables</a></li>
+        <li><a class="capitalize" href="mobile.html">FAQs</a></li>
+        <li><a class="capitalize waves-effect waves-light btn" href="mobile.html">Sign Up</a></li>
     </ul>
 </header>
