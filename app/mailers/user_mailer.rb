@@ -6,7 +6,7 @@ class UserMailer < ActionMailer::Base
   default :from => "Modern Assets <#{Settings.support_email}>"
 
   # enable BCC for production emails for loggin purpose
-  default bcc: Settings.bcc_email if Rails.env.production?
+  # default bcc: Settings.bcc_email if Rails.env.production?
 
   def welcome_email(user_id)
     @user = User.find_by_id(user_id)

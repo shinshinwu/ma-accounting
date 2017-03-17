@@ -2,7 +2,7 @@ class MemberMailer < ActionMailer::Base
   layout 'members/mailer'
 
   default :from => "Modern Assets <#{Settings.support_email}>"
-  default bcc: Settings.bcc_email if Rails.env.production?
+  # default bcc: Settings.bcc_email if Rails.env.production?
 
 
   def initial_launch(member_id)
