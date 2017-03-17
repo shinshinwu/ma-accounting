@@ -2,15 +2,15 @@ class MemberMailer < ActionMailer::Base
   layout 'members/mailer'
 
   default :from => "Modern Assets <#{Settings.support_email}>"
-  # default bcc: Settings.bcc_email if Rails.env.production?
 
 
   def initial_launch(member_id)
+    data = {campaign_id: "acounting-inital-launch"}
     @member = Member.find_by_id(member_id)
 
     if @member.present?
       subject = "The Best God Damn Accountant Marketing Course is here!"
-      mail(from: "Marlon from Modern Assets <#{Settings.support_email}>",to: @member.email, subject: subject)
+      mail(from: "Marlon from Modern Assets <#{Settings.support_email}>",to: @member.email, subject: subject, sparkpost_data: data)
     end
   end
 

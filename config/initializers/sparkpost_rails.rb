@@ -5,6 +5,5 @@ SparkPostRails.configure do |c|
   c.track_clicks = true
   c.transactional = true
   c.inline_css = true
-  c.campaign_id = 'MAACCOUNTING-MKT'
-  c.html_content_only = true
+  c.subaccount = "accounting"
 end
