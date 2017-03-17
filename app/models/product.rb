@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
   has_many :invoices, inverse_of: :product
 
   def process_sale!(user:, promotion:nil)
-    if promotion.present?
+    invoice = if promotion.present?
       discount = promotion.discount_amount(self)
       total = (price - discount).to_f.round(2)
 
@@ -13,7 +13,7 @@ class Product < ActiveRecord::Base
       generate_invoice!(user: user, amount: price)
     end
 
-    # TODO: send receipt email to user
+    UserMailer.delay.send_receipt(invoice.id) if invoice.present?
   end
 
   def promotional_price(promotion)
@@ -36,10 +36,10 @@ class Product < ActiveRecord::Base
 
     begin
       if invoice.save
-        return true
+        return invoice
       elsif invoice.errors.present?
-        AppLogger.error("Failed to generate invoice for product", "Failed to generate invoice for Product ##{self.id}: #{i.errors.full_messages}")
-        return false
+        AppLogger.error("Failed to generate invoice for product", "Failed to generate invoice for Product ##{self.id}: #{invoice.errors.full_messages}")
+        raise "#{invoice.errors.full_messages}"
       end
     rescue Payment::PaymentErrors => e
       raise e #just bubble it up

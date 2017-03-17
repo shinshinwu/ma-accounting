@@ -3,7 +3,7 @@ class Invoice < ActiveRecord::Base
   belongs_to :product, inverse_of: :invoices
   belongs_to :promotion, inverse_of: :invoices
 
-  validates_presence_of :code, :user_id, :product_id, :transaction_id
+  validates_presence_of :code, :user_id, :product_id
   validates :discount_amount, numericality: { greater_than_or_equal_to: 0 }
   validates :total_amount, numericality: { greater_than: 0 }
   validates :status, presence: true, inclusion: {
@@ -31,7 +31,7 @@ class Invoice < ActiveRecord::Base
       result = Payment::PaymentProcessor.sale!(
         amount:     total_amount,
         user:       user,
-        descriptor: "MODERNASSETS*MKT",
+        descriptor: "MODERNASSETS*COURSE",
         metadata: {
           user_id:      user.id,
           product_id:   product.id,
@@ -43,6 +43,7 @@ class Invoice < ActiveRecord::Base
         self.status = 'paid'
         self.transaction_id = result.id
       end
+
     rescue Stripe::CardError => e
       body = e.json_body
       err  = body[:error]

@@ -2,6 +2,8 @@ class MemberMailer < ActionMailer::Base
   layout 'members/mailer'
 
   default :from => "Modern Assets <#{Settings.support_email}>"
+  default bcc: Settings.bcc_email if Rails.env.production?
+
 
   def initial_launch(member_id)
     @member = Member.find_by_id(member_id)
@@ -9,17 +11,6 @@ class MemberMailer < ActionMailer::Base
     if @member.present?
       subject = "The Best God Damn Accountant Marketing Course is here!"
       mail(from: "Marlon from Modern Assets <#{Settings.support_email}>",to: @member.email, subject: subject)
-    end
-  end
-
-  def send_receipt(invoice_id)
-    @invoice = Invoice.find_by_id(invoice_id)
-    @launch_date = Date.new(2017, 04, 25)
-    if @invoice.present?
-      @user    = @invoice.user
-      @product = @invoice.product
-      subject  = "Thank you for your recent purchase at Modern Assets"
-      mail(to: @invoice.user.email, subject: subject)
     end
   end
 
