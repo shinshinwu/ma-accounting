@@ -5,4 +5,5 @@ SparkPostRails.configure do |c|
   c.track_clicks = true
   c.transactional = true
   c.inline_css = true
+  c.html_content_only = true
 end
