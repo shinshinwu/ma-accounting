@@ -7,6 +7,18 @@ class Users::UsersController < ApplicationController
   include InboxHelper
 
   def index
+    tracking_info = JSON.parse(Base64.urlsafe_decode64(params[:tracking]))
+    activity = ActivityTracker.find_or_initialize_by(email: tracking_info["email"], key: 'landingpage.visit')
+
+    cookies[:email] = tracking_info["email"]
+
+    promo = Promotion.find_by_id(tracking_info["promotion_id"])
+    if promo.present?
+      activity.parameters = {promotion_id: promo.id, discount: promo.label}
+      cookies.encrypted[:promotion_id] = promo.id
+    end
+
+    activity.save
   end
 
   def profile
@@ -22,14 +34,20 @@ class Users::UsersController < ApplicationController
     end
 
     # ============ Payment Related Stuff ==================
+    # track the visits to payment page
+    activity = ActivityTracker.find_or_initialize_by(email: cookies["email"], key: 'checkout.visit')
+    promo = Promotion.find_by_id(cookies.encrypted[:promotion_id])
+    activity.parameters = {promotion_id: promo.id, discount: promo.label}
+    activity.save
+
     @product = Product.first
     @pk_key = if Rails.env.production?
       ENV["PROD_PUBLISHABLE_KEY"]
     else
       ENV["TEST_PUBLISHABLE_KEY"]
     end
-    # @promotion = FixedPromotion.first
-    @promotion = RollingPromotion.first
+
+    @promotion = promo if promo.present? && promo.valid_promotion?(@product)
   end
 
   def update

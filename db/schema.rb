@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316045029) do
+ActiveRecord::Schema.define(version: 20170318012400) do
+
+  create_table "activity_trackers", force: :cascade do |t|
+    t.string   "email",      limit: 255,   null: false
+    t.string   "key",        limit: 255
+    t.text     "parameters", limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activity_trackers", ["email"], name: "index_activity_trackers_on_email", using: :btree
+  add_index "activity_trackers", ["key"], name: "index_activity_trackers_on_key", using: :btree
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "",                           null: false

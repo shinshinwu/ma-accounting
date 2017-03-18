@@ -14,7 +14,7 @@ class FixedPromotion < Promotion
 
   def label
     if amount_discount
-      "$ #{amount_discount} off"
+      "$#{amount_discount} off"
     else
       "#{percentage_discount}% off"
     end
