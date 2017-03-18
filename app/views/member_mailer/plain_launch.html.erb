@@ -1,0 +1,419 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style type="text/css">
+    /* Template styling */
+
+    body {
+      font-family: Helvetica, sans-serif;
+      width: 100%;
+      max-width: 100%;
+      font-size: 13px;
+      line-height: normal;
+      color: #222;
+      background: #FFF;
+      text-align: left;
+    }
+
+    table {
+      width: 100%;
+      margin: 0 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      color: #222;
+      margin-bottom: 12px;
+      line-height: normal;
+    }
+
+    p,
+    ul,
+    ul li,
+    ol,
+    ol li {
+      font-size: 13px;
+      margin: 0 0 16px;
+      line-height: normal;
+    }
+
+    ul {
+      margin-bottom: 24px;
+    }
+
+    ul li {
+      margin-bottom: 8px;
+    }
+
+    ol {
+      margin-bottom: 24px;
+    }
+
+    ol li {
+      margin-bottom: 8px;
+    }
+
+    p.mini {
+      font-size: 13px;
+      line-height: normal;
+      color: #222;
+    }
+
+    p.message {
+      font-size: 13px;
+      line-height: normal;
+      margin-bottom: 4px;
+    }
+
+    hr {
+      margin: 0;
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid #989EA6;
+    }
+
+    a,
+    a:link,
+    a:visited,
+    a:active,
+    a:hover {
+      font-weight: normal;
+      color: #15c;
+      text-decoration: none;
+      word-break: break-word;
+    }
+
+    a:active,
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .time {
+      font-size: 11px;
+      color: #ABAFB4;
+      padding-right: 6px;
+    }
+
+    .emoji {
+      vertical-align: bottom;
+    }
+
+    .avatar {
+      border-radius: 2px;
+    }
+
+    #footer p {
+      margin-top: 16px;
+      font-size: 12px;
+    }
+    /* Client-specific Styles */
+
+    #outlook a {
+      padding: 0;
+    }
+
+    body {
+      width: 100% !important;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .ExternalClass {
+      width: 100%;
+    }
+
+    .ExternalClass,
+    .ExternalClass p,
+    .ExternalClass span,
+    .ExternalClass font,
+    .ExternalClass td,
+    .ExternalClass div {
+      line-height: 100%;
+    }
+
+    #backgroundTable {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      line-height: 100% !important;
+    }
+    /* Some sensible defaults for images
+      Bring inline: Yes. */
+
+    img {
+      outline: none;
+      text-decoration: none;
+      -ms-interpolation-mode: bicubic;
+    }
+
+    a img {
+      border: none;
+    }
+
+    .image_fix {
+      display: block;
+    }
+    /* Outlook 07, 10 Padding issue fix
+      Bring inline: No.*/
+
+    table td {
+      border-collapse: collapse;
+    }
+    /* Fix spacing around Outlook 07, 10 tables
+      Bring inline: Yes */
+
+    table {
+      border-collapse: collapse;
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+    }
+    /* Mobile */
+
+    @media only screen and (max-device-width: 480px) {
+      /* Part one of controlling phone number linking for mobile. */
+      a[href^=&quot;
+      tel&quot;
+      ],
+      a[href^=&quot;
+      sms&quot;
+      ] {
+        text-decoration: none;
+        color: #15c;
+        /* or whatever your want */
+        pointer-events: none;
+        cursor: default;
+      }
+      .mobile_link a[href^=&quot;
+      tel&quot;
+      ],
+      .mobile_link a[href^=&quot;
+      sms&quot;
+      ] {
+        text-decoration: default;
+        color: orange !important;
+        pointer-events: auto;
+        cursor: default;
+      }
+    }
+    /* Not all email clients will obey these, but the important ones will */
+
+    @media only screen and (max-width: 480px) {
+      .card {
+        padding: 1rem 0.75rem !important;
+      }
+      .link_option {
+        font-size: 14px;
+      }
+      hr {
+        margin: 2rem -0.75rem !important;
+        padding-right: 1.5rem !important;
+      }
+    }
+    /* More Specific Targeting */
+
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+      /* You guessed it, ipad (tablets, smaller screens, etc) */
+      /* repeating for the ipad */
+      a[href^=&quot;
+      tel&quot;
+      ],
+      a[href^=&quot;
+      sms&quot;
+      ] {
+        text-decoration: none;
+        color: #15c;
+        /* or whatever your want */
+        pointer-events: none;
+        cursor: default;
+      }
+      .mobile_link a[href^=&quot;
+      tel&quot;
+      ],
+      .mobile_link a[href^=&quot;
+      sms&quot;
+      ] {
+        text-decoration: default;
+        color: orange !important;
+        pointer-events: auto;
+        cursor: default;
+      }
+    }
+    /* iPhone Retina */
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-device-width: 640px) {
+      /* Must include !important on each style to override inline styles */
+      #footer p {
+        font-size: 9px;
+      }
+    }
+    /* Android targeting */
+
+    @media only screen and (-webkit-device-pixel-ratio:.75) {
+      /* Put CSS for low density (ldpi) Android layouts in here */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+
+    @media only screen and (-webkit-device-pixel-ratio:1) {
+      /* Put CSS for medium density (mdpi) Android layouts in here */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+
+    @media only screen and (-webkit-device-pixel-ratio:1.5) {
+      /* Put CSS for high density (hdpi) Android layouts in here */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+    /* Galaxy Nexus */
+
+    @media only screen and (min-device-width: 720px) and (max-device-width: 1280px) {
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      body {
+        font-size: 16px;
+      }
+    }
+    /* end Android targeting */
+  </style>
+</head>
+
+<body>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" style="font-size: 100%; line-height: normal; color: #222;
+  background: #FFF;">
+    <tbody>
+      <tr>
+        <td valign="top">
+          <table id="body" width="100%" cellpadding="0" cellspacing="0" border="0" align="left">
+            <tbody>
+              <tr>
+                <td valign="top">
+                  <div style="max-width: 600px; margin: 0 0; padding: 0
+                  12px;">
+                    <div class="card" style="background: white; border-radius:
+                    0.5rem; padding: 2rem; padding-top: 0rem; margin-bottom:
+                    1.5rem;">
+                      <div style="display:none;font-size:1px;color:#222;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
+                      </div>
+                      <p>
+                        Hi <%= @member.nickname %>,
+                      </p>
+                      <p>
+                        I am Marlon from Modern Assets and I want to help you to market your Accounting practice.
+                      </p>
+                      <h1>Marketing is hard.</h1>
+                      <p>
+                        Marketing is even harder to do it well. We have worked with many different accountants before and they have all expressed their feeling of lost when it comes to the topic of how to market themselves and how to build up their own brand.
+                      </p>
+                      <p>
+                        Did you know that <strong>80%</strong> of customers will reserch services and products online prior to their decision to purchase?
+                      </p>
+                      <p>
+                        80%! That's a tremendously high percentage! And if you are not advertising yourself in the right channels where your customers are doing their research, you are loosing out to your competitors.
+                      </p>
+                      <h2>
+                        <strong>Marketing is hard. Let us help you.</strong>
+                      </h2>
+                      <p>
+                        Watch us walk you through all the modern marketing and brand strategies for accountants step by step and apply the lessons back to your own practice.
+                      </p>
+                      <p>
+                        Ever felt most articles you have read lots of materials regarding marketing but still don't quite know how exactly you can apply them?
+                      </p>
+                      <p>
+                        That's why as part of our course, we will walk you hand in hand through some practical exercises that you can walk away with the result in front of you.
+                      </p>
+                      <p>
+                        What if I tell you to achieve all these amazing result you only need to contribute 2 hours a week over the course of 3 months? That's less time than <insert catchy phrase here>!
+                      </p>
+                      <p>
+                        I am so excited to help you get started, and look forward to helping you build your brand, define your marketing strategies and help your practice to reach out and help more people.
+                      </p>
+                      <div style="background-color:#95dbb2;border-radius:10px;padding:10px;margin-bottom:15px;">
+                        <p>
+                        And now, as part of the super early bird special, you can purchase the program for only $99! (It will pay of if you are able to onboard just 1 extra client and we promise you it will be able to onboard so many more than that if you follow us through). This promotion will only last till THIS DATE so don't miss out on this great opportunity to revamp your firm and future-proof your business. Clik on this link to claim your special promotion price. <a>Promoted signup link</a>
+                      </p></div>
+                      <p>
+                        The course will be starting on THIS DATE and the sign ups will be closed till the end of the course.
+                      </p>
+                      <p>
+                        Here is a sneak peak of what you will get from this course:
+                        <ul>
+                          <li>
+                            Structured, step-by-step lessons on how successful businesses construct their brand and strategy
+                          </li>
+                          <li>
+                            Easy-to-follow, up-to-date content for beginners and experienced professionals
+                          </li>
+                          <li>
+                            Real life deliverables we will work through together to help you define your strategy
+                          </li>
+                        </ul>
+                      </p>
+                      <p>
+                        Want to see more detailed course outline? Visit <a> here</a>.
+                      </p>
+                      <p>
+                        If you have any questions, just email me back and I will be glad to answer them.
+                      </p>
+                      <p>
+                        Enjoy!
+                      </p>
+                      <p>
+                        Hope to see you at the course launch!
+                      </p>
+                      <p>
+                        -Marlon
+                      </p>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table id="footer" width="100%" cellpadding="0" cellspacing="0" border="0" align="left" style="margin-top: 1rem; background: white; color: #989EA6;">
+                    <tbody>
+                      <tr>
+                        <td valign="top" align="left" style="padding: 2rem;">
+                          <div style="max-width: 600px; margin: 0
+                          0;">
+                            <hr />
+                            <div class="footer_address" style="margin-top: 16px;
+                            font-size: 12px;
+                            line-height: 20px;">
+                              <p style="margin-top: 16px; font-size: 12px; line-height: 20px;">
+                                If you would like to completely opt-out of everything, forever and ever</span>, click the link below:
+                              </p>&nbsp;<a href="https://mymodernassets.com/unsubscribe" target="_blank">Unsubscribe</a>
+                              <br />
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>

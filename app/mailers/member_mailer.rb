@@ -3,6 +3,17 @@ class MemberMailer < ActionMailer::Base
 
   default :from => "Modern Assets <#{Settings.support_email}>"
 
+  def plain_launch(member_id)
+    data = {campaign_id: "acounting-inital-launch"}
+    @member = Member.find_by_id(member_id)
+
+    if @member.present?
+      subject = "We have the solution for your practice."
+      mail(from: "Marlon from Modern Assets <#{Settings.support_email}>",to: @member.email, subject: subject, sparkpost_data: data) do |format|
+        format.html { render layout: false }
+      end
+    end
+  end
 
   def initial_launch(member_id)
     data = {campaign_id: "acounting-inital-launch"}
