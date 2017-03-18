@@ -156,6 +156,10 @@ padding-bottom: 5em;
   margin-top: 3em !important;
   margin-bottom: 3em !important;
 }
+.pv5em{
+  padding-top: 5em !important;
+  padding-bottom: 5em !important; 
+}
 /*=----------------- (END) 3. HELPERS (END) -----------------=*/
 
 
@@ -355,7 +359,9 @@ body {
   .parallax-container .section {
     width: 100%;
   }
-
+.parallax img{
+  min-width: 100vh !important;
+}
 @media only screen and (max-width : 992px) {
   .parallax-container .section {
     position: absolute;
@@ -695,4 +701,19 @@ nav .brand-logo{
 .nav-bar-logo{
    width:55px;margin:15px 15px 0px 0px; 
 }
+}
+
+nav i.material-icons{
+  font-size: 32px;
+}
+img.minty-background{
+  background-color: rgba(149, 219, 178, 1) !important;
+}
+
+.mr2em{
+  margin-right: 1em;
+}
+.pv2em{
+  padding-top: 2em;
+  padding-bottom:  2em;
 }

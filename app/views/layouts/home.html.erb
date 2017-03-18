@@ -65,12 +65,11 @@
       <![endif]-->
 </head>
 
-<body class="fix-sidebar">
+<body>
   <%= render "home/navbar" %>
   <%= content_for?(:content) ? yield(:content) : yield %>
   <%= render "home/footer" %>
   <%= yield :javascripts %>
-
 </body>
 
 </html>
