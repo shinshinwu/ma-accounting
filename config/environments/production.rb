@@ -87,5 +87,5 @@ Rails.application.configure do
   }
 
   # this needs to be set to false to raise error to our error logging plugin Sentry
-  config.action_dispatch.show_exceptions = false
+  config.action_dispatch.show_exceptions = true
 end
