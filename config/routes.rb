@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   get "/checkout" => 'home#checkout'
 
   post "/make_payment" => "home#charge"
-  post '/unsubscribe' => "users/users#unsubscribe"
+  get '/unsubscribe' => "home#unsubscribe"
+  post '/unsubscribe' => "home#process_unsubscribe"
 
   devise_for :admins,
     :skip => [:confirmations, :registrations],

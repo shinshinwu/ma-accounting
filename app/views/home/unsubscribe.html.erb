@@ -1,0 +1,29 @@
+<div class="pt3em" style="background-color: rgba(71, 180, 117, 0.5);">
+  <div class="container">
+    <div class="row pb5em">
+      <div class="col s10 offset-s1">
+        <div class="card z-depth-0 center pv2em">
+          <div class="card-content">
+            <div class="row">
+              <h4 class="green-text">Sorry to see your go...</h4>
+              <h6 class="grey-text mt20">Enter your email below to unsubscribe from all communications from Modern Assets</h6>
+            </div>
+
+            <%= form_tag unsubscribe_path, method: :post, class: "payment-form", style: "height:100%;" do |f| %>
+              <div class="row">
+                <div class="input-field col s8 offset-s2">
+                  <%= email_field_tag 'email', nil, placeholder: "Your Email", class: "validate", required: true %>
+                </div>
+              </div>
+
+              <div class="row">
+                <%= submit_tag "Unsubscribe", class: "capitalize waves-effect waves-light btn-large", style: "font-size:1.2em;", data: { disable_with: "Submitting..." } %>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

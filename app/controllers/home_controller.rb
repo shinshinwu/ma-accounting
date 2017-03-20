@@ -26,7 +26,7 @@ class HomeController < ApplicationController
 
     if @product.nil?
       flash[:error] = "Please choose your package first"
-      redirect_to :back and return
+      redirect_to root_path and return
     end
 
     # track the visits to payment page
@@ -104,8 +104,10 @@ class HomeController < ApplicationController
     redirect_to checkout_path(show_success: true, invoice_code: invoice.try!(:code))
   end
 
-
   def unsubscribe
+  end
+
+  def process_unsubscribe
     if User.where(email: params[:email]).exists? || Member.where(email: params[:email]).exists?
       EmailSetting.create(email: params[:email], subscribed: false, unsubscribed_at: Time.current)
     end

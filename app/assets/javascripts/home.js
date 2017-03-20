@@ -15,4 +15,5 @@
 //= require slimscroll.js
 //= require materialize
 //= require jquery.formatter.js
+//= require site_wide.js
 //= require home/homePageScripts

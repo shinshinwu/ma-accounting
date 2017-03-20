@@ -5,7 +5,7 @@ $(document).ready(function(){
 
   /* Dismissalbe alert */
 
-  $(".myadmin-alert-click").click(function(event){
+  $(".flash.alerttop").click(function(event){
     $(this).fadeToggle(350);
 
     return false;

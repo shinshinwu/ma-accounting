@@ -801,3 +801,68 @@ img.minty-background{
      width:60px;margin-top:10px !important;
   }
 /*--------------WELCOME SUPPORTING (END) LOGO SECTION--------------*/
+
+
+// flash alert style
+
+.alerttop {
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    right: 0;
+    top: 0;
+    font-size: 16px;
+}
+
+.alert-notice, .alert-success {
+    background: #00c292;
+    color: #ffffff;
+    border-color: #00c292;
+}
+
+.alert-warning {
+    background: #fec107;
+    color: #ffffff;
+    border-color: #fec107;
+}
+
+.alert-error {
+    background: #fb9678;
+    color: #ffffff;
+    border-color: #fb9678;
+}
+
+.flash.alerttop {
+    border-radius: 0px;
+    color: #fff;
+    padding: 12px 30px 12px 12px;
+    position: relative;
+    text-align: center;
+}
+
+.flash.alerttop a {
+    color: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.flash.alerttop .closed {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 20px;
+    font-weight: bold;
+    padding: 4px;
+    position: absolute;
+    right: 3px;
+    text-decoration: none;
+    top: 0;
+}
+
+.flash.alerttop .closed:hover {
+    color: #fff;
+}
+
+.flash.alerttop {
+    cursor: pointer;
+    padding-right: 12px;
+}
