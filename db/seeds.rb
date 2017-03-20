@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-products = Product.create([
+products = Product.find_or_create_by([
   {code: "ACCTSTARTER", description: "Starter Package", price: 249},
   {code: "ACCTGROWTH", description: "Growth Package", price: 349},
   {code: "ACCTROCKSTAR", description: "Rockstar Package", price: 549}
