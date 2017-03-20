@@ -3,7 +3,7 @@ class MemberMailer < ActionMailer::Base
 
   default :from => "Modern Assets <#{Settings.support_email}>"
 
-  def plain_launch(member_id, promotion_id:nil)
+  def plain_launch(member_id, promotion_id:)
     data = {campaign_id: "acounting-inital-launch"}
     @member = Member.find_by_id(member_id)
 

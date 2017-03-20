@@ -3,6 +3,9 @@ class HomeController < ApplicationController
 
   def index
     @products = Product.order(:price)
+    promo = Promotion.find_by_id(cookies.encrypted[:promotion_id])
+    @promotion = promo if promo.present? && promo.currently_active?
+
     if params[:tracking].present?
       tracking_info = JSON.parse(Base64.urlsafe_decode64(params[:tracking]))
       activity = ActivityTracker.find_or_initialize_by(email: tracking_info["email"], key: 'landingpage.visit')
@@ -13,6 +16,7 @@ class HomeController < ApplicationController
       if promo.present?
         activity.parameters = {promotion_id: promo.id, discount: promo.label}
         cookies.encrypted[:promotion_id] = promo.id
+        @promotion ||= promo
       end
 
       activity.save
@@ -21,32 +25,33 @@ class HomeController < ApplicationController
 
   def checkout
     # ============ Payment Related Stuff ==================
+    unless params[:show_success].present?
+      @product = Product.find_by_code(params[:code])
 
-    @product = Product.find_by_code(params[:code])
+      if @product.nil?
+        flash[:error] = "Please choose your package first"
+        redirect_to root_path and return
+      end
 
-    if @product.nil?
-      flash[:error] = "Please choose your package first"
-      redirect_to root_path and return
+      # track the visits to payment page
+      if cookies["email"].present?
+        activity = ActivityTracker.find_or_initialize_by(email: cookies["email"], key: 'checkout.visit')
+        activity.parameters = {product_code: @product.code}
+
+        promo = Promotion.find_by_id(cookies.encrypted[:promotion_id])
+        activity.parameters.merge({promotion_id: promo.id, discount: promo.label, sale_price: @product.promotional_price(promo)}) if promo.present?
+
+        activity.save
+      end
+
+      @pk_key = if Rails.env.production?
+        ENV["PROD_PUBLISHABLE_KEY"]
+      else
+        ENV["TEST_PUBLISHABLE_KEY"]
+      end
+
+      @promotion = promo if promo.present? && promo.valid_promotion?(@product)
     end
-
-    # track the visits to payment page
-    if cookies["email"].present?
-      activity = ActivityTracker.find_or_initialize_by(email: cookies["email"], key: 'checkout.visit')
-      activity.parameters = {product_code: @product.code}
-
-      promo = Promotion.find_by_id(cookies.encrypted[:promotion_id])
-      activity.parameters.merge({promotion_id: promo.id, discount: promo.label, sale_price: @product.promotional_price(promo)}) if promo.present?
-
-      activity.save
-    end
-
-    @pk_key = if Rails.env.production?
-      ENV["PROD_PUBLISHABLE_KEY"]
-    else
-      ENV["TEST_PUBLISHABLE_KEY"]
-    end
-
-    @promotion = promo if promo.present? && promo.valid_promotion?(@product)
   end
 
   def charge
@@ -93,6 +98,7 @@ class HomeController < ApplicationController
       # process sale
       begin
         invoice = product.process_sale!(user: user, promotion: promo)
+        cookies.delete(:promotion_id) if cookies.encrypted[:promotion_id].present?
       rescue Payment::PaymentErrors => e
         flash[:error] = e.message
       rescue => e

@@ -3,7 +3,7 @@
 class RollingPromotion < Promotion
   validate :correct_frequency
 
-  def process_discount
+  def process_discount(product)
     multiplier = if frequency == 'daily'
       end_date - Date.current
     elsif frequency == 'monthly'

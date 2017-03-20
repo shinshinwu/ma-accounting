@@ -43,7 +43,7 @@
         <div class="col s10 offset-s1 m6 ">
           <div class="card z-depth-0 center pv2em">
             <div class="card-content">
-                <div class="row">
+                <div class="row payment-detail">
                   <h4 class="green-text">Payment Details</h4>
                   <h6 class="grey-text">*You will receive an email reciept after you complete the checkout using our secure payment system</h6>
                   <div class="payment-errors" style="font-weight:600;color:red;"></div>
@@ -96,7 +96,7 @@
                   </div>
 
                   <div class="row">
-                    <%= submit_tag "Submit", class: "capitalize waves-effect waves-light btn-large", style: "font-size:1.2em;", data: { disable_with: "Submitting..." } %>
+                    <%= submit_tag "Submit", class: "capitalize btn-large", style: "font-size:1.2em;", data: { disable_with: "Submitting..." } %>
                   </div>
                 <% end %>
               </div>
@@ -114,7 +114,10 @@
         $(".payment-errors").text(response.error.message);
       }
       else {
+        $(".payment-detail").append("<h4 class='green-text'>Processing...</h4>");
+        
         var form$ = $(".payment-form");
+        form$.hide();
         var token = response['id'];
         form$.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
         $("[data-stripe=number]").remove();
@@ -136,6 +139,7 @@
     $("#_paymentexp_year").formatter({ "pattern": "{{9999}}" });
 
     $(".payment-form").submit(function(event) {
+
       var $form = $(this);
       $('.submit').attr("disabled", "disabled");
       Stripe.card.createToken($form, stripeResponseHandler);

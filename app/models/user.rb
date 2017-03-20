@@ -76,5 +76,8 @@ class User < ActiveRecord::Base
       random_token = SecureRandom.hex(8).upcase
       break random_token unless User.where(access_token: random_token).exists?
     end
+
+    # also assign the user a random testing group number
+    self.testing_group = rand(0..99)
   end
 end

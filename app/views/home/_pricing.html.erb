@@ -9,6 +9,9 @@
         <div class="card-content">
           <h4 class="green-text"><%= @products.first.description %></h4>
           <h4 class="grey-text"><%= number_to_currency(@products.first.price, precision: 0) %></h4>
+          <% if @promotion.present? && @promotion.valid_promotion?(@products.first) %>
+            <h4 class="grey-text">Sale Price: <%= number_to_currency(@products.first.promotional_price(@promotion), precision: 0) %></h4>
+          <% end %>
           <ul class="mb20">
             <li><h6><span class="bold-text">16 </span> Learning Modules</h6></li>
             <li><h6><span class="bold-text">Bi-Weekly </span> Coaching Calls</h6></li>
@@ -25,6 +28,9 @@
         <div class="card-content">
           <h4 class="green-text"><%= @products[1].description %></h4>
           <h4 class="grey-text"><%= number_to_currency(@products[1].price, precision: 0) %></h4>
+          <% if @promotion.present? && @promotion.valid_promotion?(@products[1]) %>
+            <h4 class="grey-text">Sale Price: <%= number_to_currency(@products[1].promotional_price(@promotion), precision: 0) %></h4>
+          <% end %>
           <ul class="mb20">
             <li><h6><span class="bold-text">Everything </span> included in Standard</h6></li>
             <li><h6 class="bold-text">+</h6></li>
@@ -42,6 +48,9 @@
         <div class="card-content">
           <h4 class="green-text"><%= @products.last.description %></h4>
           <h4 class="grey-text"><%= number_to_currency(@products.last.price, precision: 0) %></h4>
+          <% if @promotion.present? && @promotion.valid_promotion?(@products.last) %>
+            <h4 class="grey-text">Sale Price: <%= number_to_currency(@products.last.promotional_price(@promotion), precision: 0) %></h4>
+          <% end %>
           <ul class="mb20">
             <li><h6><span class="bold-text">Everything </span> included in Standard</h6></li>
             <li><h6 class="bold-text">+</h6></li>

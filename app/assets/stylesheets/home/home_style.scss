@@ -575,12 +575,7 @@ div.divider{
 }
 
 
-.waves-effect.waves-light{
-  background-color: rgba(71, 180, 117, 1);
-  border-bottom: 2px solid rgba(149, 219, 178, 0.8);
-  color: white;
-}
-.waves-effect.waves-light{
+.waves-effect.waves-light, .btn-large{
   background-color: rgba(71, 180, 117, 1);
   border-bottom: 2px solid rgba(149, 219, 178, 0.8);
   color: white !important;

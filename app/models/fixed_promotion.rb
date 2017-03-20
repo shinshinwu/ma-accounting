@@ -2,7 +2,7 @@
 class FixedPromotion < Promotion
   validate :correct_frequency
 
-  def process_discount
+  def process_discount(product)
     discount = if amount_discount.present?
       amount_discount
     else

@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  has_many :promotions, inverse_of: :product
+  has_and_belongs_to_many :promotions
   has_many :invoices, inverse_of: :product
 
   def process_sale!(user:, promotion:nil)

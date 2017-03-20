@@ -1,5 +1,5 @@
 class Promotion < ActiveRecord::Base
-  belongs_to :product, inverse_of: :promotions
+  has_and_belongs_to_many :products
   has_many :invoices, inverse_of: :promotion
 
   self.inheritance_column   = 'promotion_type'
@@ -16,12 +16,12 @@ class Promotion < ActiveRecord::Base
   end
 
   def valid_promotion?(p)
-    product == p && currently_active?
+    products.include?(p) && currently_active?
   end
 
   def discount_amount(product)
     if valid_promotion?(product)
-      process_discount
+      process_discount(product)
     else
       0
     end
@@ -42,8 +42,9 @@ class Promotion < ActiveRecord::Base
       errors[:base] << "Percentage discount needs to be between 1 to 100."
     end
 
-    if percentage_discount.nil? && ((amount_discount < 1) || (amount_discount >= product.price))
-      errors[:base] << "Amount discount needs to be between $1 and $#{product.price}."
+    max = products.maximum(:price) || Product.maximum(:price)
+    if percentage_discount.nil? && ((amount_discount < 1) || (amount_discount >= max))
+      errors[:base] << "Amount discount needs to be between $1 and $#{max}."
     end
   end
 
