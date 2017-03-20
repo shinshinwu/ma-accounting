@@ -14,6 +14,7 @@ class Product < ActiveRecord::Base
     end
 
     UserMailer.delay.send_receipt(invoice.id) if invoice.present?
+    return invoice
   end
 
   def promotional_price(promotion)

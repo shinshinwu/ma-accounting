@@ -161,7 +161,7 @@ padding-bottom: 5em;
 }
 .pv5em{
   padding-top: 5em !important;
-  padding-bottom: 5em !important; 
+  padding-bottom: 5em !important;
 }
 /*=----------------- (END) 3. HELPERS (END) -----------------=*/
 
@@ -342,7 +342,7 @@ body {
   min-height: 100vh;
 }
 .home-cover {
-  background: linear-gradient(-45deg, rgba(71, 180, 117, 0.7), rgba(149, 219, 178, 0.7)) fixed;
+  background: linear-gradient(-45deg, rgba(71, 180, 117, 0.6), rgba(149, 219, 178, 0.6)) fixed;
   height: 100vh;
 }
 
@@ -351,7 +351,7 @@ body {
 }
 .contact-us-cover{
   background: linear-gradient(-45deg, rgba(71, 180, 117, 0.7), rgba(149, 219, 178, 0.7)) fixed;
- height: 50vh; 
+ height: 50vh;
 }
 
 .parallax-container {
@@ -395,15 +395,15 @@ footer.page-footer {
 #image-test{
   opacity: 0;
 }
-@media only screen 
-  and (min-device-width: 400px) 
+@media only screen
+  and (min-device-width: 400px)
   and (max-device-width: 800px)
   and (orientation: landscape) {
 #contact-us-banner.parallax-container{
   min-height: 80vh;
 }
 .contact-us-cover{
- height: 80vh; 
+ height: 80vh;
 }
 
 }
@@ -450,7 +450,7 @@ span.smaller{
 @media (min-width: 600px){
   .center-s-only{
     text-align: left!important;
-  } 
+  }
 }
 
 /*minty #95dbb2, rgba(149, 219, 178, 1)*/
@@ -466,13 +466,13 @@ color: rgba(71, 180, 117, 1) !important;
 color: rgba(149, 219, 178, 1) !important;
 }
 .grey-text{
-color: rgba(119, 119, 119, 1) !important;  
+color: rgba(119, 119, 119, 1) !important;
 }
 nav ul li a{
-  color: rgba(119, 119, 119, 1) !important; 
+  color: rgba(119, 119, 119, 1) !important;
   font-family: 'Montserrat-Regular';
   font-size: 1em;
-  font-weight: 400 !important; 
+  font-weight: 400 !important;
 }
 
 /*-----------NAVBAR (START) STYLING----------*/
@@ -480,13 +480,13 @@ nav ul li a{
 nav ul a{
 }
 nav .brand-logo{
- font-size: 1.5em; 
+ font-size: 1.5em;
  font-family: 'Montserrat-Light';
 }
 
 @media (min-width: 600px) and (max-width: 991px) {
 nav .brand-logo{
- font-size: 1.8em; 
+ font-size: 1.8em;
 }
 }
 @media (min-width: 992px) {
@@ -494,7 +494,7 @@ nav ul a{
 font-size: 1.08em;
 }
 nav .brand-logo{
- font-size: 2em; 
+ font-size: 2em;
 }
 }
 /*-----------NAVBAR (END) STYLING----------*/
@@ -529,7 +529,7 @@ a:hover {
 
 
 h2{
-  font-size: 2.5em; 
+  font-size: 2.5em;
   margin: 0;
   padding: 0;
 }
@@ -545,11 +545,11 @@ p {
 }
 h4{
   font-size: 1.8em;
-  line-height: 1.3em;  
+  line-height: 1.3em;
 }
 h5{
   font-size: 1.4em;
-  line-height: 1.8em;  
+  line-height: 1.8em;
 }
 
 h6 {
@@ -599,11 +599,11 @@ div.divider{
 /*@media (min-width: 600px){*/
   .m-right{
     float: none !important;
-    margin: 0 auto !important; 
+    margin: 0 auto !important;
   }
   .m-left{
     float: none !important;
-    margin: 0 auto !important; 
+    margin: 0 auto !important;
   }
 /*}*/
 @media (min-width: 600px){
@@ -684,7 +684,7 @@ padding-top: 0;
   background-color: rgba(71, 180, 117, 1);
 }
 .text-shadow{
- text-shadow: 2px 2px rgba(117,117,117,0.8); 
+ text-shadow: 2px 2px rgba(117,117,117,0.8);
 }
 
 
@@ -694,7 +694,7 @@ nav .brand-logo{
   left: inherit;
   transform: inherit;
 }
-  
+
 }
 
 .nav-bar-logo{
@@ -702,7 +702,7 @@ nav .brand-logo{
 }
 @media (min-width: 600px){
 .nav-bar-logo{
-   width:55px;margin:15px 15px 0px 0px; 
+   width:55px;margin:15px 15px 0px 0px;
 }
 }
 

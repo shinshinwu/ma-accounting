@@ -5,74 +5,144 @@
       <h4 class="grey-text">You are about to make an awesome investment in your firm.</h4>
     </div>
     <div class="row pb5em">
-      <div class="col s10 offset-s1 m6 ">
-        <div class="card z-depth-0 center pv2em">
-          <div class="card-content">
-            <div class="row">
-              <h4 class="green-text">Sign Up</h4>
-              <h4 class="grey-text">Modern Assets<span style="font-size: 0.7em;"></span></h4>
+      <% if params[:show_success] %>
+        <div class="col s10 offset-s1">
+          <div class="card z-depth-0 center pv2em">
+            <div class="card-content">
+              <div class="row">
+                <h4 class="green-text">Thank you for your payment!</h4>
+                <h6 class="grey-text mt20">Your confirmation code is #<%= params[:invoice_code] %>.<br /><br />You should receive an email copy of your receipt shortly.</h6>
+              </div>
             </div>
-            <form>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="last_name" type="text" class="validate">
-                  <label for="last_name">First Name</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="last_name" type="text" class="validate">
-                  <label for="last_name">Last Name</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="email" type="email" class="validate">
-                  <label for="email" data-error="please enter a valid email">Email</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s8">
-                  <input id="last_name" type="text" class="validate">
-                  <label for="last_name">Credit Card Number</label>
-                </div>
-                <div class="input-field col s4">
-                  <input id="last_name" type="text" class="validate">
-                  <label for="last_name">CVV</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s5 offset-s1">
-                  <input id="last_name" type="text" class="validate">
-                  <label for="last_name">Exp. Date</label>
-                </div>
-                <div class="input-field col s5">
-                  <input id="last_name" type="text" class="validate">
-                  <label for="last_name">Zip Code</label>
-                </div>
-              </div>
-              <div class="row">
-                <a class="capitalize waves-effect waves-light btn-large" href="mobile.html" style="font-size: 1.2em;">Sign Up Today</a>
-              </div>
-            </form>
           </div>
         </div>
-      </div>
-      <div class="col s10 offset-s1 m6 ">
-        <div class="card z-depth-0 center pv2em">
-          <div class="card-content">
-            <h4 class="green-text">Premium</h4>
-            <h4 class="grey-text">$249<span style="font-size: 0.7em;"></span></h4>
-            <ul class="mb20">
-              <li"><h6><span class="bold-text">Everything </span> included in Standard</h6></li>
-              <li"><h6 class="bold-text">+</h6></li>
-              <li"><h6><span class="bold-text">Bi-Weekly </span> Coaching Calls</h6></li>
-              <li"><h6><span class="bold-text">Weekly </span> Open Q &amp A </h6></li>
-              <li"><h6><span class="bold-text">Launch </span> Review</h6></li>
-              <li"><h6><span class="bold-text">Hand On </span> Brand Critique</h6></li>
-            </ul>
+      <% else %>
+        <div class="col s10 offset-s1 m6 ">
+          <div class="card z-depth-0 center pv2em">
+            <div class="card-content">
+              <h4 class="green-text"><%= @product.description %></h4>
+              <h4 class="grey-text"><%= number_to_currency(@product.price, precision: 0) %><span style="font-size: 0.7em;"></span></h4>
+
+              <% if @promotion.present? %>
+                <h4>Current promotion: <%= @promotion.label %></h4>
+
+                <h4>Your actual price today: <%= number_to_currency(@product.promotional_price(@promotion), precision: 0) %></h4>
+              <% end %>
+
+              <ul class="mb20">
+                <li"><h6><span class="bold-text">Everything </span> included in Standard</h6></li>
+                <li"><h6 class="bold-text">+</h6></li>
+                <li"><h6><span class="bold-text">Bi-Weekly </span> Coaching Calls</h6></li>
+                <li"><h6><span class="bold-text">Weekly </span> Open Q &amp A </h6></li>
+                <li"><h6><span class="bold-text">Launch </span> Review</h6></li>
+                <li"><h6><span class="bold-text">Hand On </span> Brand Critique</h6></li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
+        <div class="col s10 offset-s1 m6 ">
+          <div class="card z-depth-0 center pv2em">
+            <div class="card-content">
+                <div class="row">
+                  <h4 class="green-text">Payment Details</h4>
+                  <h6 class="grey-text">*You will receive an email reciept after you complete the checkout using our secure payment system</h6>
+                  <div class="payment-errors" style="font-weight:600;color:red;"></div>
+                </div>
+
+                <%= form_tag make_payment_path, method: :post, class: "form-horizontal payment-form", style: "height:100%;" do |f| %>
+                  <%= hidden_field_tag :product_code, @product.code %>
+                  <%= hidden_field_tag :promo_id, @promotion.try!(:id) %>
+
+                  <div class="row">
+                    <div class="input-filed col s12">
+                      <%= text_field_tag '[user]first_name', nil, placeholder: "First Name", class: "validate", required: true %>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-filed col s12">
+                      <%= text_field_tag '[user]last_name', nil, class: "validate", placeholder: "Last Name", required: true %>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <%= email_field_tag '[user]email', nil, placeholder: "Email", class: "validate", required: true %>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s8">
+                      <%= text_field_tag '[payment]card_number', nil, placeholder: 'Card Number', class: "validate", "data-stripe" => "number", required: true %>
+                    </div>
+
+                    <div class="input-field col s4">
+                      <%= text_field_tag '[payment]cvv', nil, placeholder: 'CVV', class: "validate", "data-stripe" => "cvv", required: true %>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s4">
+                      <%= text_field_tag '[payment]exp_month', nil, placeholder: 'MM', class: "validate", "data-stripe" => "exp-month", size: 2, required: true %>
+                    </div>
+
+                    <div class="input-field col s4">
+                      <%= text_field_tag '[payment]exp_year', nil, placeholder: 'YYYY', class: "validate", "data-stripe" => "exp-year", size: 2, required: true %>
+                    </div>
+
+                    <div class="input-field col s4">
+                      <%= text_field_tag '[user]zip', nil, class: "validate", placeholder: "Zip Code", size: 4, "data-strip" => "address_zip", required: true %>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <%= submit_tag "Submit", class: "capitalize waves-effect waves-light btn-large", style: "font-size:1.2em;", data: { disable_with: "Submitting..." } %>
+                  </div>
+                <% end %>
+              </div>
+          </div>
+        </div>
+      <% end %> <!-- end if show_success -->
     </div>
   </div>
+
+
+  <%= content_for :javascripts do %>
+  <script>
+  function stripeResponseHandler(status, response) {
+      if (response.error) {
+        $(".payment-errors").text(response.error.message);
+      }
+      else {
+        var form$ = $(".payment-form");
+        var token = response['id'];
+        form$.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+        $("[data-stripe=number]").remove();
+        $("[data-stripe=cvv]").remove();
+        $("[data-stripe=exp-year]").remove();
+        $("[data-stripe=exp-month]").remove();
+        form$.get(0).submit();
+      }
+  }
+
+  $(document).ready(function() {
+    // format the credit card number
+    Stripe.setPublishableKey('<%= @pk_key.to_s %>');
+
+    $("#_paymentcard_number").formatter({ "pattern": "{{9999}} {{9999}} {{9999}} {{9999}}" });
+    $("#_paymentcvv").formatter({ "pattern": "{{9999}}" });
+    $("#_userzip").formatter({ "pattern": "{{99999}}" });
+    $("#_paymentexp_month").formatter({ "pattern": "{{99}}" });
+    $("#_paymentexp_year").formatter({ "pattern": "{{9999}}" });
+
+    $(".payment-form").submit(function(event) {
+      var $form = $(this);
+      $('.submit').attr("disabled", "disabled");
+      Stripe.card.createToken($form, stripeResponseHandler);
+
+      // prevent the form from submitting with the default action
+      return false;
+    });
+  });
+  </script>
+  <% end %>

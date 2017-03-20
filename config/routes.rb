@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root 'home#index'
   get "/checkout" => 'home#checkout'
 
+  post "/make_payment" => "home#charge"
+  post '/unsubscribe' => "users/users#unsubscribe"
+
   devise_for :admins,
     :skip => [:confirmations, :registrations],
     :controllers => {
@@ -51,8 +54,5 @@ Rails.application.routes.draw do
 
   resources :course_videos, only: [:create, :update, :edit, :new]
   resources :supporting_materials, only: [:create, :update, :edit, :new]
-
-  post "/make_payment" => "users/users#charge"
-  post '/unsubscribe' => "users/users#unsubscribe"
 
 end

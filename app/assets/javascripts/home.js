@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require slimscroll.js
 //= require materialize
+//= require jquery.formatter.js
 //= require home/homePageScripts

@@ -8,12 +8,12 @@
               <a class="capitalize waves-effect waves-light btn hide-on-large-only hide-on-small-only"  href="mobile.html">Sign Up</a>
             </p>
             <div class="hide-on-large-only hide-on-small-only nav-btn-div"></div>
-            <a href="#" data-activates="mobile-demo" class="hide-on-large-only button-collapse green-text right nav-hamburger"><i class="material-icons">menu</i></a>   
-            <%=image_tag "modern_assets.png", {class: "nav-bar-logo"}%>
-            <a id="logo-container" href="#" class="brand-logo capitalize">
+            <a href="#" data-activates="mobile-demo" class="hide-on-large-only button-collapse green-text right nav-hamburger"><i class="material-icons">menu</i></a>
+            <%= link_to image_tag("modern_assets.png", {class: "nav-bar-logo"}), root_path %>
+            <%= link_to root_path, class: "brand-logo capitalize", id:"logo-container" do %>
               <span class="bold-text green-text">Modern </span>
               <span class="minty-text bold-text">Assets</span>
-            </a>
+            <% end %>
             <ul class="right hide-on-med-and-down">
                 <li><a class="capitalize" href="sass.html">About</a></li>
                 <li><a class="capitalize" href="badges.html">Program</a></li>
@@ -29,11 +29,11 @@
   </div>
   <ul class="side-nav center" id="mobile-demo">
     <li>
-      <%=image_tag "modern_assets.png", {class: "nav-bar-logo"}%>
-      <a id="logo-container" href="#" class="brand-logo capitalize ">
-        <span class="bold-text green-text h6">Modern</span>
-        <span class="h6 minty-text light-text">Assets</span>
-      </a>
+      <%= image_tag("modern_assets.png", {class: "nav-bar-logo"}) %>
+      <%= link_to root_path, class: "brand-logo capitalize", id:"logo-container" do %>
+        <span class="bold-text green-text">Modern </span>
+        <span class="minty-text bold-text">Assets</span>
+      <% end %>
     </li>
     <li><a class="capitalize" href="sass.html">About</a></li>
     <li><a class="capitalize" href="badges.html">Program</a></li>
