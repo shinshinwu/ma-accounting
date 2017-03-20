@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(version: 20170320065216) do
   add_index "cpas", ["city", "state"], name: "index_cpas_on_city_and_state", using: :btree
   add_index "cpas", ["first_name", "last_name"], name: "index_cpas_on_first_name_and_last_name", using: :btree
   add_index "cpas", ["joined_year"], name: "index_cpas_on_joined_year", using: :btree
+  add_index "cpas", ["phone"], name: "index_cpas_on_phone", using: :btree
   add_index "cpas", ["source"], name: "index_cpas_on_source", using: :btree
   add_index "cpas", ["zipcode"], name: "index_cpas_on_zipcode", using: :btree
 
@@ -215,6 +216,7 @@ ActiveRecord::Schema.define(version: 20170320065216) do
   add_index "invoices", ["product_id"], name: "index_invoices_on_product_id", using: :btree
   add_index "invoices", ["promotion_id"], name: "index_invoices_on_promotion_id", using: :btree
   add_index "invoices", ["status"], name: "index_invoices_on_status", using: :btree
+  add_index "invoices", ["user_id", "product_id"], name: "index_invoices_on_user_id_and_product_id", unique: true, using: :btree
   add_index "invoices", ["user_id"], name: "index_invoices_on_user_id", using: :btree
 
   create_table "members", force: :cascade do |t|
@@ -235,10 +237,10 @@ ActiveRecord::Schema.define(version: 20170320065216) do
   end
 
   add_index "members", ["city", "state"], name: "index_members_on_city_and_state", using: :btree
-  add_index "members", ["designation"], name: "index_members_on_designation", using: :btree
   add_index "members", ["email"], name: "index_members_on_email", using: :btree
   add_index "members", ["first_name", "last_name"], name: "index_members_on_first_name_and_last_name", using: :btree
   add_index "members", ["joined_year"], name: "index_members_on_joined_year", using: :btree
+  add_index "members", ["phone"], name: "index_members_on_phone", using: :btree
   add_index "members", ["source"], name: "index_members_on_source", using: :btree
   add_index "members", ["testing_group"], name: "index_members_on_testing_group", using: :btree
   add_index "members", ["zipcode"], name: "index_members_on_zipcode", using: :btree
@@ -272,6 +274,7 @@ ActiveRecord::Schema.define(version: 20170320065216) do
     t.integer "promotion_id", limit: 4
   end
 
+  add_index "products_promotions", ["product_id", "promotion_id"], name: "index_products_promotions_on_product_id_and_promotion_id", unique: true, using: :btree
   add_index "products_promotions", ["product_id"], name: "index_products_promotions_on_product_id", using: :btree
   add_index "products_promotions", ["promotion_id"], name: "index_products_promotions_on_promotion_id", using: :btree
 
@@ -288,14 +291,6 @@ ActiveRecord::Schema.define(version: 20170320065216) do
 
   add_index "promotions", ["frequency"], name: "index_promotions_on_frequency", using: :btree
   add_index "promotions", ["promotion_type"], name: "index_promotions_on_promotion_type", using: :btree
-
-  create_table "promotions_products", id: false, force: :cascade do |t|
-    t.integer "promotion_id", limit: 4
-    t.integer "products_id",  limit: 4
-  end
-
-  add_index "promotions_products", ["products_id"], name: "index_promotions_products_on_products_id", using: :btree
-  add_index "promotions_products", ["promotion_id"], name: "index_promotions_products_on_promotion_id", using: :btree
 
   create_table "quizz_answers", force: :cascade do |t|
     t.integer  "quizz_question_id", limit: 4,   null: false
@@ -372,9 +367,6 @@ ActiveRecord::Schema.define(version: 20170320065216) do
     t.boolean  "temprorary_password",                default: false,                        null: false
     t.string   "first_name",             limit: 255
     t.string   "last_name",              limit: 255
-    t.boolean  "is_active",                          default: true,                         null: false
-    t.datetime "activated_at"
-    t.datetime "deactivated_at"
     t.string   "zipcode",                limit: 10
     t.string   "stripe_customer_id",     limit: 255
     t.string   "reset_password_token",   limit: 255
@@ -391,8 +383,44 @@ ActiveRecord::Schema.define(version: 20170320065216) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["is_active"], name: "index_users_on_is_active", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["testing_group"], name: "index_users_on_testing_group", using: :btree
+
+  create_table "zip_code_details", id: false, force: :cascade do |t|
+    t.string  "zip_code",             limit: 255
+    t.string  "zip_code_type",        limit: 255
+    t.string  "primary_city",         limit: 255
+    t.string  "primary_city_slug",    limit: 255,                                  null: false
+    t.text    "acceptable_cities",    limit: 4294967295
+    t.text    "unacceptable_cities",  limit: 4294967295
+    t.string  "state",                limit: 255
+    t.string  "state_full_name",      limit: 40
+    t.string  "county",               limit: 255
+    t.string  "timezone",             limit: 255
+    t.string  "area_codes",           limit: 255
+    t.decimal "lat",                                     precision: 15, scale: 10
+    t.decimal "lng",                                     precision: 15, scale: 10
+    t.string  "world_region",         limit: 255
+    t.string  "country",              limit: 255
+    t.integer "decommissioned",       limit: 4
+    t.integer "estimated_population", limit: 4
+    t.string  "notes",                limit: 255
+  end
+
+  add_index "zip_code_details", ["primary_city_slug"], name: "index_zip_code_details_on_primary_city_slug", using: :btree
+  add_index "zip_code_details", ["state"], name: "index_zip_code_details_on_state", using: :btree
+  add_index "zip_code_details", ["zip_code"], name: "index_zip_code_details_on_zip_code", unique: true, using: :btree
+
+  create_table "zip_codes", force: :cascade do |t|
+    t.string  "zip_code",          limit: 255,                         null: false
+    t.string  "usps_type",         limit: 10
+    t.integer "population",        limit: 4
+    t.integer "avg_income",        limit: 4
+    t.integer "avg_age",           limit: 4
+    t.decimal "percent_with_kids",             precision: 3, scale: 2
+    t.integer "avg_home_value",    limit: 4
+  end
+
+  add_index "zip_codes", ["zip_code"], name: "index_zip_codes_on_zip_code", unique: true, using: :btree
 
 end

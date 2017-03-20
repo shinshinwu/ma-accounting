@@ -6,11 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-products = Product.find_or_create_by([
-  {code: "ACCTSTARTER", description: "Starter Package", price: 249},
-  {code: "ACCTGROWTH", description: "Growth Package", price: 349},
-  {code: "ACCTROCKSTAR", description: "Rockstar Package", price: 549}
-])
+products = [
+  Product.find_or_create_by(code: "ACCTSTARTER", description: "Starter Package", price: 249),
+  Product.find_or_create_by(code: "ACCTGROWTH", description: "Growth Package", price: 349),
+  Product.find_or_create_by(code: "ACCTROCKSTAR", description: "Rockstar Package", price: 549)
+]
 
 products.each do |product|
   product.promotions << FixedPromotion.find_or_create_by(frequency: 'fixed', amount_discount: 50, start_date: Date.yesterday, end_date: Date.new(2017, 03, 25))
