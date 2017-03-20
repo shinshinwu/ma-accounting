@@ -141,6 +141,9 @@ body {
 .pb5em{
 padding-bottom: 5em;
 }
+.pt3em{
+padding-top: 3em;
+}
 .pt5em{
 padding-top: 5em;
 }
@@ -717,3 +720,84 @@ img.minty-background{
   padding-top: 2em;
   padding-bottom:  2em;
 }
+
+
+
+
+
+
+/*------------------STYLING FOR THE FORM FIELDS------------------*/
+  /* label color */
+.input-field label {
+ color: rgba(119, 119, 119, 1);
+}
+/* label focus color */
+.input-field input[type=text]:focus + label,
+.input-field input[type=email]:focus + label {
+ color: rgba(71, 180, 117, 1);
+}
+/* label underline focus color */
+.input-field input[type=text]:focus,
+.input-field input[type=email]:focus {
+ border-bottom: 1px solid rgba(71, 180, 117, 1);
+ box-shadow: 0 1px 0 0 rgba(71, 180, 117, 1);
+}
+/* valid color */
+.input-field input[type=text].valid {
+ border-bottom: 1px solid rgba(71, 180, 117, 1);
+ box-shadow: 0 1px 0 0 rgba(71, 180, 117, 1);
+}
+/* invalid color */
+.input-field input[type=text].invalid {
+ border-bottom: 1px solid #000;
+ box-shadow: 0 1px 0 0 #000;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+ color: #000;
+}
+/*------------------STYLING FOR THE FORM FIELDS------------------*/
+
+
+
+/*--------------CURRICULUM (START) SECTION--------------*/
+.about-illustration{
+  padding: 1em;
+  border-radius: 10%;
+}
+/*--------------CURRICULUM (END) SECTION--------------*/
+
+/*-----------------NAVBAR (START) STYLING-----------------*/
+  div.nav-wrapper p{
+     display:inline-block;float: right;
+  }
+  div.nav-wrapper div.nav-btn-div{
+    float: right;width: 2px; background-color: rgba(117,117,117,0.5);margin:10px 25px 0px;height: 40px;
+  }
+  div.nav-wrapper a.nav-hamburger{
+    right: -20px;float: right;
+  }
+/*-----------------NAVBAR  (END) STYLING-----------------*/
+
+
+/*----------------TYPOGRAPHY (START) HELPERS----------------*/
+  .sm-txt{
+    font-size: 0.7em;
+  }
+  a.bigger-txt{
+    font-size: 1.2em !important;
+  }
+/*----------------TYPOGRAPHY (END) HELPERS----------------*/
+
+/*------------BACKGROUND (START) COLOR HELPERS------------*/
+.half-green{
+  background-color: rgba(71, 180, 117, 0.5);
+}
+/*------------BACKGROUND (END) COLOR HELPERS------------*/
+
+
+/*--------------WELCOME SUPPORTING (START) LOGO SECTION--------------*/
+  .logo-icon{
+     width:60px;margin-top:10px !important;
+  }
+/*--------------WELCOME SUPPORTING (END) LOGO SECTION--------------*/
