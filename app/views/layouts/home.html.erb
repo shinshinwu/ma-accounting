@@ -1,0 +1,75 @@
+<!--
+:site_title
+
+  The title of the page. This will be followed by a static SEO string.
+
+:meta_tags
+
+  Additional meta tags that the view wishes to render out. Most likely
+  for the benefit of some scraper that hunts for specific content.
+
+:stylesheets
+
+  Additional stylesheets.
+
+:head_scripts
+
+  Additional JavaScripts that are of critical enough importance that
+  we want to make the page load wait for them to show up.
+
+:content
+
+  Main page content. Individual view templates should assume they are
+  operating within the grid and apply relevant alpha/omega classes to
+  any sub-containers they define.
+
+:javascripts
+
+  Normal JavaScripts which are of less-critical importance and can
+  live at the bottom of the body tag.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <%= yield :meta_tags %>
+  <!-- Favicon icon -->
+  <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
+  <title>
+    <% if content_for?(:site_title) -%>
+      <%= yield :site_title %> | Modern Assets
+    <% else -%>
+      Modern Assets
+    <% end -%>
+  </title>
+  <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600" rel="stylesheet">
+  
+  <%= stylesheet_link_tag("home", :media => "all") %>
+  <%= yield :stylesheets %>
+
+  <%= javascript_include_tag("home") %>
+
+  <%= yield :head_scripts %>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+<body>
+  <%= render "home/navbar" %>
+  <%= content_for?(:content) ? yield(:content) : yield %>
+  <%= render "home/footer" %>
+  <%= yield :javascripts %>
+</body>
+
+</html>
