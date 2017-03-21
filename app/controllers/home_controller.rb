@@ -14,7 +14,8 @@ class HomeController < ApplicationController
 
       promo = Promotion.find_by_id(tracking_info["promotion_id"])
       if promo.present?
-        activity.parameters = {promotion_id: promo.id, discount: promo.label}
+        activity.trackable = promo
+        activity.parameters = {discount: promo.label}
         cookies.encrypted[:promotion_id] = promo.id
         @promotion ||= promo
       end
@@ -36,10 +37,14 @@ class HomeController < ApplicationController
       # track the visits to payment page
       if cookies["email"].present?
         activity = ActivityTracker.find_or_initialize_by(email: cookies["email"], key: 'checkout.visit')
-        activity.parameters = {product_code: @product.code}
+        activity.recipient = @product
 
         promo = Promotion.find_by_id(cookies.encrypted[:promotion_id])
-        activity.parameters.merge({promotion_id: promo.id, discount: promo.label, sale_price: @product.promotional_price(promo)}) if promo.present?
+
+        if promo.present?
+          activity.trackable = promo
+          activity.parameters = {discount: promo.label, sale_price: @product.promotional_price(promo)}
+        end
 
         activity.save
       end
