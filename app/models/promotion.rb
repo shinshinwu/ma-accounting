@@ -33,7 +33,7 @@ class Promotion < ActiveRecord::Base
   end
 
   def duration
-    days = (end_date - start_date).to_i
+    days = (end_date - start_date + 1).to_i
     if days > 3
       "#{days} days"
     else
