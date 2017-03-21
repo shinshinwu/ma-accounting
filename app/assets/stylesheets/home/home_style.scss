@@ -163,6 +163,12 @@ padding-bottom: 5em;
   padding-top: 5em !important;
   padding-bottom: 5em !important;
 }
+.mb5em{
+  margin-bottom: 5em;
+}
+.mb3em{
+  margin-bottom: 3em;
+}
 /*=----------------- (END) 3. HELPERS (END) -----------------=*/
 
 
@@ -798,6 +804,7 @@ img.minty-background{
 /*--------------WELCOME SUPPORTING (END) LOGO SECTION--------------*/
 
 
+
 // flash alert style
 
 .alerttop {
@@ -860,4 +867,16 @@ img.minty-background{
 .flash.alerttop {
     cursor: pointer;
     padding-right: 12px;
+}
+
+.card-cta{
+  position:absolute;bottom: 30px;left:0; right:0;
+}
+
+
+.strikethrough{
+  text-decoration: line-through !important;
+}
+.activator{
+  cursor: pointer !important;
 }
