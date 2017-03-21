@@ -881,10 +881,17 @@ img.minty-background{
   cursor: pointer !important;
 }
 
+
 .opacity60 {
   opacity: 0.6
 }
 
 .red-text {
   color: #ed3e44 !important
+}
+.card-title-left{
+width: 90%;display: inline-block;float: left;
+}
+.card-activator-right{
+  width:8%;display: inline-block;float: right;
 }

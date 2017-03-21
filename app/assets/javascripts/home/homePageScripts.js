@@ -28,20 +28,5 @@ function initializeMaterializeElements(){
 }
 
 function bindEventListeners(){
-  $(".show-more a").on("click", function() {
-    // e.preventDefault();
-    var $this = $(this); 
-    var $content = $this.parent().prev("div.content");
-    var linkText = $this.text().toUpperCase();    
-    
-    if(linkText === "SHOW MORE"){
-        linkText = "Show less";
-        $content.toggleClass("hideContent", "showContent");
-    } else {
-        linkText = "Show more";
-        $content.toggleClass("showContent", "hideContent");
-    };
-
-    $this.text(linkText);
-});
+  smoothScroll.init();
 }

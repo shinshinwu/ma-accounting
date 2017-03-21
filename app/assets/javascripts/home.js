@@ -12,8 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require slimscroll.js
 //= require materialize
+//= require scrollTo.min
 //= require jquery.formatter.js
 //= require site_wide.js
 //= require home/homePageScripts
