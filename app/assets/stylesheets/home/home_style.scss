@@ -869,14 +869,22 @@ img.minty-background{
     padding-right: 12px;
 }
 
-.card-cta{
+.card-cta {
   position:absolute;bottom: 30px;left:0; right:0;
 }
 
 
-.strikethrough{
+.strikethrough {
   text-decoration: line-through !important;
 }
-.activator{
+.activator {
   cursor: pointer !important;
+}
+
+.opacity60 {
+  opacity: 0.6
+}
+
+.red-text {
+  color: #ed3e44 !important
 }

@@ -21,21 +21,39 @@
           <div class="card z-depth-0 center pv2em">
             <div class="card-content">
               <h4 class="green-text"><%= @product.description %></h4>
-              <h4 class="grey-text"><%= number_to_currency(@product.price, precision: 0) %><span style="font-size: 0.7em;"></span></h4>
-
-              <% if @promotion.present? %>
-                <h4>Current promotion: <%= @promotion.label %></h4>
-
-                <h4>Your actual price today: <%= number_to_currency(@product.promotional_price(@promotion), precision: 0) %></h4>
+              <% if @promotion.present? && @promotion.valid_promotion?(@product) %>
+                <h4 class="grey-text strikethrough light-text">Original: <%= number_to_currency(@product.price, precision: 0) %></h4>
+                <h4 class="red-text">Today: <%= number_to_currency(@product.promotional_price(@promotion), precision: 0) %></h4>
+              <% else %>
+                <h4 class="grey-text"><%= number_to_currency(@product.price, precision: 0) %></h4>
               <% end %>
 
               <ul class="mb20">
-                <li"><h6><span class="bold-text">Everything </span> included in Standard</h6></li>
-                <li"><h6 class="bold-text">+</h6></li>
-                <li"><h6><span class="bold-text">Bi-Weekly </span> Coaching Calls</h6></li>
-                <li"><h6><span class="bold-text">Weekly </span> Open Q &amp A </h6></li>
-                <li"><h6><span class="bold-text">Launch </span> Review</h6></li>
-                <li"><h6><span class="bold-text">Hand On </span> Brand Critique</h6></li>
+                <li><h6><span class="bold-text">15 </span> Learning Modules</h6></li>
+                <% if @product.code == "ACCTSTARTER" %>
+                  <li><h6><span class="bold-text">6 </span> months of course acess</h6></li>
+                <% else %>
+                  <li><h6><span class="bold-text">Lifetime </span> access to course</h6></li>
+                <% end %>
+                <li><h6><span class="bold-text">All </span> video tutorials</h6></li>
+                <li><h6><span class="bold-text">All </span> downloadable slides</h6></li>
+                <li><h6><span class="bold-text">All </span> how-to action guides </h6></li>
+                <li><h6><span class="bold-text">All </span> implementation checklists </h6></li>
+                <li><h6><span class="bold-text">Access </span> to members only community </h6></li>
+                <% if @product.code == "ACCTGROWTH" %>
+                  <li><h6><span class="bold-text">4</span> Live Q &amp A sessions</h6></li>
+                  <li><h6><span class="bold-text">Direct</span> Email support</h6></li>
+                  <li><h6><span class="bold-text">Downloadable </span> Templates for all course projects</h6></li>
+                <% elsif @product.code == "ACCTROCKSTAR" %>
+                  <li><h6><span class="bold-text">8</span> Live Q &amp A sessions</h6></li>
+                  <li><h6><span class="bold-text">Priority</span> Email support</h6></li>
+                  <li><h6><span class="bold-text">Downloadable </span> Templates for all course projects</h6></li>
+                  <li><h6><span class="bold-text">Launch </span> Review</h6></li>
+                  <li><h6><span class="bold-text">Hand On </span> Brand Critique</h6></li>
+                  <li><h6><span class="bold-text">Expert </span>review of marketing strategy</h6></li>
+                  <li><h6><span class="bold-text">Hands-on </span>review of marketing plan</h6></li>
+                  <li><h6><span class="bold-text">Review </span> of marketing plan</h6></li>
+                <% end %>
               </ul>
             </div>
           </div>
@@ -115,7 +133,7 @@
       }
       else {
         $(".payment-detail").append("<h4 class='green-text'>Processing...</h4>");
-        
+
         var form$ = $(".payment-form");
         form$.hide();
         var token = response['id'];
