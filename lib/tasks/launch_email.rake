@@ -14,7 +14,7 @@ namespace :launch_email do
   end
 
   task :send_testing_group0_launch_email  => :environment do
-    members = Member.where(testing_group: [0, 200]) #always send a copy to internal members
+    members = Member.where(testing_group: [0, 200]).where('email is not null') #always send a copy to internal members
     promo = FixedPromotion.where(start_date: "2017-03-21", end_date: "2017-03-23").first
     raise "Promo code not found" unless promo.present?
 
@@ -29,7 +29,7 @@ namespace :launch_email do
 
   task :send_group1_launch_email  => :environment do
     testing_group = (1..10).to_a + [200]
-    members = Member.where(testing_group: testing_group) #always send a copy to internal members
+    members = Member.where(testing_group: testing_group).where('email is not null') #always send a copy to internal members
     promo = FixedPromotion.where(start_date: "2017-03-21", end_date: "2017-03-23").first
     raise "Promo code not found" unless promo.present?
 
