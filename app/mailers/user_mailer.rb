@@ -17,7 +17,7 @@ class UserMailer < ActionMailer::Base
     data = {transactional: true, track_clicks: false}
 
     @invoice = Invoice.find_by_id(invoice_id)
-    @launch_date = Date.new(2017, 04, 25)
+    @launch_date = Date.new(2017, 04, 30)
     if @invoice.present?
       @user    = @invoice.user
       @product = @invoice.product

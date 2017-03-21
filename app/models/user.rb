@@ -67,8 +67,8 @@ class User < ActiveRecord::Base
   private
 
   def prettify_name
-    self.first_name = first_name.split(' ').each(&:titleize).join(' ') if first_name
-    self.last_name = last_name.split(' ').each(&:titleize).join(' ') if last_name
+    self.first_name = first_name.capitalize if first_name
+    self.last_name = last_name.capitalize if last_name
   end
 
   def generate_access_token

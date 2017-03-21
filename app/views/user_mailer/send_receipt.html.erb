@@ -80,7 +80,7 @@
                     <td valign="top" class="nestedContainerCell textContent " style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;padding-top: 20px;padding-right: 20px;padding-left: 20px;color: #686868;font-weight: 100;font-family: 'Montserrat', Helvetica, Arial, sans-serif;font-size: 16px;line-height: 150%;text-align: Left;font-style: normal;">
 
                       <p style="margin: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">Hi
-                        <%= @user.first_name %>, thanks for your recent purchase at <a href="https://mymodernassets.com" target="_blank" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #47b475;font-weight: 100;text-decoration: none;">Modern Assets</a>. Attached below is your receipt. The couse will be starting on <b><%= @launch_date.to_s(:wday_month) %></b> and we will be sending you instructions on how to activate your account access before then.</p>
+                        <%= @user.first_name %>, thanks for your recent purchase at <a href="https://mymodernassets.com" target="_blank" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #47b475;font-weight: 100;text-decoration: none;">Modern Assets</a>. Attached below is your receipt. The couse will be starting on <b><%= @launch_date.to_s(:wday_month) %></b> and we will be sending you detailed instructions on how to activate your account access before then.</p>
                       <br>
                     </td>
                   </tr>
@@ -111,7 +111,14 @@
               <td class=" " style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                 <!-- CONTENT TABLE // -->
                 <table style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
-
+                  <tr>
+                    <td width="50%" class="textContent twenty-bottom twenty-left ten-right" valign="top" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;font-weight: 500;font-family: 'Montserrat', Helvetica, Arial, sans-serif;font-size: 16px;line-height: 150%;text-align: Left;font-style: normal;padding-bottom: 20px;padding-left: 20px;padding-right: 10px;">
+                      <p style="margin: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"><span class="text-dark-blue" style="color: #686868;font-weight: 500;"><strong style="font-weight: 500 !important;">Name:</strong></span></p>
+                    </td>
+                    <td width="50%" class="textContent twenty-bottom twenty-right" valign="top" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #686868;font-weight: 100;font-family: 'Montserrat', Helvetica, Arial, sans-serif;font-size: 16px;line-height: 150%;text-align: Left;font-style: normal;padding-bottom: 20px;padding-right: 20px;">
+                      <p style="color: #686868;margin: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"><%= @product.description %></p>
+                    </td>
+                  </tr>
                   <tr>
                     <td width="50%" class="textContent twenty-bottom twenty-left ten-right" valign="top" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;font-weight: 500;font-family: 'Montserrat', Helvetica, Arial, sans-serif;font-size: 16px;line-height: 150%;text-align: Left;font-style: normal;padding-bottom: 20px;padding-left: 20px;padding-right: 10px;">
                       <p style="margin: 0;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"><span class="text-dark-blue" style="color: #686868;font-weight: 500;"><strong style="font-weight: 500 !important;">Course Price:</strong></span></p>
