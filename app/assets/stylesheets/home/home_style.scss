@@ -798,6 +798,7 @@ img.minty-background{
 /*--------------WELCOME SUPPORTING (END) LOGO SECTION--------------*/
 
 
+
 // flash alert style
 
 .alerttop {
@@ -861,3 +862,8 @@ img.minty-background{
     cursor: pointer;
     padding-right: 12px;
 }
+
+.card-cta{
+  position:absolute;bottom: 30px;left:0; right:0;
+}
+
