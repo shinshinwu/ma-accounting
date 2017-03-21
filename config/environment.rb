@@ -5,8 +5,9 @@ require File.expand_path('../application', __FILE__)
 Rails.application.initialize!
 
 # some app wide date and time formats goes here
-Date::DATE_FORMATS[:default]   = "%m/%d/%y"
-Date::DATE_FORMATS[:wday_month] = '%a, %b %d'
+Date::DATE_FORMATS[:default]   = "%m/%d/%y" # "4/13/2017"
+Date::DATE_FORMATS[:wday_month] = '%a, %b %d' # "Mon, April 30"
+Date::DATE_FORMATS[:weekday] = '%A' # "Monday"
 
 # need to adjust to timezone here
 Time::DATE_FORMATS[:full]      = "%m/%d/%Y %H:%M"

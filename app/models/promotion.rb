@@ -32,6 +32,15 @@ class Promotion < ActiveRecord::Base
     # please see subclass
   end
 
+  def duration
+    days = (end_date - start_date).to_i
+    if days > 3
+      "#{days} days"
+    else
+      "#{days*24} hours"
+    end
+  end
+
   private
 
   def correctly_set_discount

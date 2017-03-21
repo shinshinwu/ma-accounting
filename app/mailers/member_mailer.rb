@@ -6,10 +6,12 @@ class MemberMailer < ActionMailer::Base
   def plain_launch(member_id, promotion_id:, campaign_id: "acounting-inital-launch")
     data = {campaign_id: campaign_id}
     @member = Member.find_by_id(member_id)
-
+    @launch_date = Date.new(2017, 04, 30)
+    
     if @member.present?
+      @promo = Promotion.find_by_id(promotion_id)
       @tracking_info = Base64.urlsafe_encode64({promotion_id: promotion_id, email: @member.email}.to_json)
-      subject = "We have the solution for your practice."
+      subject = "The Best Thing To Happen To Accountants In 2017 Thus Far."
       mail(from: "Marlon from Modern Assets <#{Settings.support_email}>",to: @member.email, subject: subject, sparkpost_data: data) do |format|
         format.html { render layout: false }
       end
