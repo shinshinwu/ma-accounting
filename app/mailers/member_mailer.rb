@@ -3,8 +3,8 @@ class MemberMailer < ActionMailer::Base
 
   default :from => "Modern Assets <#{Settings.support_email}>"
 
-  def plain_launch(member_id, promotion_id:)
-    data = {campaign_id: "acounting-inital-launch"}
+  def plain_launch(member_id, promotion_id:, campaign_id: "acounting-inital-launch")
+    data = {campaign_id: campaign_id}
     @member = Member.find_by_id(member_id)
 
     if @member.present?

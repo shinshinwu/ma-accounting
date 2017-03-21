@@ -8,7 +8,7 @@
     /* Template styling */
 
     body {
-      font-family: Helvetica, sans-serif;
+      font-family: Arial, sans-serif;
       width: 100%;
       max-width: 100%;
       font-size: 13px;
@@ -27,9 +27,17 @@
     h2,
     h3,
     h4 {
-      color: #222;
       margin-bottom: 12px;
       line-height: normal;
+    }
+
+    h1 {
+      font-size: 1.3em;
+      color: #47b475;
+    }
+
+    .ash-green-bg {
+      background-color: #DFF4E8;
     }
 
     p,
@@ -83,7 +91,7 @@
     a:active,
     a:hover {
       font-weight: normal;
-      color: #15c;
+      color: #ed3e44;
       text-decoration: none;
       word-break: break-word;
     }
@@ -311,7 +319,8 @@
                       <div style="display:none;font-size:1px;color:#222;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
                       </div>
                       <p>
-                        Hi <%= @member.nickname %>,
+                        Hi
+                        <%= @member.nickname %>,
                       </p>
                       <p>
                         I am Marlon from Modern Assets and I want to help you to market your Accounting practice.
@@ -324,11 +333,9 @@
                         Did you know that <strong>80%</strong> of customers will reserch services and products online prior to their decision to purchase?
                       </p>
                       <p>
-                        80%! That's a tremendously high percentage! And if you are not advertising yourself in the right channels where your customers are doing their research, you are loosing out to your competitors.
+                        <strong>80%!</strong> That's a tremendously high percentage! And if you are not advertising yourself in the right channels where your customers are doing their research, you are loosing out to your competitors.
                       </p>
-                      <h2>
-                        <strong>Marketing is hard. Let us help you.</strong>
-                      </h2>
+                      <h1>Marketing is hard. Let us help you.</h1>
                       <p>
                         Watch us walk you through all the modern marketing and brand strategies for accountants step by step and apply the lessons back to your own practice.
                       </p>
@@ -339,15 +346,19 @@
                         That's why as part of our course, we will walk you hand in hand through some practical exercises that you can walk away with the result in front of you.
                       </p>
                       <p>
-                        What if I tell you to achieve all these amazing result you only need to contribute 2 hours a week over the course of 3 months? That's less time than <insert catchy phrase here>!
+                        What if I tell you to achieve all these amazing result you only need to contribute 2 hours a week over the course of 3 months? That's less time than
+                        <insert catchy phrase here>!
                       </p>
                       <p>
                         I am so excited to help you get started, and look forward to helping you build your brand, define your marketing strategies and help your practice to reach out and help more people.
                       </p>
-                      <div style="background-color:#95dbb2;border-radius:10px;padding:10px;margin-bottom:15px;">
+                      <div class="ash-green-bg" style="line-height:1.5em;margin:2em 0 3em 0;border:1px solid #bbb;border-radius:3px;padding:20px 20px 10px 20px;">
                         <p>
-                        And now, as part of the super early bird special, you can purchase the program for only $99! (It will pay of if you are able to onboard just 1 extra client and we promise you it will be able to onboard so many more than that if you follow us through). This promotion will only last till THIS DATE so don't miss out on this great opportunity to revamp your firm and future-proof your business. Clik on this link to claim your special promotion price. <%= link_to "Promoted signup link", root_url(tracking: @tracking_info), target: "_blank" %>
-                      </p></div>
+                          And now, as part of the super early bird special, you can purchase the program for only $99! (It will pay of if you are able to onboard just 1 extra client and we promise you it will be able to onboard so many more than that if you follow us through).
+                          This promotion will only last till THIS DATE so don't miss out on this great opportunity to revamp your firm and future-proof your business. Clik on this link to claim your special promotion price.
+                          <%= link_to "Promoted signup link", root_url(tracking: @tracking_info), target: "_blank" %>
+                        </p>
+                      </div>
                       <p>
                         The course will be starting on THIS DATE and the sign ups will be closed till the end of the course.
                       </p>
@@ -380,6 +391,9 @@
                       <p>
                         -Marlon
                       </p>
+                      <a href="https://mymodernassets.com" style="-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #47b475;font-weight: 100;text-decoration: none;">
+                        <img src="https://s3-us-west-1.amazonaws.com/modern-assets/ma_logo_with_slogan_email.png" alt="MyModernAssets.com" width="250" style="border: 0;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;">
+                      </a>
                     </div>
                   </div>
                 </td>
@@ -398,7 +412,7 @@
                             line-height: 20px;">
                               <p style="margin-top: 16px; font-size: 12px; line-height: 20px;">
                                 If you would like to completely opt-out of everything, forever and ever</span>, click the link below:
-                              </p>&nbsp;<a href="https://mymodernassets.com/unsubscribe" target="_blank">Unsubscribe</a>
+                              </p>&nbsp;<a href="https://mymodernassets.com/unsubscribe" target="_blank" style="color: #989EA6;">Unsubscribe</a>
                               <br />
                             </div>
                           </div>
