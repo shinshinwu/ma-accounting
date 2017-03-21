@@ -11,7 +11,7 @@ class MemberMailer < ActionMailer::Base
     if @member.present?
       @promo = Promotion.find_by_id(promotion_id)
       @tracking_info = Base64.urlsafe_encode64({promotion_id: promotion_id, email: @member.email}.to_json)
-      subject = "The Best Thing To Happen To Accountants In 2017 Thus Far"
+      subject = "The Best Thing To Happen To Accountants In 2017 So Far"
       mail(from: "Marlon from Modern Assets <#{Settings.support_email}>",to: @member.email, subject: subject, sparkpost_data: data) do |format|
         format.html { render layout: false }
       end
