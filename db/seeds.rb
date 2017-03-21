@@ -13,5 +13,7 @@ products = [
 ]
 
 products.each do |product|
-  product.promotions << FixedPromotion.find_or_create_by(frequency: 'fixed', amount_discount: 50, start_date: Date.yesterday, end_date: Date.new(2017, 03, 25))
+  product.promotions << FixedPromotion.find_or_create_by(frequency: 'fixed', amount_discount: 50, start_date: Date.new(2017,3,21), end_date: Date.new(2017, 03, 23))
+  product.promotions << FixedPromotion.find_or_create_by(frequency: 'fixed', amount_discount: 100, start_date: Date.new(2017,3,22), end_date: Date.new(2017, 03, 24))
+  product.promotions << FixedPromotion.find_or_create_by(frequency: 'fixed', amount_discount: 50, start_date: Date.new(2017,3,23), end_date: Date.new(2017, 03, 26))
 end
