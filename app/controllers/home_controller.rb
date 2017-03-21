@@ -17,7 +17,7 @@ class HomeController < ApplicationController
         activity.trackable = promo
         activity.parameters = {discount: promo.label}
         cookies.encrypted[:promotion_id] = promo.id
-        @promotion ||= promo
+        @promotion ||= promo if promo.currently_active?
       end
 
       activity.save
