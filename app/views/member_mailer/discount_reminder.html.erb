@@ -1,0 +1,393 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style type="text/css">
+    /* Template styling */
+
+    body {
+      font-family: Arial, sans-serif;
+      width: 100%;
+      max-width: 100%;
+      font-size: 13px;
+      line-height: normal;
+      color: #222;
+      background: #FFF;
+      text-align: left;
+    }
+
+    table {
+      width: 100%;
+      margin: 0 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin-bottom: 12px;
+      line-height: normal;
+    }
+
+    h1 {
+      font-size: 1.2em;
+      color: #47b475;
+    }
+
+    .ash-green-bg {
+      background-color: #DFF4E8;
+    }
+
+    p .emphasis {
+      font-weight: bold;
+      color: #47b475;
+    }
+
+    p,
+    ul,
+    ul li,
+    ol,
+    ol li {
+      font-size: 14px;
+      margin: 0 0 16px;
+      line-height: normal;
+    }
+
+    ul {
+      margin-bottom: 24px;
+    }
+
+    ul li {
+      margin-bottom: 8px;
+    }
+
+    ol {
+      margin-bottom: 24px;
+    }
+
+    ol li {
+      margin-bottom: 8px;
+    }
+
+    p.mini {
+      font-size: 13px;
+      line-height: normal;
+      color: #222;
+    }
+
+    p.message {
+      font-size: 13px;
+      line-height: normal;
+      margin-bottom: 4px;
+    }
+
+    hr {
+      margin: 0;
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid #989EA6;
+    }
+
+    a,
+    a:link,
+    a:visited,
+    a:active,
+    a:hover {
+      font-weight: normal;
+      color: #ed3e44;
+      text-decoration: none;
+      word-break: break-word;
+    }
+
+    a:active,
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .time {
+      font-size: 11px;
+      color: #ABAFB4;
+      padding-right: 6px;
+    }
+
+    .emoji {
+      vertical-align: bottom;
+    }
+
+    .avatar {
+      border-radius: 2px;
+    }
+
+    #footer p {
+      margin-top: 16px;
+      font-size: 12px;
+    }
+    /* Client-specific Styles */
+
+    #outlook a {
+      padding: 0;
+    }
+
+    body {
+      width: 100% !important;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .ExternalClass {
+      width: 100%;
+    }
+
+    .ExternalClass,
+    .ExternalClass p,
+    .ExternalClass span,
+    .ExternalClass font,
+    .ExternalClass td,
+    .ExternalClass div {
+      line-height: 100%;
+    }
+
+    #backgroundTable {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      line-height: 100% !important;
+    }
+    /* Some sensible defaults for images
+      Bring inline: Yes. */
+
+    img {
+      outline: none;
+      text-decoration: none;
+      -ms-interpolation-mode: bicubic;
+    }
+
+    a img {
+      border: none;
+    }
+
+    .image_fix {
+      display: block;
+    }
+    /* Outlook 07, 10 Padding issue fix
+      Bring inline: No.*/
+
+    table td {
+      border-collapse: collapse;
+    }
+    /* Fix spacing around Outlook 07, 10 tables
+      Bring inline: Yes */
+
+    table {
+      border-collapse: collapse;
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+    }
+    /* Mobile */
+
+    @media only screen and (max-device-width: 480px) {
+      /* Part one of controlling phone number linking for mobile. */
+      a[href^=&quot;
+      tel&quot;
+      ],
+      a[href^=&quot;
+      sms&quot;
+      ] {
+        text-decoration: none;
+        color: #15c;
+        /* or whatever your want */
+        pointer-events: none;
+        cursor: default;
+      }
+      .mobile_link a[href^=&quot;
+      tel&quot;
+      ],
+      .mobile_link a[href^=&quot;
+      sms&quot;
+      ] {
+        text-decoration: default;
+        color: orange !important;
+        pointer-events: auto;
+        cursor: default;
+      }
+    }
+    /* Not all email clients will obey these, but the important ones will */
+
+    @media only screen and (max-width: 480px) {
+      .card {
+        padding: 1rem 0.75rem !important;
+      }
+      .link_option {
+        font-size: 14px;
+      }
+      hr {
+        margin: 2rem -0.75rem !important;
+        padding-right: 1.5rem !important;
+      }
+    }
+    /* More Specific Targeting */
+
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+      /* You guessed it, ipad (tablets, smaller screens, etc) */
+      /* repeating for the ipad */
+      a[href^=&quot;
+      tel&quot;
+      ],
+      a[href^=&quot;
+      sms&quot;
+      ] {
+        text-decoration: none;
+        color: #15c;
+        /* or whatever your want */
+        pointer-events: none;
+        cursor: default;
+      }
+      .mobile_link a[href^=&quot;
+      tel&quot;
+      ],
+      .mobile_link a[href^=&quot;
+      sms&quot;
+      ] {
+        text-decoration: default;
+        color: orange !important;
+        pointer-events: auto;
+        cursor: default;
+      }
+    }
+    /* iPhone Retina */
+
+    @media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-device-width: 640px) {
+      /* Must include !important on each style to override inline styles */
+      #footer p {
+        font-size: 9px;
+      }
+    }
+    /* Android targeting */
+
+    @media only screen and (-webkit-device-pixel-ratio:.75) {
+      /* Put CSS for low density (ldpi) Android layouts in here */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+
+    @media only screen and (-webkit-device-pixel-ratio:1) {
+      /* Put CSS for medium density (mdpi) Android layouts in here */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+
+    @media only screen and (-webkit-device-pixel-ratio:1.5) {
+      /* Put CSS for high density (hdpi) Android layouts in here */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+    /* Galaxy Nexus */
+
+    @media only screen and (min-device-width: 720px) and (max-device-width: 1280px) {
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      body {
+        font-size: 16px;
+      }
+    }
+    /* end Android targeting */
+  </style>
+</head>
+
+<body>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" style="font-size: 100%; line-height: normal; color: #222;
+  background: #FFF;">
+    <tbody>
+      <tr>
+        <td valign="top">
+          <table id="body" width="100%" cellpadding="0" cellspacing="0" border="0" align="left">
+            <tbody>
+              <tr>
+                <td valign="top">
+                  <div style="max-width: 600px; margin: 0 0; padding: 0
+                  12px;">
+                    <div class="card" style="background: white; border-radius:
+                    0.5rem; padding: 2rem; padding-top: 0rem; margin-bottom:
+                    1.5rem;">
+                      <div style="display:none;font-size:1px;color:#222;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;">
+                      </div>
+                      <p>
+                        Hello,
+                      </p>
+                      <p>
+                        I hope this email finds you well. I wanted to ask you a quick question, did you know that nowadays <strong>70-80%</strong> of customers will research services and products online prior to deciding what business they are going to call, visit, or purchase from?
+                      </p>
+                      <p>
+                        That’s a pretty important number. That means <strong>3 out of 4 people</strong> will do some browsing online before they decide who to reach out to for help.
+                      </p>
+                      <h1>
+                        I'd like to refer some new clients to you and they are waiting for you online.
+                      </h1>
+                      <p>
+                        We created a simple, step-by-step program, <strong>Modern Assets</strong>, showing you how to get more clients online, as well as how to use technology to modernize and optimize your accounting practice. Some people are saying "It's the best thing to happen to accounting in 2017". We hope you find out for yourself.
+                      </p>
+                      <p>
+                        No more guessing work on how to get new clients. No more losing clients to tech-savvy peers. No more feeling outdated.
+                      </p>
+                      <p>
+                        If you are interested, you can find out more about the Modern Assets program <%= link_to "here", root_url(tracking: @tracking_info), target: "_blank", style: "text-decoration:underline;" %>.
+                      </p>
+                      <p>
+                        If you are really interested, you can click <%= link_to "here", root_url(tracking: @tracking_info), target: "_blank", style: "text-decoration:underline;" %> and get <%= number_to_currency(@promo.amount_discount, precision: 0) %> off if you sign up in the next 48 hours.
+                      </p>
+                      <p>
+                        PS. This is not an automated email and I am a real person you can talk to! Feel free to drop me a line if you have any questions about the program.
+                      </p>
+                      <p>
+                        - Marlon, Co-Pilot and Instructor at <a href="https://mymodernassets.com" target="_blank" style="color:#47b475;">Modern Assets</a>
+                      </p>
+                      <a href="https://mymodernassets.com" target="_blank" style="color:#47b475;">MyModernAssets.com</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table id="footer" width="100%" cellpadding="0" cellspacing="0" border="0" align="left" style="margin-top: 1rem; background: white; color: #989EA6;">
+                    <tbody>
+                      <tr>
+                        <td valign="top" align="left" style="padding: 2rem;">
+                          <div style="max-width: 600px; margin: 0
+                          0;">
+                            <hr />
+                            <div class="footer_address" style="margin-top: 16px;
+                            font-size: 12px;
+                            line-height: 20px;">
+                              <p style="margin-top: 16px; font-size: 12px; line-height: 20px;">
+                                If you would like to completely opt-out of everything, forever and ever</span>, click the link below:
+                              </p>&nbsp;<a data-msys-unsubscribe="1" href="https://mymodernassets.com/unsubscribe" target="_blank" style="color: #989EA6;">Unsubscribe</a>
+                              <br />
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>
