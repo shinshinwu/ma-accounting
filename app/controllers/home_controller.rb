@@ -119,7 +119,9 @@ class HomeController < ApplicationController
   end
 
   def process_unsubscribe
-    if User.where(email: params[:email]).exists? || Member.where(email: params[:email]).exists?
+    if EmailSetting.where(email: params[:email], subscribed: false).exists?
+      # do nothing, they are already on the unsubscribe list
+    elsif User.where(email: params[:email]).exists? || Member.where(email: params[:email]).exists?
       EmailSetting.create(email: params[:email], subscribed: false, unsubscribed_at: Time.current)
     end
 

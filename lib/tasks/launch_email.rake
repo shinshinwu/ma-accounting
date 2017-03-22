@@ -41,4 +41,20 @@ namespace :launch_email do
 
     p "Sent first launch email to #{counter} members"
   end
+
+  task :send_group2_launch_email  => :environment do
+    testing_group = (11..21).to_a + [200]
+    # make sure to exclude the big 4 and edu addresses
+    members = Member.where(testing_group: testing_group).where('email is not null').where("email not like '%deloitte.com%'").where("email not like '%ey.com%'").where("email not like '%us.pwc.com%'").where("email not like '%ey.com%'").where("email not like '%kpmg.com%'").where("email not like '%.edu%'")
+    promo = FixedPromotion.where(start_date: "2017-03-22", end_date: "2017-03-24").first
+    raise "Promo code not found" unless promo.present?
+
+    counter = 0
+    members.each do |m|
+      MemberMailer.delay.plain_launch(m.id, promotion_id: promo.id, campaign_id: "launch-start-group2")
+      counter += 1
+    end
+
+    p "Sent first launch email to #{counter} members"
+  end
 end
