@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321041140) do
+ActiveRecord::Schema.define(version: 20170322215850) do
 
   create_table "activity_trackers", force: :cascade do |t|
     t.string   "email",          limit: 255,   null: false
@@ -359,6 +359,16 @@ ActiveRecord::Schema.define(version: 20170321041140) do
   end
 
   add_index "supporting_materials", ["course_module_id"], name: "index_supporting_materials_on_course_module_id", using: :btree
+
+  create_table "suppression_lists", force: :cascade do |t|
+    t.string   "email",      limit: 255, null: false
+    t.string   "source",     limit: 255, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "suppression_lists", ["email"], name: "index_suppression_lists_on_email", using: :btree
+  add_index "suppression_lists", ["source"], name: "index_suppression_lists_on_source", using: :btree
 
   create_table "units", force: :cascade do |t|
     t.string  "name",       limit: 255, null: false
