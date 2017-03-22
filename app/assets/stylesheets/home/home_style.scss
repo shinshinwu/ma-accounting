@@ -532,7 +532,10 @@ a:hover {
   text-decoration: none;
 }
 
-
+.faq a:hover {
+  color: #ff9a9a;
+  text-decoration: underline;
+}
 
 h2{
   font-size: 2.5em;
@@ -622,47 +625,47 @@ div.divider{
 }
 
 
-    .effecter {
-      margin: auto;
-      width: 100%;
-      height: 50%;
-      border: 20px solid transparent;
-      box-sizing: border-box;
-      padding: 1rem;
-      /*display:flex;*/
-      justify-content: center;
-      align-items: center;
-    }
+.effecter {
+  margin: auto;
+  width: 100%;
+  height: 50%;
+  border: 20px solid transparent;
+  box-sizing: border-box;
+  padding: 1rem;
+  /*display:flex;*/
+  justify-content: center;
+  align-items: center;
+}
 
-    .demo {
-      background-image:
-        linear-gradient(white, white),
-        linear-gradient(270deg, rgba(149, 219, 178, 1), #B95DD7 50%, rgba(71, 180, 117, 1) 100%);
+.demo {
+  background-image:
+    linear-gradient(white, white),
+    linear-gradient(270deg, rgba(149, 219, 178, 1), #B95DD7 50%, rgba(71, 180, 117, 1) 100%);
 
-      background-repeat: no-repeat;
-      background-origin: padding-box, border-box;
-      text-align: center;
-    }
+  background-repeat: no-repeat;
+  background-origin: padding-box, border-box;
+  text-align: center;
+}
 
-    .animated {
-      background-image:
-        linear-gradient(white, white),
-        linear-gradient(180deg, rgba(71, 180, 117, 1), rgba(149, 219, 178, 1) , rgba(71, 180, 117, 1));
+.animated {
+  background-image:
+    linear-gradient(white, white),
+    linear-gradient(180deg, rgba(71, 180, 117, 1), rgba(149, 219, 178, 1) , rgba(71, 180, 117, 1));
 
-      background-repeat: no-repeat;
-      background-size: 100% 100%, 100% 200%;
-      background-position: 0 0, 0 100%;
-      background-origin: padding-box, border-box;
-      animation: highlight 0.8s infinite alternate;
-    }
+  background-repeat: no-repeat;
+  background-size: 100% 100%, 100% 200%;
+  background-position: 0 0, 0 100%;
+  background-origin: padding-box, border-box;
+  animation: highlight 0.8s infinite alternate;
+}
 
-    @keyframes highlight {
-      100% {
-        background-position: 0 0, 0 0;
-      }
-    }
-    a:hover{
-  color: white;
+@keyframes highlight {
+  100% {
+    background-position: 0 0, 0 0;
+  }
+}
+a:hover{
+color: white;
 }
 
 
