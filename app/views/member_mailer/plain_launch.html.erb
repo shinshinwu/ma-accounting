@@ -383,7 +383,10 @@
                       </p>
                       <div class="ash-green-bg" style="line-height:1.5em;margin:2em 0;border:1px solid #bbb;border-radius:3px;padding:20px 20px 10px 20px;">
                         <p>
-                          We have just opened up the program for enrollment and are sharing an early bird discount with you. Click on <%= link_to "this link", root_url(tracking: @tracking_info), target: "_blank" %> to get <span style="font-weight:bold">our starter package for ONLY <%= number_to_currency((Product.minimum(:price) - @promo.amount_discount), precision: 0) %>!</span>
+                          We have just opened up the program for enrollment and are sharing an early bird discount with you. Click on the link below to get <span style="font-weight:bold">40% off our starter package!</span>
+                        </p>
+                        <p>
+                          <%= link_to ">> Claim Your Early Bird Discount <<", root_url(tracking: @tracking_info), target: "_blank", style: "text-decoration:underline;" %>
                         </p>
                         <p>
                           The discount price is only accessible to you through this link and is not available to regular site visitors.
