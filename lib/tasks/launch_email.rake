@@ -69,7 +69,7 @@ namespace :launch_email do
 
     counter = 0
     members.each do |m|
-      MemberMailer.delay.final_reminder(m.id, promotion_id: promo.id, campaign_id: "launch-reminder-group1")
+      MemberMailer.delay.final_reminder(m.id, promotion_id: promo.id, campaign_id: "launch-close-group1")
       counter += 1
     end
 
@@ -116,7 +116,7 @@ namespace :launch_email do
 
     counter = 0
     members.each do |m|
-      MemberMailer.delay.discount_reminder(m.id, promotion_id: promo.id, campaign_id: "launch-reminder-group1")
+      MemberMailer.delay.discount_reminder(m.id, promotion_id: promo.id, campaign_id: "launch-reminder-group2")
       counter += 1
     end
 
