@@ -367,7 +367,7 @@
                       </p>
                       <div class="ash-green-bg" style="line-height:1.5em;margin:2em 0;border:1px solid #bbb;border-radius:3px;padding:20px 20px 10px 20px;">
                         <p>
-                          And it gets even better. We want to offer you an early bird discount if you sign up before this Sunday. Get <span style="font-weight:bold">$50 OFF</span> when you sign up by clicking on the link below.
+                          And it gets even better. We want to offer you an early bird discount if you sign up before this Sunday. Get <span style="font-weight:bold"><%= number_to_currency(@promo.amount_discount, precision: 0) %> OFF</span> when you sign up by clicking on the link below.
                         </p>
                         <p>
                           <%= link_to ">> Claim Your Early Bird Discount <<", root_url(tracking: @tracking_info), target: "_blank", style: "text-decoration:underline;" %>
