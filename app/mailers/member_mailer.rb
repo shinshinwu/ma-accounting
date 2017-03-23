@@ -18,6 +18,21 @@ class MemberMailer < ActionMailer::Base
     end
   end
 
+  def short_launch(member_id, promotion_id:, campaign_id:)
+    data = {campaign_id: campaign_id}
+    @member = Member.find_by_id(member_id)
+    @launch_date = Date.new(2017, 04, 30)
+
+    if @member.present?
+      @promo = Promotion.find_by_id(promotion_id)
+      @tracking_info = Base64.urlsafe_encode64({promotion_id: promotion_id, email: @member.email}.to_json)
+      subject = "The Best Thing To Happen To Accountants In 2017 So Far"
+      mail(from: "Marlon from Modern Assets <#{Settings.support_email}>",to: @member.email, subject: subject, sparkpost_data: data) do |format|
+        format.html { render layout: false }
+      end
+    end
+  end
+
   def discount_reminder(member_id, promotion_id:, campaign_id:)
     data = {campaign_id: campaign_id}
     @member = Member.find_by_id(member_id)
@@ -40,6 +55,21 @@ class MemberMailer < ActionMailer::Base
     if @member.present?
       subject = "The Best God Damn Accountant Marketing Course is here!"
       mail(from: "Marlon from Modern Assets <#{Settings.support_email}>",to: @member.email, subject: subject, sparkpost_data: data)
+    end
+  end
+
+  def final_reminder(member_id, promotion_id:, campaign_id:)
+    data = {campaign_id: campaign_id}
+    @member = Member.find_by_id(member_id)
+    @launch_date = Date.new(2017, 04, 30)
+
+    if @member.present?
+      @promo = Promotion.find_by_id(promotion_id)
+      @tracking_info = Base64.urlsafe_encode64({promotion_id: promotion_id, email: @member.email}.to_json)
+      subject = "How To Benefit From Tech, Rather Than Be Replaced By It"
+      mail(from: "Marlon from Modern Assets <#{Settings.support_email}>",to: @member.email, subject: subject, sparkpost_data: data) do |format|
+        format.html { render layout: false }
+      end
     end
   end
 
