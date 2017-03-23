@@ -124,7 +124,7 @@ namespace :launch_email do
   end
 
   task :send_group3_launch_email  => :environment do
-    testing_group = (12..32).to_a + [200]
+    testing_group = (22..32).to_a + [200]
     # make sure to exclude the big 4 and edu addresses
     members = Member.where(testing_group: testing_group).where('email is not null').where("email not like '%deloitte.com%'").where("email not like '%ey.com%'").where("email not like '%us.pwc.com%'").where("email not like '%ey.com%'").where("email not like '%kpmg.com%'").where("email not like '%.edu%'")
 
