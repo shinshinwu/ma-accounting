@@ -171,7 +171,7 @@ namespace :launch_email do
     p "Sent first launch email to #{counter} members"
   end
 
-  task :send_group2_discount_reminder_email  => :environment do
+  task :send_group3_discount_reminder_email  => :environment do
     testing_group = (22..32).to_a + [200]
     groups = testing_group.to_s.gsub("[", '(').gsub("]", ')')
 
